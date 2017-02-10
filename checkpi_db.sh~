@@ -1,0 +1,16 @@
+#!/bin/bash
+
+RUNNING=`ps -ef | grep deltav | grep python`
+MAILTO=""
+if [ "$RUNNING" == "" ]
+then
+  echo "deltav script is not running on `hostname`!"
+  python /home/lkippenb/deltav.py &
+  SUBJECT="deltav script restarted on `hostname`"
+  MESSAGE="deltav script restarted at `date` as `ps -ef | grep deltav`"
+  python /home/lkippenb/sendEmail.py "$SUBJECT" "$MESSAGE"
+  echo $MESSAGE | cat >> /home/lkippenb/errorlog.txt
+  echo "deltav script is started on `hostname`."
+else
+  echo "deltav script is running on `hostname`."
+fi
