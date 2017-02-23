@@ -6,6 +6,7 @@ from suds.client import Client
 from suds.sudsobject import asdict
 import datetime, time, calendar, math, re
 import sys,logging, pprint
+import socket
 import traceback
 import couchdb
 import smtplib
@@ -346,7 +347,11 @@ def saveValues(data):
     if dbDataStatus is "ok":
         for element in data:
             if element["timestamp"]!="N/A":
-                dbData.save(element)
+		try:
+                    dbData.save(element)
+		except socket.error, exc:
+		    logging.exception("FAILED TO SAVE 1 MIN ENTRY" + \
+		    "FOR THIS MINUTE.  ERROR: " + str(exc))
 
 
 #Connects to channeldb to get alarm parameters
