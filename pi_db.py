@@ -472,12 +472,21 @@ def saveAlarms(alarms_dict,alarms_last,channeldb):
                 except:
                     match = 0
             if match==0:
-                db.save(alarms_dict)
+		try:
+                    db.save(alarms_dict)
+		except socket.error, exc:
+		    logging.exception("FAILED TO SAVE ALARMS DICT ENTRY" + \
+		    "FOR THIS MINUTE.  ERROR: " + str(exc))
+		    logging.exception("ALARM ENTRY: " + str(alarms_dict))
                 printAlarms(alarms_dict,alarms_last)
         else:
-            db.save(alarms_dict)
+	    try:
+                db.save(alarms_dict)
+	    except socket.error, exc:
+	        logging.exception("FAILED TO SAVE ALARMS DICT ENTRY" + \
+		    "FOR THIS MINUTE.  ERROR: " + str(exc))
+		logging.exception("ALARM ENTRY: " + str(alarms_dict))
             printAlarms(alarms_dict,alarms_last)
-
 
 #Sends alarms email
 def printAlarms(alarms_dict,alarms_last):
