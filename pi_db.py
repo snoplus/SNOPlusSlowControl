@@ -425,10 +425,23 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
 	       post_alarm(channel["alarmid"])
                nowalarming.append(channel["alarmid"])
     #If the detector item has no alarms, clear alarms on that component
-    for entry in aldict_entries:
-        for channel in alarms_last[entry]:
-            if channel["alarmid"] not in nowalarming:
-                clear_alarm(channel["alarmid"])
+    counter = 0
+    while counter < 3:
+        try:
+    	    for entry in aldict_entries:
+                for channel in alarms_last[entry]:
+                    if channel["alarmid"] not in nowalarming:
+                        clear_alarm(channel["alarmid"])
+            return
+        except:
+            logging.info("Alarms Last likely empty from a connection error." + \
+                 " Trying to get Aarms last from database...")
+            counter+=1
+            alarms_last = getPastAlarms()
+            continue
+    logging.exception("Could not clear alarms because could not" + \
+           "Access the last alarms from couchdb.") 
+    
 
 
 def getPastAlarms():
@@ -570,7 +583,7 @@ while(1):
     endpoll_time = poll_time+pollrange
     rawdata = getValues(poll_time,endpoll_time,pi_list)
     pi_data = ManipulateData(poll_time,endpoll_time,rawdata)
-#    print pi_data
+    print pi_data
     saveValues(pi_data)
     channeldb = getChannelParameters(channeldb_last)
     for timeslot in pi_data:
