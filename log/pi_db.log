@@ -146,3 +146,264 @@ None
 2017-02-06 04:29:09,648 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 560, in <module>\n    saveValues(pi_data)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 349, in saveValues\n    dbData.save(element)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
 None
 2017-02-06 04:30:01,910 PI_DB SCRIPT INITIALIZING...
+2017-02-16 00:21:18,138 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-16 00:21:18,139 Error type: <class 'socket.error'>
+None
+2017-02-16 00:21:18,141 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 560, in <module>\n    saveValues(pi_data)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 349, in saveValues\n    dbData.save(element)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-16 00:22:01,408 PI_DB SCRIPT INITIALIZING...
+2017-02-16 02:49:27,193 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-16 02:49:27,194 Error type: <class 'socket.error'>
+None
+2017-02-16 02:49:27,196 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 560, in <module>\n    saveValues(pi_data)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 349, in saveValues\n    dbData.save(element)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-16 02:50:01,459 PI_DB SCRIPT INITIALIZING...
+2017-02-16 17:31:10,935 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-16 17:31:10,936 Error type: <class 'socket.error'>
+None
+2017-02-16 17:31:10,938 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 560, in <module>\n    saveValues(pi_data)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 349, in saveValues\n    dbData.save(element)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-16 17:32:02,207 PI_DB SCRIPT INITIALIZING...
+2017-02-22 00:27:41,140 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-22 00:27:41,140 Error type: <class 'socket.error'>
+None
+2017-02-22 00:27:41,142 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 565, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 453, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-22 00:28:01,410 PI_DB SCRIPT INITIALIZING...
+2017-02-22 01:54:59,887 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-22 01:54:59,888 Error type: <class 'socket.error'>
+None
+2017-02-22 01:54:59,890 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 560, in <module>\n    saveValues(pi_data)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 349, in saveValues\n    dbData.save(element)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-22 01:55:02,148 PI_DB SCRIPT INITIALIZING...
+2017-02-22 01:56:11,170 Uncaught exception: 'cavity_water_temp'
+None
+2017-02-22 01:56:11,170 Error type: <type 'exceptions.KeyError'>
+None
+2017-02-22 01:56:11,171 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 564, in <module>\n    PostAlarmServerAlarms(alarms_dict, alarms_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 424, in PostAlarmServerAlarms\n    for channel in alarms_last[entry]:\n']
+None
+2017-02-22 01:57:01,428 PI_DB SCRIPT INITIALIZING...
+2017-02-23 14:09:16,408 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-23 14:09:16,409 Error type: <class 'socket.error'>
+None
+2017-02-23 14:09:16,410 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 560, in <module>\n    saveValues(pi_data)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 349, in saveValues\n    dbData.save(element)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-23 14:10:01,678 PI_DB SCRIPT INITIALIZING...
+2017-02-23 15:24:45,709 PI_DB SCRIPT INITIALIZING...
+2017-02-23 15:25:02,539 Uncaught exception: 
+None
+2017-02-23 15:25:02,540 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2017-02-23 15:25:02,540 Traceback: ['  File "pi_db.py", line 575, in <module>\n    time.sleep(wait_time)\n']
+None
+2017-02-23 15:25:06,931 PI_DB SCRIPT INITIALIZING...
+2017-02-24 01:37:05,712 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-24 01:37:05,713 Error type: <class 'socket.error'>
+None
+2017-02-24 01:37:05,715 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 570, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-24 01:38:02,024 PI_DB SCRIPT INITIALIZING...
+2017-02-24 14:35:45,283 PI_DB SCRIPT INITIALIZING...
+2017-02-24 14:38:50,513 Uncaught exception: 
+None
+2017-02-24 14:38:50,513 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2017-02-24 14:38:50,516 Traceback: ['  File "pi_db.py", line 579, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 281, in _try_request_with_retries\n    return _try_request()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 301, in _try_request\n    conn.endheaders()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 63, in endheaders\n    self._send_output(message_body)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 72, in _send_output\n    self.send(msg)\n', '  File "/usr/lib64/python2.6/httplib.py", line 790, in send\n    self.connect()\n', '  File "/usr/lib64/python2.6/httplib.py", line 771, in connect\n    self.timeout)\n', '  File "/usr/lib64/python2.6/socket.py", line 560, in create_connection\n    sock.connect(sa)\n', '  File "<string>", line 1, in connect\n']
+None
+2017-02-24 14:38:53,387 PI_DB SCRIPT INITIALIZING...
+2017-02-27 20:17:14,309 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-02-27 20:17:14,310 Error type: <class 'socket.error'>
+None
+2017-02-27 20:17:14,312 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 575, in <module>\n    channeldb = getChannelParameters(channeldb_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 363, in getChannelParameters\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-02-27 20:18:01,833 PI_DB SCRIPT INITIALIZING...
+2017-03-08 21:56:33,755 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-08 21:56:33,756 Error type: <class 'socket.error'>
+None
+2017-03-08 21:56:33,758 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 575, in <module>\n    channeldb = getChannelParameters(channeldb_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 363, in getChannelParameters\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-08 21:57:02,050 PI_DB SCRIPT INITIALIZING...
+2017-03-09 01:10:26,797 FAILED TO SAVE 1 MIN ENTRYFOR THIS MINUTE.  ERROR: [Errno 110] Connection timed out
+Traceback (most recent call last):
+  File "/home/uwslowcontrol/pi_db/pi_db.py", line 351, in saveValues
+    dbData.save(element)
+  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save
+    _, _, data = func(body=doc, **options)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json
+    **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json
+    headers=headers, **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request
+    credentials=self.credentials)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request
+    resp = _try_request_with_retries(iter(self.retry_delays))
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries
+    raise e
+error: [Errno 110] Connection timed out
+2017-03-10 01:15:46,873 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-10 01:15:46,874 Error type: <class 'socket.error'>
+None
+2017-03-10 01:15:46,874 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 579, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-10 01:16:02,141 PI_DB SCRIPT INITIALIZING...
+2017-03-10 14:43:16,519 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-10 14:43:16,520 Error type: <class 'socket.error'>
+None
+2017-03-10 14:43:16,522 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 575, in <module>\n    channeldb = getChannelParameters(channeldb_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 363, in getChannelParameters\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-10 14:44:01,798 PI_DB SCRIPT INITIALIZING...
+2017-03-17 14:10:17,159 PI_DB SCRIPT INITIALIZING...
+2017-03-17 14:15:00,877 PI_DB SCRIPT INITIALIZING...
+2017-03-17 14:15:25,217 Uncaught exception: 
+None
+2017-03-17 14:15:25,218 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2017-03-17 14:15:25,218 Traceback: ['  File "pi_db.py", line 584, in <module>\n    time.sleep(wait_time)\n']
+None
+2017-03-17 14:15:53,105 PI_DB SCRIPT INITIALIZING...
+2017-03-17 15:06:38,849 Uncaught exception: 
+None
+2017-03-17 15:06:38,850 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2017-03-17 15:06:38,851 Traceback: ['  File "pi_db.py", line 584, in <module>\n    time.sleep(wait_time)\n']
+None
+2017-03-17 15:06:43,149 PI_DB SCRIPT INITIALIZING...
+2017-03-17 15:07:54,669 Uncaught exception: [Errno 5] Input/output error
+None
+2017-03-17 15:07:54,669 Error type: <type 'exceptions.IOError'>
+None
+2017-03-17 15:07:54,670 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 573, in <module>\n    print pi_data\n']
+None
+2017-03-17 15:08:01,971 PI_DB SCRIPT INITIALIZING...
+2017-03-19 01:20:01,057 FAILED TO SAVE 1 MIN ENTRYFOR THIS MINUTE.  ERROR: [Errno 110] Connection timed out
+Traceback (most recent call last):
+  File "/home/uwslowcontrol/pi_db/pi_db.py", line 351, in saveValues
+    dbData.save(element)
+  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save
+    _, _, data = func(body=doc, **options)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json
+    **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json
+    headers=headers, **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request
+    credentials=self.credentials)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request
+    resp = _try_request_with_retries(iter(self.retry_delays))
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries
+    raise e
+error: [Errno 110] Connection timed out
+2017-03-19 08:44:42,175 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-19 08:44:42,175 Error type: <class 'socket.error'>
+None
+2017-03-19 08:44:42,176 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 579, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-19 08:45:01,428 PI_DB SCRIPT INITIALIZING...
+2017-03-19 08:47:13,703 Uncaught exception: 'cavity_water_temp'
+None
+2017-03-19 08:47:13,703 Error type: <type 'exceptions.KeyError'>
+None
+2017-03-19 08:47:13,704 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 578, in <module>\n    PostAlarmServerAlarms(alarms_dict, alarms_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 429, in PostAlarmServerAlarms\n    for channel in alarms_last[entry]:\n']
+None
+2017-03-19 08:48:01,971 PI_DB SCRIPT INITIALIZING...
+2017-03-19 13:08:11,669 FAILED TO SAVE 1 MIN ENTRYFOR THIS MINUTE.  ERROR: [Errno 110] Connection timed out
+Traceback (most recent call last):
+  File "/home/uwslowcontrol/pi_db/pi_db.py", line 351, in saveValues
+    dbData.save(element)
+  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save
+    _, _, data = func(body=doc, **options)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json
+    **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json
+    headers=headers, **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request
+    credentials=self.credentials)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request
+    resp = _try_request_with_retries(iter(self.retry_delays))
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries
+    raise e
+error: [Errno 110] Connection timed out
+2017-03-19 13:10:19,154 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-19 13:10:19,154 Error type: <class 'socket.error'>
+None
+2017-03-19 13:10:19,155 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 579, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-19 13:11:01,421 PI_DB SCRIPT INITIALIZING...
+2017-03-19 15:29:20,802 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-19 15:29:20,803 Error type: <class 'socket.error'>
+None
+2017-03-19 15:29:20,805 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 579, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-19 15:30:02,073 PI_DB SCRIPT INITIALIZING...
+2017-03-19 15:32:24,307 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-19 15:32:24,308 Error type: <class 'socket.error'>
+None
+2017-03-19 15:32:24,310 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 579, in <module>\n    saveAlarms(alarms_dict,alarms_last,channeldb)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 458, in saveAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-19 15:33:01,582 PI_DB SCRIPT INITIALIZING...
+2017-03-19 15:35:08,648 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-19 15:35:08,649 Error type: <class 'socket.error'>
+None
+2017-03-19 15:35:08,651 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 562, in <module>\n    alarms_last = getPastAlarms()\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 442, in getPastAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-19 15:36:01,911 PI_DB SCRIPT INITIALIZING...
+2017-03-19 17:46:57,186 FAILED TO SAVE 1 MIN ENTRYFOR THIS MINUTE.  ERROR: [Errno 110] Connection timed out
+Traceback (most recent call last):
+  File "/home/uwslowcontrol/pi_db/pi_db.py", line 351, in saveValues
+    dbData.save(element)
+  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 439, in save
+    _, _, data = func(body=doc, **options)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 545, in post_json
+    **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json
+    headers=headers, **params)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request
+    credentials=self.credentials)
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request
+    resp = _try_request_with_retries(iter(self.retry_delays))
+  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries
+    raise e
+error: [Errno 110] Connection timed out
+2017-03-19 22:33:33,080 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-19 22:33:33,081 Error type: <class 'socket.error'>
+None
+2017-03-19 22:33:33,082 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 575, in <module>\n    channeldb = getChannelParameters(channeldb_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 363, in getChannelParameters\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-19 22:34:01,357 PI_DB SCRIPT INITIALIZING...
+2017-03-19 22:35:10,456 Uncaught exception: 'cavity_water_temp'
+None
+2017-03-19 22:35:10,456 Error type: <type 'exceptions.KeyError'>
+None
+2017-03-19 22:35:10,457 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 578, in <module>\n    PostAlarmServerAlarms(alarms_dict, alarms_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 429, in PostAlarmServerAlarms\n    for channel in alarms_last[entry]:\n']
+None
+2017-03-19 22:36:01,718 PI_DB SCRIPT INITIALIZING...
+2017-03-20 09:23:12,467 Uncaught exception: [Errno 110] Connection timed out
+None
+2017-03-20 09:23:12,468 Error type: <class 'socket.error'>
+None
+2017-03-20 09:23:12,470 Traceback: ['  File "/home/uwslowcontrol/pi_db/pi_db.py", line 575, in <module>\n    channeldb = getChannelParameters(channeldb_last)\n', '  File "/home/uwslowcontrol/pi_db/pi_db.py", line 363, in getChannelParameters\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 290, in _try_request_with_retries\n    raise e\n']
+None
+2017-03-20 09:24:01,735 PI_DB SCRIPT INITIALIZING...
+2017-03-20 15:44:51,019 PI_DB SCRIPT INITIALIZING...
+2017-03-20 15:45:10,067 Uncaught exception: 
+None
+2017-03-20 15:45:10,068 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2017-03-20 15:45:10,071 Traceback: ['  File "pi_db.py", line 607, in <module>\n    alarms_last = getPastAlarms()\n', '  File "pi_db.py", line 467, in getPastAlarms\n    num_rows = queryresults.total_rows\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1217, in total_rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 281, in _try_request_with_retries\n    return _try_request()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 301, in _try_request\n    conn.endheaders()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 63, in endheaders\n    self._send_output(message_body)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 72, in _send_output\n    self.send(msg)\n', '  File "/usr/lib64/python2.6/httplib.py", line 790, in send\n    self.connect()\n', '  File "/usr/lib64/python2.6/httplib.py", line 771, in connect\n    self.timeout)\n', '  File "/usr/lib64/python2.6/socket.py", line 553, in create_connection\n    for res in getaddrinfo(host, port, 0, SOCK_STREAM):\n']
+None

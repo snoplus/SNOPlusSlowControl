@@ -52,7 +52,8 @@ def post_alarm(alarm_id):
         conn = pool.getconn()
     except psycopg2.Error as e:
         #if the database is down we just print the error
-        print str(e)
+        logging.exeption(str(e))
+        print(str(e))     
     else:
         #we have a connection
         try:
@@ -62,7 +63,8 @@ def post_alarm(alarm_id):
                     result = curs.fetchone()[0]
         except psycopg2.Error as e:
             #who knows what went wrong?  Just print the error
-            print str(e)
+            logging.exception(str(e))
+            print(str(e))
             #close the connection since it's possible the database
             #is down, so we don't want to use this connection again
             conn.close()
@@ -85,7 +87,7 @@ def clear_alarm(alarm_id):
         conn = pool.getconn()
     except psycopg2.Error as e:
         #if the database is down we just print the error
-        print str(e)
+        logging.exception(str(e))
     else:
         #we have a connection
         try:
@@ -95,7 +97,7 @@ def clear_alarm(alarm_id):
                     result = curs.fetchone()[0]
         except psycopg2.Error as e:
             #who knows what went wrong?  Just print the error
-            print str(e)
+            logging.exception(str(e))
             #close the connection since it's possible the database
             #is down, so we don't want to use this connection again
             conn.close()
@@ -113,7 +115,7 @@ def post_heartbeat(name):
         conn = pool.getconn()
     except psycopg2.Error as e:
         #if the database is down we just print the error
-        print str(e)
+        logging.exception(str(e))
     else:
         #we have a connection
         try:
@@ -122,7 +124,7 @@ def post_heartbeat(name):
                     curs.execute("SELECT * FROM post_heartbeat('%s')" % name)
         except psycopg2.Error as e:
             #who knows what went wrong; just print the error
-            print str(e)
+            logging.exeption(str(e))
             #close the connection since it's possible the database
             #is down, so we don't want to reuse this connection
             conn.close()
@@ -207,6 +209,7 @@ def connectToDB(dbName):
         db = couch[dbName]
     except:
         print "Failed to connect to " + dbName
+        logging.exception("Failed to connect to " + dbName)
         status = "bad"
     return status, db
 
@@ -359,10 +362,16 @@ def getChannelParameters(channeldb_last):
     channeldb = {}                                                                                    
     dbParStatus, dbPar = connectToDB("slowcontrol-channeldb")                                       
     if dbParStatus is "ok":                                                                         
-        queryresults =  dbPar.view("slowcontrol/recent",descending=True,limit=1)                    
-        channeldb = queryresults.rows[0].value
-        return channeldb
+        try:
+            queryresults =  dbPar.view("slowcontrol/recent",descending=True,limit=1)                    
+            channeldb = queryresults.rows[0].value
+            return channeldb
+        except socket.error, exc:
+            logging.exception("Failed to view channeldb database." + \
+                "returning last channeldb dict.  ERR: " + str(exc))
     else:
+        logging.exception("IN getChannelParameters: could not connect" + \
+            " to slowcontrol-channeldb. returning last channeldb dict.")
         return channeldb_last
    
 
@@ -451,13 +460,26 @@ def getPastAlarms():
     """
     dbStatus, db = connectToDB("slowcontrol-alarms")
     if dbStatus is "ok":
-        queryresults =  db.view("slowcontrol-alarms/pi_db",descending=True,limit=1)
-        num_rows = queryresults.total_rows
+        counter = 0
+        while counter < 3:
+            try:
+                queryresults =  db.view("slowcontrol-alarms/pi_db",descending=True,limit=1)
+                num_rows = queryresults.total_rows
+            except socket.error,exc:
+                logging.exception("IN getPastAlarms: Failed to view database" + \
+                    "for past alarms.  Re-try connection.")
+                counter += 1
+                time.sleep(1)
+                dbStatus, db = connectToDB("slowcontrol-alarms")
+                continue
         if num_rows>0:
             alarms_in_db = queryresults.rows[0].value
 	else:
 	    print("Could not get most recent alarms in DB.  Continuing..")
+            alarms_in_db = {}
     else:
+        logging.exeption("IN getPastAlarms(): could not connect to" + \
+            "couchDB slowcontrol-alarms/pi_db database.")
         print("could not connect to couchDB alarm database.")
 	alarms_in_db = {}
     return alarms_in_db
@@ -467,8 +489,18 @@ def getPastAlarms():
 def saveAlarms(alarms_dict,alarms_last,channeldb):
     dbStatus, db = connectToDB("slowcontrol-alarms")
     if dbStatus is "ok":
-        queryresults =  db.view("slowcontrol-alarms/pi_db",descending=True,limit=1)
-        num_rows = queryresults.total_rows
+        counter = 0
+        while counter < 3:
+            try:
+                queryresults =  db.view("slowcontrol-alarms/pi_db",descending=True,limit=1)
+                num_rows = queryresults.total_rows
+            except socket.error,exc:
+                logging.exception("IN saveAlarms: Failed to view database" + \
+                    "for past alarms.  Re-try connection.")
+                counter += 1
+                time.sleep(1)
+                dbStatus, db = connectToDB("slowcontrol-alarms")
+                continue
         if num_rows>0:
             alarms_in_db = queryresults.rows[0].value
             match = 1
