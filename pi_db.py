@@ -617,7 +617,7 @@ while(1):
     endpoll_time = poll_time+pollrange
     rawdata = getValues(poll_time,endpoll_time,pi_list)
     pi_data = ManipulateData(poll_time,endpoll_time,rawdata)
-    print pi_data
+    #print pi_data
     saveValues(pi_data)
     channeldb = getChannelParameters(channeldb_last)
     for timeslot in pi_data:
