@@ -472,6 +472,7 @@ def getPastAlarms():
                 time.sleep(1)
                 dbStatus, db = connectToDB("slowcontrol-alarms")
                 continue
+            break
         if num_rows>0:
             alarms_in_db = queryresults.rows[0].value
 	else:
@@ -501,6 +502,7 @@ def saveAlarms(alarms_dict,alarms_last,channeldb):
                 time.sleep(1)
                 dbStatus, db = connectToDB("slowcontrol-alarms")
                 continue
+            break
         if num_rows>0:
             alarms_in_db = queryresults.rows[0].value
             match = 1
