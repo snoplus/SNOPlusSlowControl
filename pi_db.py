@@ -205,12 +205,19 @@ def sendMail(subject, text):
 def connectToDB(dbName):
     status = "ok"
     db = {}
-    try:
-        db = couch[dbName]
-    except:
-        print "Failed to connect to " + dbName
-        logging.exception("Failed to connect to " + dbName)
-        status = "bad"
+    numtries = 0
+    while numtries < 3:
+        try:
+           db = couch[dbName]
+           break
+        except:
+            print "Failed to connect to " + dbName
+            logging.exception("Failed to connect to " + dbName)
+            numtries += 1
+            logging.info("At try " + numtries + ". Trying again..")
+            sleep(1)
+            status = "bad"
+            continue
     return status, db
 
 
