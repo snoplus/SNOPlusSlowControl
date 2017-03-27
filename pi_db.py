@@ -214,7 +214,7 @@ def connectToDB(dbName):
             print "Failed to connect to " + dbName
             logging.exception("Failed to connect to " + dbName)
             numtries += 1
-            logging.info("At try " + numtries + ". Trying again..")
+            logging.info("At try " + str(numtries) + ". Trying again..")
             sleep(1)
             status = "bad"
             continue
@@ -367,19 +367,25 @@ def saveValues(data):
 #Connects to channeldb to get alarm parameters
 def getChannelParameters(channeldb_last):                                                                         
     channeldb = {}                                                                                    
+    counter = 0
     dbParStatus, dbPar = connectToDB("slowcontrol-channeldb")                                       
-    if dbParStatus is "ok":                                                                         
-        try:
-            queryresults =  dbPar.view("slowcontrol/recent",descending=True,limit=1)                    
-            channeldb = queryresults.rows[0].value
-            return channeldb
-        except socket.error, exc:
-            logging.exception("Failed to view channeldb database." + \
-                "returning last channeldb dict.  ERR: " + str(exc))
+    if dbParStatus is "ok":
+        while counter < 3:                                                                         
+            try:
+                queryresults =  dbPar.view("slowcontrol/recent",descending=True,limit=1)                    
+                channeldb = queryresults.rows[0].value
+                return channeldb
+            except socket.error, exc:
+                logging.exception("Failed to view channeldb database." + \
+                    "sleeping, trying again... ERR: " + str(exc))
+                time.sleep(1)
+                counter += 1
+                dbParStatus, dbPar = connectToDB("slowcontrol-channeldb")
+                continue
     else:
         logging.exception("IN getChannelParameters: could not connect" + \
             " to slowcontrol-channeldb. returning last channeldb dict.")
-        return channeldb_last
+    return channeldb_last
    
 
 
