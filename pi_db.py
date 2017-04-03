@@ -215,7 +215,7 @@ def connectToDB(dbName):
             logging.exception("Failed to connect to " + dbName)
             numtries += 1
             logging.info("At try " + str(numtries) + ". Trying again..")
-            sleep(1)
+            time.sleep(1)
             status = "bad"
             continue
     return status, db
