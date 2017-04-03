@@ -1,12 +1,15 @@
 # ------------------ COUCHUTILS ---------------------------#
+import time
 import couchdb
-import sys.logging
+import re
+import sys,logging,socket
 
 CREDENTIALHOME = "/home/uwslowcontrol/config/couchcred.conf"
 CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
+DBNAME = "slowcontrol-data-cavitytemps"
 
 # --------- Logger configuration ----------- #
-logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO, \
+logging.basicConfig(filename=CLOG_FILENAME,level=logging.INFO, \
     format='%(asctime)s %(message)s')
 
 #Define what we want our system exception hook to do at an
@@ -51,20 +54,30 @@ def connectToDB(dbName):
             logging.exception("Failed to connect to " + dbName)
             numtries += 1
             logging.info("At try " + str(numtries) + ". Trying again..")
-            sleep(1)
+            time.sleep(1)
             status = "bad"
             continue
     return status, db
 
-def saveValues(data):
-    dbDataStatus, dbData = connectToDB("slowcontrol-data-1min")
+def saveValuesToCT(data):
+    dbDataStatus, dbData = connectToDB(DBNAME)
     if dbDataStatus is "ok":
-        for element in data:
-            if element["timestamp"]!="N/A":
-		try:
-                    dbData.save(element)
-		except socket.error, exc:
-		    logging.exception("FAILED TO SAVE 1 MIN ENTRY" + \
-		    "FOR THIS MINUTE.  ERROR: " + str(exc))
-
+        if data["timestamp"]!="N/A":
+            numtries = 0
+            while numtries < 3:
+                try:
+                    dbData.save(data)
+                    return
+	        except socket.error, exc:
+	            logging.exception("FAILED TO SAVE 1 MIN ENTRY" + \
+	                "FOR THIS MINUTE.SLEEP, RETRY.")
+                    print("FAILED TO SAVE.  DISCONNECTING, TRY AGAIN...")
+                    time.sleep(1)
+                    dbDataStatus, dbData = connectToDB(DBNAME)
+                    numtries+=1
+                    continue
+            logging.exception("TRIED 3 TIMES TO SAVE DATA AND FAILED.")
+            print("COULD NOT SAVE DATA AFTER THREE TRIES.  WOW")
+        else:
+            print("Timestamp is invalid.  Check your system time, jeez")
 #--------------- /COUCHUTILS ------------------------------#

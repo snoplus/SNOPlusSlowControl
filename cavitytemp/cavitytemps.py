@@ -23,22 +23,55 @@ def getReading():
 #Takes in result from getReading and parses for couchDB saving
 #Also adds timestamp to the document being saved
 class TempReader(object):
-    def __init__(self, readstring):
-        self.rawread = readstring
-        self.readingdict = {}
-
-        self.settime()
+    def __init__(self, rawreadlines):
+        self.rawreadlines = rawreadlines
+        self.readingdict = {"cavitytemps":"true"}
 
 
-    def parsevalues(self):
-        print("Theparse") 
+
+    def parseTemps(self):
+        sensorlines = self.getSensorLines()
+        for line in sensorlines:
+            for j, entry in enumerate(line):
+                if entry == "Sensor":
+                    key = line[j] + " " + line[j+1]
+                    val = float(line[j+3])
+                    self.readingdict[key] = val
+
+
+    #Return only the lines in rawread that have sensor readings
+    def getSensorLines(self):
+        valuelines = []
+        for line in self.rawreadlines:
+            if line.find('Sensor') != -1:
+                sline = line.split(" ")
+                valuelines.append(sline)
+        return valuelines
+
+    def show(self):
+        print("Current dictionary to push to couchdb: \n")
+        print(self.readingdict)
 
     def settime(self):
         self.readingdict["timestamp"] = int(time.time())           
 
 if __name__ == "__main__":
-    rawread = getReading()
-    reader = TempReader(rawread)
-    f = open("TempReadings.txt")
-    f.write(reading)
-    f.close()
+    while True:
+        rawread = getReading()
+        rawread = rawread.splitlines()
+#        f = open("TempReadings.txt","r")
+#        rawread = f.readlines()
+        reader = TempReader(rawread)
+        reader.settime()
+        reader.parseTemps()
+
+        f = open("TempReadings.txt","a")
+        f.write("\n")
+        towrite = "".join(rawread)
+        f.write(towrite)
+        f.close()
+
+        #save the dictionary to couchDB
+        cu.saveValuesToCT(reader.readingdict)
+        print("IIIIITS SLEEPIN TIME~")
+        time.sleep(360)
