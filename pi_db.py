@@ -180,6 +180,7 @@ pi_list =[{"dbname":"cavity_water_temp","channels":[1],"address":"DeltaV_311-TIT
 couch = couchdb.Server('http://couch.snopl.us')
 couchuser, couchpassword = getcreds("/home/uwslowcontrol/config/couchcred.conf")
 couch.resource.credentials = (couchuser, couchpassword)
+couch.resource.session.timeout = 15
 
 #Sends an email
 def sendMail(subject, text):
