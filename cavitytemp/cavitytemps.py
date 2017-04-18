@@ -7,71 +7,80 @@
 
 import subprocess
 import lib.couchutils as cu
+import lib.tempreader as tr
+import logging
+import sys, traceback
 import time
 
+DEBUG = False
+
+# --------- Logger configuration ----------- #
+CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
+
+logging.basicConfig(filename=CLOG_FILENAME,level=logging.INFO, \
+    format='%(asctime)s %(message)s')
+
+#Define what we want our system exception hook to do at an
+#uncaught exception
+def UE_handler(exec_type, value, tb):
+    logging.exception("Uncaught exception: {0}".format(str(value)))
+    logging.exception("Error type: " + str(exec_type))
+    logging.exception("Traceback: " + str(traceback.format_tb(tb)))
+
+#At an uncaught exception, run our handler
+sys.excepthook = UE_handler
+
+# ------- /Logger configuration --------- #
+
+#Sends command to temp reader, returns raw read data
 def getReading():
     timedelay = '1'
     numreads = '1'  #Set to zero to forever loop
     sport = '/dev/ttyUSB0' #Location of serial port
-    logfile = '/home/uwslowcontrol/pi_db/log/ctemplog.log &'
     comm = ['digitemp_DS9097U','-i','-a','-d',timedelay,
-        '-n',numreads,'-s',sport] #-l logfile
+        '-n',numreads,'-s',sport]
     #This is deprecated!  But we're stuck at 2.6.6 so...
     tempreading = subprocess.Popen(comm, stdout=subprocess.PIPE).communicate()[0]
     return tempreading
 
-#Takes in result from getReading and parses for couchDB saving
-#Also adds timestamp to the document being saved
-class TempReader(object):
-    def __init__(self, rawreadlines):
-        self.rawreadlines = rawreadlines
-        self.readingdict = {"cavitytemps":"true"}
+#Save readings to text file for Noel
+def WriteReadToLog(TempReader):
+    SensorReads = reader.getSensorLines()
+    if SensorReads is not None:
+        f = open("TempReadings.log","a")
+        f.write("\n")
+        for sensorline in SensorReads:
+            combinedline = " ".join(sensorline)
+            if DEBUG == True:
+                print("LINE WRITEN TO LOG: " + combinedline)
+            f.write(combinedline + "\n")
+        f.close()
 
-
-
-    def parseTemps(self):
-        sensorlines = self.getSensorLines()
-        for line in sensorlines:
-            for j, entry in enumerate(line):
-                if entry == "Sensor":
-                    key = line[j] + " " + line[j+1]
-                    val = float(line[j+3])
-                    self.readingdict[key] = val
-
-
-    #Return only the lines in rawread that have sensor readings
-    def getSensorLines(self):
-        valuelines = []
-        for line in self.rawreadlines:
-            if line.find('Sensor') != -1:
-                sline = line.split(" ")
-                valuelines.append(sline)
-        return valuelines
-
-    def show(self):
-        print("Current dictionary to push to couchdb: \n")
-        print(self.readingdict)
-
-    def settime(self):
-        self.readingdict["timestamp"] = int(time.time())           
+   
+# --------- END Logger configuration -------- #
 
 if __name__ == "__main__":
     while True:
         rawread = getReading()
         rawread = rawread.splitlines()
-#        f = open("TempReadings.txt","r")
-#        rawread = f.readlines()
-        reader = TempReader(rawread)
-        reader.settime()
+        reader = tr.TempReader(rawread)
+        time_now = int(time.time())
+        reader.settime(time_now)
+        reader.setunit("(C)")
         reader.parseTemps()
+        if reader.hasrawvalues == False:
+            logging.info("No values grabbed from sensor. Sensor" + \
+                " may have been polled by another source at this time.")
+            time.sleep(60)
+            continue
+        elif reader.parsed == False:
+            #no values to parse, try again in a minute
+            logging.info("No values parsed, trying again in 1 min.")
+            time.sleep(60)
+            continue
+        else:
+            WriteReadToLog(reader)
+            #save the dictionary to couchDB
+            cu.saveValuesToCT(reader.readingdict)
+            time.sleep(360)
 
-        f = open("TempReadings.txt","a")
-        f.write("\n")
-        towrite = "".join(rawread)
-        f.write(towrite)
-        f.close()
-
-        #save the dictionary to couchDB
-        cu.saveValuesToCT(reader.readingdict)
-        print("IIIIITS SLEEPIN TIME~")
-        time.sleep(360)

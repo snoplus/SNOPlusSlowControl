@@ -358,11 +358,22 @@ def saveValues(data):
     if dbDataStatus is "ok":
         for element in data:
             if element["timestamp"]!="N/A":
-		try:
-                    dbData.save(element)
-		except socket.error, exc:
-		    logging.exception("FAILED TO SAVE 1 MIN ENTRY" + \
-		    "FOR THIS MINUTE.  ERROR: " + str(exc))
+                counter = 0
+                while counter < 3:
+    		    try:
+                        dbData.save(element)
+                        return
+		    except socket.error, exc:
+		        logging.exception("FAILED TO SAVE 1 MIN ENTRY" + \
+		        "FOR THIS MINUTE.  ERROR: " + str(exc))
+                        logging.exception("SLEEP, TRY AGAIN...")
+                        time.sleep(1)
+                        counter += 1
+                        dbDataStatus, dbData = connectToDB("slowcontrol-data-1min")
+                        continue
+                logging.exception("TRIED TO SAVE 1 MIN DATA THREE TIMES AND FAILED." + \
+                        "There was data; just couldn't connect to couchdb.")
+                 
 
 
 #Connects to channeldb to get alarm parameters
@@ -639,7 +650,8 @@ while(1):
         PostAlarmServerAlarms(alarms_dict, alarms_last)
 	saveAlarms(alarms_dict,alarms_last,channeldb)
     alarms_last = alarms_dict
-    channeldb_last = channeldb
+    if channeldb is not None:
+        channeldb_last = channeldb
     offset = (time.time()- delay*60) - (poll_time + wait_time) #if time taken to grab data >60 seconds, no waiting; just go to the next data set!
     if offset<0:
         time.sleep(wait_time)
