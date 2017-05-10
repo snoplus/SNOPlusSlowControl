@@ -211,9 +211,17 @@ def connectToDB(dbName):
         try:
            db = couch[dbName]
            break
-        except:
+        except socket.error, exc:
             print "Failed to connect to " + dbName
             logging.exception("Failed to connect to " + dbName)
+            numtries += 1
+            logging.info("At try " + str(numtries) + ". Trying again..")
+            time.sleep(1)
+            status = "bad"
+            continue
+        except serverError:
+            print "Failed to connect to " + dbName
+            logging.exception("Server error: Failed to connect to " + dbName)
             numtries += 1
             logging.info("At try " + str(numtries) + ". Trying again..")
             time.sleep(1)
