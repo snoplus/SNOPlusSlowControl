@@ -174,7 +174,9 @@ pi_list =[{"dbname":"cavity_water_temp","channels":[1],"address":"DeltaV_311-TIT
               {"dbname":"AVneck","channels":[1,2,3,4,5,6],"address":"DeltaV_SENSE_CALCS/CALC1/OUT%s.CV","appendage":["1","2","3","4","5","6"],"method":3},\
               {"dbname":"AV_dP","channels":[1],"address":"DeltaV_321-DPT002/SCLR1/OUT.CV","method":1}]
 #              {"dbname":"BAC","channels":[1,2,3],"address":"BACNet_682100_SNO_AHU2_%s_TL Archive","appendage":["CTRL_RMT","DEC_RH","DECK_RMT"],"method":3}]
-
+#Any dbs not in this list will search for new data in the most recent minute according to now's time
+#Any dbs in this list grab the most recent data point in the PI server
+getrecent_list = ["deck_humidity","deck_temp","control_room_temp","cover_gas","equator_monitor","AVsensorRope","AVneck"]
 
 #Connection info for couchdb
 couch = couchdb.Server('http://couch.snopl.us')
@@ -295,6 +297,24 @@ except URLError:
 
 piarcdatarequest = timeseries_client.factory.create('PIArcDataRequest')
 
+#For a channel, gets the most recent datapoint from the database 
+def get_pi_snapshot(machine_index,address,channel_number):
+    method = pi_list[machine_index]["method"]
+    if method==1:
+        thepath = address
+    if method==2:
+        thepath = address % (channel_number)
+    if method==3:
+        thepath = address % (pi_list[machine_index]["appendage"][channel_number-1])
+    requests = timeseries_client.factory.create('ArrayOfString')
+    requests.string.append(str(thepath))
+    try:
+        returned_arcdata = timeseries_client.service.GetPISnapshotData(requests)                                                
+    except:
+        logging.exception("Issue Querying PI Server.  In except loop, trying again..")
+        returned_arcdata = timeseries_client.service.GetPISnapshotData(requests)                                                
+    return returned_arcdata
+
 #For a channel, gets values and timestamps from start_time to end_time 
 def get_pi(start_time,end_time,machine_index,address,channel_number):
     piarcdatarequest.TimeRange.Start = start_time
@@ -312,7 +332,7 @@ def get_pi(start_time,end_time,machine_index,address,channel_number):
     try:
         returned_arcdata = timeseries_client.service.GetPIArchiveData(requests)                                                
     except:
-        print("Issue pulling PI Archive Data.  In except loop, trying again..")
+        logging.exception("Issue querying PI server.  In except loop, trying again..")
         returned_arcdata = timeseries_client.service.GetPIArchiveData(requests)                                                
     return returned_arcdata
 
@@ -321,11 +341,16 @@ def get_pi(start_time,end_time,machine_index,address,channel_number):
 def getValues(start_time,end_time,pi_list):
     rawdata = pi_list
     for machine_index, machine in enumerate(pi_list):
+        dbname = machine["dbname"]
         address = machine["address"]
         channel_numbers_list = machine["channels"]
         machine["data"] = []
-        for channel_number in channel_numbers_list:
-            machine["data"].append(get_pi(start_time,end_time,machine_index,pi_address+address,channel_number))    
+        if dbname in getrecent_list:
+            for channel_number in channel_numbers_list:
+                machine["data"].append(get_pi_snapshot(machine_index,pi_address+address,channel_number))    
+        else:
+            for channel_number in channel_numbers_list:
+                machine["data"].append(get_pi(start_time,end_time,machine_index,pi_address+address,channel_number))    
     return rawdata
 
 
@@ -343,19 +368,26 @@ def ManipulateData(start_time,end_time,rawdata):
             realrope = rope_data.TimeSeries[0]
             if realrope.TimedValues != None:
                  for timestep in realrope.TimedValues[0]:
-                      timestamp_minute = unix_minute(dmy_to_unix(timestep._Time))
-                      index = abs(timestamp_minute-start_minute)
-                      timestamp = (start_minute+index)*60
-                      #print index, timestamp, timestep._Time
-                      try:
-                          pi_data[index]["timestamp"] = timestamp
-                          pi_data[index]["sudbury_time"] = unix_to_human(timestamp)
-                      except:
-                          pass
+                      #This if makes setting the timestamp of the document specific to
+                      #Datapoints that don't just grab the most recent point in a database
+                      #It's silly to set the timestamp at every entry, but I'll leave it 
+                      if pi_list[ropetype_index]["dbname"] not in getrecent_list:
+                          timestamp_minute = unix_minute(dmy_to_unix(timestep._Time))
+                          index = abs(timestamp_minute-start_minute)
+                          timestamp = (start_minute+index)*60
+                          #print index, timestamp, timestep._Time
+                          try:
+                              pi_data[index]["timestamp"] = timestamp
+                              pi_data[index]["sudbury_time"] = unix_to_human(timestamp)
+                          except:
+                              pass
                       try:
                           chan_value = timestep.value
-                          pi_data[index][pi_list[ropetype_index]["dbname"]]["values"][rope_number] = float(chan_value)
+                          val = float(chan_value)
+                          pi_data[index][pi_list[ropetype_index]["dbname"]]["values"][rope_number] = val
                       except:
+                          logging.info("There was an issue getting a channel value for: " + \
+                             str(pi_list[ropetype_index]["dbname"]) + ".  Setting to N/A")
                           chan_value = "N/A"
     return pi_data
 
@@ -650,7 +682,7 @@ while(1):
     endpoll_time = poll_time+pollrange
     rawdata = getValues(poll_time,endpoll_time,pi_list)
     pi_data = ManipulateData(poll_time,endpoll_time,rawdata)
-    #print pi_data
+#    print pi_data
     saveValues(pi_data)
     channeldb = getChannelParameters(channeldb_last)
     for timeslot in pi_data:
