@@ -1,4 +1,5 @@
 #Min	Hour	Day	Month	Wday	script
 *	*	*	*	*	/home/uwslowcontrol/pi_db/checkpi_db.sh
+*       *       *       *       *       /home/uwslowcontrol/pi_db/checkctemp.sh
 #*	*	*	*	*	pgrep -f pi_db.py || python ~/pi_db/pi_db.py
 

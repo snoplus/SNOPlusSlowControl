@@ -10,7 +10,7 @@ then
   python /home/uwslowcontrol/pi_db/cavitytemp/cavitytemps.py &
   SUBJECT="cavitytemps script restarted on `hostname`"
   MESSAGE="cavitytemps script restarted at `date` as `ps -ef | grep cavitytemps`"
-  echo $MESSAGE | cat >> ~/pi_db/log/cavitytemp.log
+  echo $MESSAGE | cat >> /home/uwslowcontrol/pi_db/log/cavitytemp.log
   echo "cavitytemps script is started on `hostname`."
 else
   echo "cavitytemps script is running on `hostname`."

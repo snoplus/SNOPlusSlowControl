@@ -11,6 +11,7 @@ import traceback
 import couchdb
 import smtplib
 import mimetypes
+import urllib2
 from email import utils
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
@@ -290,7 +291,7 @@ sys.excepthook = UE_handler
 timeseries_url = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
 try:
     timeseries_client = Client(timeseries_url)
-except URLError:
+except urllib2.URLError:
     logging.info("Unable to connect to PI database.  Check status of pi_" +\
     "db at SNOLAB.")
     raise
@@ -373,22 +374,20 @@ def ManipulateData(start_time,end_time,rawdata):
                       #It's silly to set the timestamp at every entry, but I'll leave it 
                       if pi_list[ropetype_index]["dbname"] not in getrecent_list:
                           timestamp_minute = unix_minute(dmy_to_unix(timestep._Time))
-                          index = abs(timestamp_minute-start_minute)
-                          timestamp = (start_minute+index)*60
+                          timestamp = (timestamp_minute)*60
                           #print index, timestamp, timestep._Time
                           try:
-                              pi_data[index]["timestamp"] = timestamp
-                              pi_data[index]["sudbury_time"] = unix_to_human(timestamp)
+                              pi_data[0]["timestamp"] = timestamp
+                              pi_data[0]["sudbury_time"] = unix_to_human(timestamp)
                           except:
                               pass
                       try:
                           chan_value = timestep.value
                           val = float(chan_value)
-                          pi_data[index][pi_list[ropetype_index]["dbname"]]["values"][rope_number] = val
+                          pi_data[0][pi_list[ropetype_index]["dbname"]]["values"][rope_number] = val
                       except:
                           logging.info("There was an issue getting a channel value for: " + \
-                             str(pi_list[ropetype_index]["dbname"]) + ".  Setting to N/A")
-                          chan_value = "N/A"
+                                 str(pi_list[ropetype_index]["dbname"]) + ".  Leaving as N/A")
     return pi_data
 
 
