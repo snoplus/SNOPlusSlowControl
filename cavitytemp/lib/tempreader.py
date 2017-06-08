@@ -49,3 +49,5 @@ class TempReader(object):
     def setunit(self, val):
         self.readingdict["temp_units"] = val
 
+if __name__ == "__main__":
+    print("NO MAIN CALL WRITTEN YET")

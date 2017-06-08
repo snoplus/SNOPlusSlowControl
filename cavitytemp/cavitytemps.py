@@ -8,6 +8,7 @@
 import subprocess
 import lib.couchutils as cu
 import lib.tempreader as tr
+import lib.alarmposter as ap
 import logging
 import sys, traceback
 import time
@@ -61,8 +62,14 @@ def WriteReadToLog(TempReader):
 
 if __name__ == "__main__":
     channeldb = None
+    channeldb = cu.getChannelParameters(channeldb)
+    AlarmControl = ap.AlarmPoster(channeldb,"temp_sensors")
+    print("ENTERING WHILE LOOP")
     while True:
-        channeldb = cu.getChannelParameters()
+        #Update thresholds in case they were changed on webpage
+        channeldb_last = channeldb
+        channeldb = cu.getChannelParameters(channeldb_last)
+        AlarmControl.setCurrentChanneldb(channeldb)
         rawread = getReading()
         rawread = rawread.splitlines()
         reader = tr.TempReader(rawread)
@@ -82,7 +89,8 @@ if __name__ == "__main__":
             continue
         else:
             #values parsed. check for values outside threshold and alarm
-            postAlarms(channeldb,reader.readingdict)
+            AlarmControl.currentValues = reader.readingdict
+            AlarmControl.postAlarms()
             WriteReadToLog(reader)
             #save the dictionary to couchDB
             cu.saveValuesToCT(reader.readingdict)
