@@ -40,7 +40,30 @@ couch = couchdb.Server('http://couch.snopl.us')
 couchuser, couchpassword = getcreds(CREDENTIALHOME)
 couch.resource.credentials = (couchuser, couchpassword)
 
-#Allows one to connect to a couchdb
+#Connects to the slow control channeldb and grabs the most recent
+#channeldb values.
+def getChannelParameters(channeldb_last):                                                                         
+    channeldb = {}                                                                                    
+    counter = 0
+    dbParStatus, dbPar = connectToDB("slowcontrol-channeldb")                                       
+    if dbParStatus is "ok":
+        while counter < 3:                                                                         
+            try:
+                queryresults =  dbPar.view("slowcontrol/recent",descending=True,limit=1)                    
+                channeldb = queryresults.rows[0].value
+                return channeldb
+            except socket.error, exc:
+                logging.exception("Failed to view channeldb database." + \
+                    "sleeping, trying again... ERR: " + str(exc))
+                time.sleep(1)
+                counter += 1
+                dbParStatus, dbPar = connectToDB("slowcontrol-channeldb")
+                continue
+    else:
+        logging.exception("IN getChannelParameters: could not connect" + \
+            " to slowcontrol-channeldb. returning last channeldb dict.")
+    return channeldb_last
+ #Allows one to connect to a couchdb
 def connectToDB(dbName):
     status = "ok"
     db = {}

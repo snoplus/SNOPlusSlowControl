@@ -60,7 +60,9 @@ def WriteReadToLog(TempReader):
 # --------- END Logger configuration -------- #
 
 if __name__ == "__main__":
+    channeldb = None
     while True:
+        channeldb = cu.getChannelParameters()
         rawread = getReading()
         rawread = rawread.splitlines()
         reader = tr.TempReader(rawread)
@@ -79,6 +81,8 @@ if __name__ == "__main__":
             time.sleep(60)
             continue
         else:
+            #values parsed. check for values outside threshold and alarm
+            postAlarms(channeldb,reader.readingdict)
             WriteReadToLog(reader)
             #save the dictionary to couchDB
             cu.saveValuesToCT(reader.readingdict)
