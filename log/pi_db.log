@@ -21062,6 +21062,7 @@ None
 2017-06-08 14:14:32,541 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
 2017-06-08 14:15:42,585 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
 2017-06-08 14:16:53,613 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
+<<<<<<< HEAD
 2017-06-08 14:18:11,601 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
 2017-06-08 14:18:26,089 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
 2017-06-08 14:19:32,654 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
@@ -21091,3 +21092,13 @@ None
 2017-06-08 14:43:23,399 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
 2017-06-08 14:44:37,978 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
 2017-06-08 14:45:56,980 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
+=======
+2017-06-08 14:48:00,606 PI_DB SCRIPT INITIALIZING...
+2017-06-08 14:48:14,121 There was an issue getting a channel value for: cover_gas.  Leaving as N/A
+2017-06-08 14:48:17,610 Uncaught exception: 
+None
+2017-06-08 14:48:17,610 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2017-06-08 14:48:17,611 Traceback: ['  File "pi_db.py", line 698, in <module>\n    time.sleep(wait_time)\n']
+None
+>>>>>>> develop
