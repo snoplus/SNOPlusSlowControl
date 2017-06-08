@@ -12,6 +12,7 @@ import couchdb
 import smtplib
 import mimetypes
 import urllib2
+import httplib
 from email import utils
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
@@ -146,7 +147,7 @@ version = 10
 pi_address = "pi:\\\\pi.snolab.ca\\"
 
 #DeltaV channels and specifications
-pi_list =[{"dbname":"cavity_water_temp","channels":[1],"address":"DeltaV_311-TIT-146/AI1/PV.CV","method":1},\
+pi_list =[{"dbname":"UPW_plant_temp","channels":[1],"address":"DeltaV_311-TIT-146/AI1/PV.CV","method":1},\
               {"dbname":"cavity_water_level","channels":[1],"address":"DeltaV_311-PT087/SCLR1/OUT.CV","method":1},\
               {"dbname":"holddown_rope","channels":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"address":"DeltaV_HDLC-AI-%02d/AI1/PV.CV","method":2},\
               {"dbname":"holdup_rope","channels":[1,2,3,4,5,6,7,8,9,10],"address":"DeltaV_AVLC-AI-%02d/AI1/PV.CV","method":2},\
@@ -222,7 +223,7 @@ def connectToDB(dbName):
             time.sleep(1)
             status = "bad"
             continue
-        except serverError:
+        except httplib.INTERNAL_SERVER_ERROR:
             print "Failed to connect to " + dbName
             logging.exception("Server error: Failed to connect to " + dbName)
             numtries += 1
