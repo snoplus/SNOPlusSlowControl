@@ -7,7 +7,7 @@ class TempReader(object):
         self.rawreadlines = rawreadlines
         self.hasrawvalues = False
         self.parsed = False
-        self.readingdict = {"cavitytemps":"true"}
+        self.readingdict = {"temp_sensors":"true"}
 
 
     #Grabs the sensor number and temperature in celsius
