@@ -91,6 +91,7 @@ def saveCTAlarms(alarm_dict):
             while numtries < 3:
                 try:
                     dbData.save(alarm_dict)
+                    print("CTAlarms save to database")
                     return
 	        except socket.error, exc:
 	            logging.exception("FAILED TO SAVE ALARM ENTRY" + \

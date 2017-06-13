@@ -1,8 +1,11 @@
 
 #This file contains classes associated with posting alarms to the
 #slowcontrol couchdb.
-
+from email import utils
+import emailsend as es
+import couchutils as cu
 import alarm_server as al
+import time
 
 class AlarmPoster(object):
     #initalize with channeldb 
@@ -11,10 +14,8 @@ class AlarmPoster(object):
         self.currentValues = None
         if datatype == "temp_sensors":
             self.vtype = "temp_sensors"
-            self.alarmdb_url = "slowcontrol-alarms/cavitytemps"
             self.alarmid = 30040
         else:
-            self.alarmdb_url = None
             self.alarmid = None
             self.vtype = None
         self.currentAlarms = None
@@ -29,13 +30,19 @@ class AlarmPoster(object):
                    chaninfo = self.channeldb[value]
         return chaninfo
 
+
     #check readings agains alarm thresholds in the channel database
     #if a reading is out of bounds, alarm on it
     def __buildCurrentAlarmDict(self):
         chaninfo = self.__getChannelInfo()
         #if we have the channel info, start checking thresholds
         #FIXME: Be more clever with the db names to generalize this code
-        alarm_dict = {"temp_sensors": "true", self.vtype: {}}
+        alarm_dict = {"temp_sensors": "true",self.vtype: {}}
+        timest = int(time.time())
+        alarm_dict["timestamp"] = timest          
+        #Converts unix timestamp to human readable local time (Sudbury time)
+        human_time = utils.formatdate(timest, localtime=True)
+        alarm_dict["date"] = human_time
         for entry in chaninfo:
             sensorname = "Sensor_"+str(entry["id"])
             threshdict = {}
@@ -57,14 +64,20 @@ class AlarmPoster(object):
     def postAlarms(self):
         #If there is a cavity temp sensor alarm, post it and save to the
         #Couch alarms dictionary
-        alarm_dict = self.__buildCurrentAlarmDict()
-        if alarm_dict[self.vtype]:
+        self.currentAlarms = self.__buildCurrentAlarmDict()
+        if self.currentAlarms[self.vtype]:
             #al.post_alarm(self.alarm_id)
-            print("in alarm found statement!")
-            cu.saveCTAlarms(alarm_dict)
+            cu.saveCTAlarms(self.currentAlarms)
+            print(self.currentAlarms)
+            es.sendCTAlarmEmail(self.currentAlarms["date"])
         #if no alarming values but different than last dict, clear alarms
+        #FIXME: Need to see if the key list of the dictionaries is the same,
+        #Not the dictionaries themselves
         elif self.currentAlarms != self.prevAlarms:
-            al.clear_alarm(self.alarm_id)
+            #al.clear_alarm(self.alarm_id)
+            print("Alarms cleared!")
+            cu.saveCTAlarms(self.currentAlarms)
+            es.clearCTAlarmEmail(self.currentAlarms["date"])
         #alarms updated: Set your previous alarms to be the current alarms
         self.prevAlarms = self.currentAlarms
 

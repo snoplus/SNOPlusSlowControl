@@ -2,7 +2,7 @@
 #Quick script for sending an email to the Slow Control AlarmsList
 
 import sys
-import json, httplib2, couchdb, string, time, re
+import  string, time, re
 import os
 import smtplib
 import mimetypes
@@ -13,13 +13,20 @@ from email.MIMEText import MIMEText
 
 #connection info and email list directory for slow control email notification
 gmailUser, gmailPassword = gc.getcreds("/home/uwslowcontrol/config/gmailcred.conf")
-recipientsList = open("/home/uwslowcontrol/pi_db/alarmsEmailList.txt","r")
+recipientsList = open("/home/uwslowcontrol/pi_db/emailList.txt","r")
 recipients = recipientsList.readlines()
 
 def sendCTAlarmEmail(alarmDate):
     title = "New alarms: " + str(alarmDate) + ", Cavity Temperature Sensor "
     msg = "Alarm triggered at: " + str(alarmDate) + "\n\n"
     msg = msg + "A Cavity temperature sensor is past the lo/hi alarming threshold."
+    sendMail(title, msg)
+
+def clearCTAlarmEmail(alarmDate):
+    title = "No longer alarms: " + str(alarmDate) + ", Cavity Temperature Sensor "
+    msg = "Alarm cleared at: " + str(alarmDate) + "\n\n"
+    msg = msg + "There are no longer any alarming cavity temperature sensors."
+    print("ABOUT TO SEND MESSAGE")
     sendMail(title, msg)
 
 def sendMail(subject, text):
@@ -36,6 +43,7 @@ def sendMail(subject, text):
         msg['To'] = "alarmslist"
         mailServer.sendmail(gmailUser, recipients, msg.as_string())
         mailServer.close()
+        print("MESSAGESENT")
     except:
         pass
     return

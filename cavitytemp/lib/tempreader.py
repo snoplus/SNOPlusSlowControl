@@ -1,4 +1,5 @@
 
+from email import utils
 
 #Takes in result from getReading and parses for couchDB saving
 #Also adds timestamp to the document being saved
@@ -45,6 +46,9 @@ class TempReader(object):
 
     def settime(self, val):
         self.readingdict["timestamp"] = val          
+        #Converts unix timestamp to human readable local time (Sudbury time)
+        human_time = utils.formatdate(val, localtime=True)
+        self.readingdict["date"] = human_time
 
     def setunit(self, val):
         self.readingdict["temp_units"] = val
