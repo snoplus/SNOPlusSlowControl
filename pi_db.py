@@ -387,8 +387,10 @@ def ManipulateData(start_time,end_time,rawdata):
                           val = float(chan_value)
                           pi_data[0][pi_list[ropetype_index]["dbname"]]["values"][rope_number] = val
                       except:
-                          logging.info("There was an issue getting a channel value for: " + \
-                                 str(pi_list[ropetype_index]["dbname"]) + ".  Leaving as N/A")
+                          #FIXME: One of the cover gas lines is disabled. floods log
+                          if str(pi_list[ropetype_index]["dbname"]) != "cover_gas":
+                              logging.info("There was an issue getting a channel value for: " + \
+                                     str(pi_list[ropetype_index]["dbname"]) + ".  Leaving as N/A")
     return pi_data
 
 
