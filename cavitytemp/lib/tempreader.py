@@ -8,13 +8,19 @@ class TempReader(object):
         self.rawreadlines = rawreadlines
         self.hasrawvalues = False
         self.parsed = False
-        self.readingdict = {"temp_sensors":"true"}
+        self.readingdict_type = None
+        self.readingdict = {}
 
+    def set_dicttype(self,dicttype):
+        #Defines how the dictionary is labeled
+        self.readingdict_type = dicttype
 
     #Grabs the sensor number and temperature in celsius
     def parseTemps(self):
         sensorlines = self.getSensorLines()
         if self.hasrawvalues:
+            #Label that this dict is of the input dicttype
+            self.readingdict[self.readingdict_type] ="true"
             for line in sensorlines:
                 for j, entry in enumerate(line):
                     if entry == "Sensor":

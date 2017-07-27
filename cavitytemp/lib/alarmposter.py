@@ -9,42 +9,53 @@ import time
 
 class AlarmPoster(object):
     #initalize with channeldb 
-    def __init__(self,channeldb,datatype):
-        self.channeldb = channeldb
+    def __init__(self,channeldb):
+        self.channeldb = channeldb #Current couchdb channeldb
         self.currentValues = None
-        if datatype == "temp_sensors":
-            self.vtype = "temp_sensors"
-            self.alarmid = 30040
-        else:
-            self.alarmid = None
-            self.vtype = None
+        self.alarmid = None
+        self.vtype = None
         self.currentAlarms = None
         self.prevAlarms = None
+        self.sensorkey = None
+
+    def updateCurrentValues(self, currentvals):
+        #Takes in a dictionary with the most recent values from the sensor
+        self.currentValues = currentvals
+
+    def set_alarmid(self,idnum):
+        #Set the alarm id to be posted
+        self.alarmid = idnum
+
+    def set_datatype(self,datatype):
+        #Set the type of data (saved into database entry)
+        self.vtype = datatype
+
+    def set_sensorkey(self,name):
+        #Set the sensor name as is should show up in the data entry
+        #Will have a "_" with the sensor's id number attached. Need
+        #This to match keys in the self.currentValues dictionary
+        self.sensorkey=name
 
     def __getChannelInfo(self):
-        #get channel info specific to the value dictionary given
         chaninfo = None
-        for value in self.currentValues:
-           if self.currentValues[value] == "true":
-               if value in self.channeldb:
-                   chaninfo = self.channeldb[value]
+        if self.vtype in self.channeldb:
+            chaninfo = self.channeldb[self.vtype]
         return chaninfo
 
 
-    #check readings agains alarm thresholds in the channel database
+    #check readings against alarm thresholds in the channel database
     #if a reading is out of bounds, alarm on it
     def __buildCurrentAlarmDict(self):
         chaninfo = self.__getChannelInfo()
-        #if we have the channel info, start checking thresholds
-        #FIXME: Be more clever with the db names to generalize this code
-        alarm_dict = {"temp_sensors": "true",self.vtype: {}}
+        #if we have the channel info for our data, start checking thresholds
+        alarm_dict = {self.vtype: "true", "current_alarms": {}}
         timest = int(time.time())
         alarm_dict["timestamp"] = timest          
         #Converts unix timestamp to human readable local time (Sudbury time)
         human_time = utils.formatdate(timest, localtime=True)
         alarm_dict["date"] = human_time
         for entry in chaninfo:
-            sensorname = "Sensor_"+str(entry["id"])
+            sensorname = str(self.sensorkey)+"_"+str(entry["id"])
             threshdict = {}
             alarmtypes = ["lo","lolo","hi","hihi"]
             for altype in alarmtypes:
@@ -55,25 +66,27 @@ class AlarmPoster(object):
             #alarm threshold and is enabled
             if not (threshdict["lo"] <= reading <= threshdict["hi"]):
                 if threshdict["isEnabled"] != 0:
-                    alarm_dict[self.vtype][sensorname]=reading
+                    alarm_dict["current_alarms"][sensorname]=reading
         return alarm_dict
 
     def setCurrentChanneldb(self,newchandb):
         self.channeldb = newchandb
 
-    def postAlarms(self):
+    def checkForAlarms(self):
         #If there is a cavity temp sensor alarm, post it and save to the
         #Couch alarms dictionary
         self.currentAlarms = self.__buildCurrentAlarmDict()
-        if self.currentAlarms[self.vtype]:
+        if self.currentAlarms["current_alarms"]:
             #al.post_alarm(self.alarm_id)
             cu.saveCTAlarms(self.currentAlarms)
             print(self.currentAlarms)
             es.sendCTAlarmEmail(self.currentAlarms["date"])
         #if no alarming values but different than last dict, clear alarms
-        #FIXME: Need to see if the key list of the dictionaries is the same,
-        #Not the dictionaries themselves
-        elif self.currentAlarms != self.prevAlarms:
+        elif self.prevAlarms is None:
+            #just clear the alarm; we don't know what the last alarms were
+            #al.clear_alarm(self.alarm_id)
+            print("first loop")
+	elif set(self.currentAlarms.keys()) != set(self.prevAlarms.keys()):
             #al.clear_alarm(self.alarm_id)
             print("Alarms cleared!")
             cu.saveCTAlarms(self.currentAlarms)
