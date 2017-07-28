@@ -80,13 +80,13 @@ class AlarmPoster(object):
         if self.currentAlarms["current_alarms"]:
             cu.saveCTAlarms(self.currentAlarms)
             es.sendCTAlarmEmail(self.currentAlarms["date"])
-            al.post_alarm(self.alarm_id)
+            al.post_alarm(self.alarmid)
         #if no alarming values but different than last dict, clear alarms
         elif self.prevAlarms is None:
             #no alarms,just clear; we don't know what the last alarms were
-            al.clear_alarm(self.alarm_id)
+            al.clear_alarm(self.alarmid)
 	elif set(self.currentAlarms.keys()) != set(self.prevAlarms.keys()):
-            al.clear_alarm(self.alarm_id)
+            al.clear_alarm(self.alarmid)
             cu.saveCTAlarms(self.currentAlarms)
             es.clearCTAlarmEmail(self.currentAlarms["date"])
         #alarms updated: Set your previous alarms to be the current alarms
