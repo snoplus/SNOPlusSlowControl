@@ -76,7 +76,6 @@ class AlarmPoster(object):
         #If there is a cavity temp sensor alarm, post it and save to the
         #Couch alarms dictionary
         self.currentAlarms = self.__buildCurrentAlarmDict()
-        print(self.currentAlarms)
         if self.currentAlarms["current_alarms"]:
             cu.saveCTAlarms(self.currentAlarms)
             es.sendCTAlarmEmail(self.currentAlarms["date"])
