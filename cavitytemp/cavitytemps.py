@@ -72,7 +72,6 @@ if __name__ == "__main__":
     AlarmControl.set_alarmid(30040)
     AlarmControl.set_datatype(DATA_LABEL)
     AlarmControl.set_sensorkey("Sensor")
-    print("ENTERING WHILE LOOP")
     while True:
         #Update thresholds in case they were changed on webpage
         channeldb_last = channeldb
