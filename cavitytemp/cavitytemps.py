@@ -8,11 +8,16 @@
 import subprocess
 import lib.couchutils as cu
 import lib.tempreader as tr
+import lib.alarmposter as ap
 import logging
 import sys, traceback
 import time
 
 DEBUG = False
+ERR_SLEEPTIME = 60
+SUCCESS_SLEEPTIME = 360
+
+
 
 # --------- Logger configuration ----------- #
 CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
@@ -60,27 +65,44 @@ def WriteReadToLog(TempReader):
 # --------- END Logger configuration -------- #
 
 if __name__ == "__main__":
+    channeldb = None
+    DATA_LABEL = "temp_sensors"
+    channeldb = cu.getChannelParameters(channeldb)
+    AlarmControl = ap.AlarmPoster(channeldb)
+    AlarmControl.set_alarmid(30040)
+    AlarmControl.set_datatype(DATA_LABEL)
+    AlarmControl.set_sensorkey("Sensor")
+    print("ENTERING WHILE LOOP")
     while True:
+        #Update thresholds in case they were changed on webpage
+        channeldb_last = channeldb
+        channeldb = cu.getChannelParameters(channeldb_last)
+        AlarmControl.setCurrentChanneldb(channeldb)
+
+        #Get the current reading from the sensors
         rawread = getReading()
         rawread = rawread.splitlines()
         reader = tr.TempReader(rawread)
-        time_now = int(time.time())
-        reader.settime(time_now)
+        reader.set_dicttype(DATA_LABEL)
+        reader.settime(int(time.time()))
         reader.setunit("(C)")
         reader.parseTemps()
         if reader.hasrawvalues == False:
             logging.info("No values grabbed from sensor. Sensor" + \
                 " may have been polled by another source at this time.")
-            time.sleep(60)
+            time.sleep(ERR_SLEEPTIME)
             continue
         elif reader.parsed == False:
             #no values to parse, try again in a minute
             logging.info("No values parsed, trying again in 1 min.")
-            time.sleep(60)
+            time.sleep(ERR_SLEEPTIME)
             continue
         else:
+            #values parsed. check for values outside threshold and alarm
+            AlarmControl.updateCurrentValues(reader.readingdict)
+            AlarmControl.checkForAlarms() #Posts alarms if any
             WriteReadToLog(reader)
             #save the dictionary to couchDB
             cu.saveValuesToCT(reader.readingdict)
-            time.sleep(360)
+            time.sleep(SUCCESS_SLEEPTIME)
 
