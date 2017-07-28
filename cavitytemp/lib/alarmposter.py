@@ -76,19 +76,17 @@ class AlarmPoster(object):
         #If there is a cavity temp sensor alarm, post it and save to the
         #Couch alarms dictionary
         self.currentAlarms = self.__buildCurrentAlarmDict()
+        print(self.currentAlarms)
         if self.currentAlarms["current_alarms"]:
-            #al.post_alarm(self.alarm_id)
             cu.saveCTAlarms(self.currentAlarms)
-            print(self.currentAlarms)
             es.sendCTAlarmEmail(self.currentAlarms["date"])
+            al.post_alarm(self.alarm_id)
         #if no alarming values but different than last dict, clear alarms
         elif self.prevAlarms is None:
-            #just clear the alarm; we don't know what the last alarms were
-            #al.clear_alarm(self.alarm_id)
-            print("first loop")
+            #no alarms,just clear; we don't know what the last alarms were
+            al.clear_alarm(self.alarm_id)
 	elif set(self.currentAlarms.keys()) != set(self.prevAlarms.keys()):
-            #al.clear_alarm(self.alarm_id)
-            print("Alarms cleared!")
+            al.clear_alarm(self.alarm_id)
             cu.saveCTAlarms(self.currentAlarms)
             es.clearCTAlarmEmail(self.currentAlarms["date"])
         #alarms updated: Set your previous alarms to be the current alarms

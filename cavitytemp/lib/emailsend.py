@@ -26,7 +26,6 @@ def clearCTAlarmEmail(alarmDate):
     title = "No longer alarms: " + str(alarmDate) + ", Cavity Temperature Sensor "
     msg = "Alarm cleared at: " + str(alarmDate) + "\n\n"
     msg = msg + "There are no longer any alarming cavity temperature sensors."
-    print("ABOUT TO SEND MESSAGE")
     sendMail(title, msg)
 
 def sendMail(subject, text):
@@ -43,7 +42,6 @@ def sendMail(subject, text):
         msg['To'] = "alarmslist"
         mailServer.sendmail(gmailUser, recipients, msg.as_string())
         mailServer.close()
-        print("MESSAGESENT")
     except:
         pass
     return

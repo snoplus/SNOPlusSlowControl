@@ -8,20 +8,10 @@ CREDENTIALHOME = "/home/uwslowcontrol/config/couchcred.conf"
 CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
 DBNAME = "slowcontrol-data-cavitytemps"
 ALARMDB = "slowcontrol-alarms"
+
 # --------- Logger configuration ----------- #
 logging.basicConfig(filename=CLOG_FILENAME,level=logging.INFO, \
     format='%(asctime)s %(message)s')
-
-#Define what we want our system exception hook to do at an
-#uncaught exception
-#def UE_handler(exec_type, value, tb):
-#    logging.exception("Uncaught exception: {0}".format(str(value)))
-#    logging.exception("Error type: " + str(exec_type))
-#    logging.exception("Traceback: " + str(traceback.format_tb(tb)))
-
-#At an uncaught exception, run our handler
-#sys.excepthook = UE_handler
-
 # --------- END Logger configuration -------- #
 
 def getcreds(location):
@@ -91,7 +81,6 @@ def saveCTAlarms(alarm_dict):
             while numtries < 3:
                 try:
                     dbData.save(alarm_dict)
-                    print("CTAlarms save to database")
                     return
 	        except socket.error, exc:
 	            logging.exception("FAILED TO SAVE ALARM ENTRY" + \
