@@ -181,7 +181,8 @@ pi_list =[{"dbname":"UPW_plant_temp","channels":[1],"address":"DeltaV_311-TIT-14
 #              {"dbname":"BAC","channels":[1,2,3],"address":"BACNet_682100_SNO_AHU2_%s_TL Archive","appendage":["CTRL_RMT","DEC_RH","DECK_RMT"],"method":3}]
 #Any dbs not in this list will search for new data in the most recent minute according to now's time
 #Any dbs in this list grab the most recent data point in the PI server
-getrecent_list = ["deck_humidity","deck_temp","control_room_temp","cover_gas","equator_monitor","AVsensorRope","AVneck"]
+getrecent_list = ["deck_humidity","deck_temp","control_room_temp","cover_gas","equator_monitor","AVsensorRope","AVneck",\
+        "CavityRecircValveIsOpen","AVRecircValveIsOpen","P15IsRunning"]
 
 #Connection info for couchdb
 couch = couchdb.Server('http://couch.snopl.us')
