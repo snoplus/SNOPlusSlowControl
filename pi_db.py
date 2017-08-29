@@ -173,7 +173,10 @@ pi_list =[{"dbname":"UPW_plant_temp","channels":[1],"address":"DeltaV_311-TIT-14
               {"dbname":"deck_humidity","channels":[1],"address":"BACnet_682100_SNO_AHU2_DEC_RH_TL Archive","method":1},\
               {"dbname":"deck_temp","channels":[1],"address":"BACnet_682100_SNO_AHU2_DECK_RMT_TL Archive","method":1},\
               {"dbname":"AVsensorRope","channels":[1,2,3,4,5,6,7],"address":"DeltaV_SENSE_ROPE_%s/CALC1/OUT1.CV","appendage":["A","B","C","D","E","F","G"],"method":3},\
+              {"dbname":"CavityRecircValveIsOpen","channels":[1,2,3,4],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["174","175","176","178-179"],"method":3},\
+              {"dbname":"AVRecircValveIsOpen","channels":[1,2],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["754","755"],"method":3},\
               {"dbname":"AVneck","channels":[1,2,3,4,5,6],"address":"DeltaV_SENSE_CALCS/CALC1/OUT%s.CV","appendage":["1","2","3","4","5","6"],"method":3},\
+              {"dbname":"P15IsRunning","channels":[1],"address":"DeltaV_311-P15/P15_RUNNING/PV_D.CV","method":1},\
               {"dbname":"AV_dP","channels":[1],"address":"DeltaV_321-DPT002/SCLR1/OUT.CV","method":1}]
 #              {"dbname":"BAC","channels":[1,2,3],"address":"BACNet_682100_SNO_AHU2_%s_TL Archive","appendage":["CTRL_RMT","DEC_RH","DECK_RMT"],"method":3}]
 #Any dbs not in this list will search for new data in the most recent minute according to now's time
@@ -684,7 +687,7 @@ while(1):
     endpoll_time = poll_time+pollrange
     rawdata = getValues(poll_time,endpoll_time,pi_list)
     pi_data = ManipulateData(poll_time,endpoll_time,rawdata)
-#    print pi_data
+    print pi_data
     saveValues(pi_data)
     channeldb = getChannelParameters(channeldb_last)
     for timeslot in pi_data:
