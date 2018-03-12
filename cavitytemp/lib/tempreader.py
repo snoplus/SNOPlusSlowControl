@@ -40,7 +40,7 @@ class TempReader(object):
                 else:
                     sline = line.split(" ")
                     valuelines.append(sline)
-        if valuelines:
+        if len(valuelines) > 0:
             self.hasrawvalues = True
             return valuelines
         else:

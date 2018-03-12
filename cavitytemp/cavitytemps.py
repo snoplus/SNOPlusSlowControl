@@ -16,7 +16,7 @@ import time
 DEBUG = False
 ERR_SLEEPTIME = 60
 NONEWDATA_SLEEPTIME = 120
-SUCCESS_SLEEPTIME = 20
+SUCCESS_SLEEPTIME = 360
 
 # --------- Logger configuration ----------- #
 CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
@@ -63,12 +63,14 @@ if __name__ == "__main__":
             if logread==old_logread:
                 logging.info("No new data in file.  Try again in "+str(NONEWDATA_SLEEPTIME)+" sec.")
                 time.sleep(NONEWDATA_SLEEPTIME)
+                continue
         reader = tr.TempReader(logread)
         reader.set_dicttype(DATA_LABEL)
         reader.settime(int(time.time()))
         reader.setunit("(C)")
         reader.parseTemps()
-        reader.show()
+        if DEBUG is True:
+            reader.show()
         if reader.hasrawvalues == False:
             logging.info("No values grabbed from sensor. Sensor" + \
                 " may have been polled by another source at this time.")

@@ -17,6 +17,7 @@ def getReading():
 
 def getFileTail(filename, numlines):
     #for a given file, get the last numlines in the file
+    linecache.checkcache(filename)
     with open(filename, 'r') as f:
         for i, l in enumerate(f):
             pass
@@ -26,6 +27,7 @@ def getFileTail(filename, numlines):
     for l in range(firstline,flength):
         dline = linecache.getline(filename,l)
         data.append(dline)
+    f.close()
     return data
     
 
