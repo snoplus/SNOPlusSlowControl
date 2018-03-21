@@ -66,7 +66,8 @@ class AlarmPoster(object):
             #alarm threshold and is enabled
             if not (threshdict["lo"] <= reading <= threshdict["hi"]):
                 if threshdict["isEnabled"] != 0:
-                    alarm_dict["current_alarms"][sensorname]=reading
+                    alarm_dict["current_alarms"][sensorname]["value"]=reading
+                    alarm_dict["current_alarms"][sensorname]["id"] = str(entry["id"])
         return alarm_dict
 
     def setCurrentChanneldb(self,newchandb):
