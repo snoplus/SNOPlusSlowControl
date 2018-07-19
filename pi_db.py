@@ -21,7 +21,7 @@ import threading
 import psycopg2
 from psycopg2.pool import ThreadedConnectionPool
 
-LOG_FILENAME = '/home/uwslowcontrol/pi_db/log/pi_db.log' #logfile source
+LOG_FILENAME = '/home/uwslowcontrol/pi_db/log/pilog.log' #logfile source
 
 def getcreds(location):
 	f = open(location, "rb")
@@ -173,7 +173,7 @@ pi_list =[{"dbname":"UPW_plant_temp","channels":[1],"address":"DeltaV_311-TIT-14
               {"dbname":"deck_humidity","channels":[1],"address":"BACnet_682100_SNO_AHU2_DEC_RH_TL Archive","method":1},\
               {"dbname":"deck_temp","channels":[1],"address":"BACnet_682100_SNO_AHU2_DECK_RMT_TL Archive","method":1},\
               {"dbname":"AVsensorRope","channels":[1,2,3,4,5,6,7],"address":"DeltaV_SENSE_ROPE_%s/CALC1/OUT1.CV","appendage":["A","B","C","D","E","F","G"],"method":3},\
-              {"dbname":"CavityRecircValveIsOpen","channels":[1,2,3,4],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["174","175","176","178-179"],"method":3},\
+              {"dbname":"CavityRecircValveIsOpen","channels":[1,2,3,4],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["174","175","176","178-179","180"],"method":3},\
               {"dbname":"AVRecircValveIsOpen","channels":[1,2],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["754","755"],"method":3},\
               {"dbname":"AVneck","channels":[1,2,3,4,5,6],"address":"DeltaV_SENSE_CALCS/CALC1/OUT%s.CV","appendage":["1","2","3","4","5","6"],"method":3},\
               {"dbname":"P15IsRunning","channels":[1],"address":"DeltaV_311-P15/P15_RUNNING/PV_D.CV","method":1},\
