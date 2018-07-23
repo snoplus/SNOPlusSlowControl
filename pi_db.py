@@ -177,12 +177,22 @@ pi_list =[{"dbname":"UPW_plant_temp","channels":[1],"address":"DeltaV_311-TIT-14
               {"dbname":"AVRecircValveIsOpen","channels":[1,2],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["754","755"],"method":3},\
               {"dbname":"AVneck","channels":[1,2,3,4,5,6],"address":"DeltaV_SENSE_CALCS/CALC1/OUT%s.CV","appendage":["1","2","3","4","5","6"],"method":3},\
               {"dbname":"P15IsRunning","channels":[1],"address":"DeltaV_311-P15/P15_RUNNING/PV_D.CV","method":1},\
+              {"dbname":"UPS_output_load","channels":[1],"address":"SNMP_snoplusups01_upsOutputPercentLoad","method":1},\
+              {"dbname":"UPS_time_on_battery","channels":[1],"address":"SNMP_snoplusups01_upsSecondsOnBattery","method":1},\
+              {"dbname":"UPS_estimated_time_left","channels":[1],"address":"SNMP_snoplusups01_upsEstimatedMinutesRemaining","method":1},\
+              {"dbname":"UPS_battery_status","channels":[1],"address":"SNMP_snoplusups01_upsBatteryStatus","method":1},\
+              {"dbname":"UPS_input_voltage","channels":[1,2,3],"address":"SNMP_snoplusups01_upsInputVoltageLine%s.CV","appendage":["1","2","3"],"method":3},\
+              {"dbname":"UPS_output_power","channels":[1,2,3],"address":"SNMP_snoplusups01_upsOutputPowerLine%s.CV","appendage":["1","2","3"],"method":3},\
+              {"dbname":"UPS_output_voltage","channels":[1,2,3],"address":"SNMP_snoplusups01_upsOutputVoltageLine%s.CV","appendage":["1","2","3"],"method":3},\
               {"dbname":"AV_dP","channels":[1],"address":"DeltaV_321-DPT002/SCLR1/OUT.CV","method":1}]
 #              {"dbname":"BAC","channels":[1,2,3],"address":"BACNet_682100_SNO_AHU2_%s_TL Archive","appendage":["CTRL_RMT","DEC_RH","DECK_RMT"],"method":3}]
 #Any dbs not in this list will search for new data in the most recent minute according to now's time
 #Any dbs in this list grab the most recent data point in the PI server
 getrecent_list = ["deck_humidity","deck_temp","control_room_temp","cover_gas","equator_monitor","AVsensorRope","AVneck",\
-        "CavityRecircValveIsOpen","AVRecircValveIsOpen","P15IsRunning"]
+        "CavityRecircValveIsOpen","AVRecircValveIsOpen","P15IsRunning",\
+	"UPS_output_load","UPS_time_on_battery","UPS_estimated_time_left",\
+	"UPS_battery_status","UPS_output_power","UPS_output_voltage",\
+	"UPS_input_voltage"]
 
 #Connection info for couchdb
 couch = couchdb.Server('http://couch.snopl.us')
@@ -369,15 +379,15 @@ def ManipulateData(start_time,end_time,rawdata):
     for machine in pi_list:
         data_format[machine["dbname"]] = {"values":["N/A"]*len(machine["channels"])}
     pi_data.append(data_format)
-    for ropetype_index, ropetype in enumerate(rawdata):
-        for rope_number, rope_data in enumerate(ropetype["data"]):
-            realrope = rope_data.TimeSeries[0]
-            if realrope.TimedValues != None:
-                 for timestep in realrope.TimedValues[0]:
+    for readtype_index, readtype in enumerate(rawdata):
+        for reading_num, read_data in enumerate(readtype["data"]):
+            realdata = read_data.TimeSeries[0]
+            if realdata.TimedValues != None:
+                 for timestep in realdata.TimedValues[0]:
                       #This if makes setting the timestamp of the document specific to
                       #Datapoints that don't just grab the most recent point in a database
                       #It's silly to set the timestamp at every entry, but I'll leave it 
-                      if pi_list[ropetype_index]["dbname"] not in getrecent_list:
+                      if pi_list[readtype_index]["dbname"] not in getrecent_list:
                           timestamp_minute = unix_minute(dmy_to_unix(timestep._Time))
                           timestamp = (timestamp_minute)*60
                           #print index, timestamp, timestep._Time
@@ -388,13 +398,18 @@ def ManipulateData(start_time,end_time,rawdata):
                               pass
                       try:
                           chan_value = timestep.value
-                          val = float(chan_value)
-                          pi_data[0][pi_list[ropetype_index]["dbname"]]["values"][rope_number] = val
+                          chan_value = str(chan_value.__repr__())   
+                          try: 
+                              val = float(chan_value)
+                          except ValueError:
+                              val = chan_value
+                              pass
+                          pi_data[0][pi_list[readtype_index]["dbname"]]["values"][reading_num] = val
                       except:
                           #FIXME: One of the cover gas lines is disabled. floods log
-                          if str(pi_list[ropetype_index]["dbname"]) != "cover_gas":
+                          if str(pi_list[readtype_index]["dbname"]) != "cover_gas":
                               logging.info("There was an issue getting a channel value for: " + \
-                                     str(pi_list[ropetype_index]["dbname"]) + ".  Leaving as N/A")
+                                     str(pi_list[readtype_index]["dbname"]) + ".  Leaving as N/A")
     return pi_data
 
 
@@ -509,13 +524,14 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
     while counter < 3:
         try:
     	    for entry in aldict_entries:
-                for channel in alarms_last[entry]:
-                    if channel["alarmid"] not in nowalarming:
-                        clear_alarm(channel["alarmid"])
+                if entry in alarms_last.keys():
+                    for this_alarm in alarms_last[entry]:
+                        if this_alarm["alarmid"] not in nowalarming:
+                            clear_alarm(alarms_last[entry]["alarmid"])
             return
         except:
             logging.info("Alarms Last likely empty from a connection error." + \
-                 " Trying to get Aarms last from database...")
+                 " Trying to get Alarms last from database...")
             counter+=1
             alarms_last = getPastAlarms()
             continue
