@@ -517,7 +517,8 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
         aldict_entries.append(item["dbname"])
     for entry in aldict_entries:
         for channel in alarms_dict[entry]:
- 	    if (channel["reason"] == "action") or (channel["reason"] == "alarm"):
+ 	    if (((channel["reason"] == "action") or (channel["reason"] == "alarm")) and \
+                   channel["alarmid"] is not None):
                try:
 	           post_alarm(channel["alarmid"])
                    nowalarming.append(channel["alarmid"])
@@ -531,7 +532,8 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
                 if entry in alarms_last.keys():
                     for this_alarm in alarms_last[entry]:
                         try:
-                            if this_alarm["alarmid"] not in nowalarming:
+                            if ((this_alarm["alarmid"] not in nowalarming) and \
+                                    channel["alarmid"] is not None):
                                 clear_alarm(alarms_last[entry]["alarmid"])
                         except Exception:
                             logging.exception('this_alarm: %s\nKeyError' % (this_alarm))
