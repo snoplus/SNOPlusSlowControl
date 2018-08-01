@@ -177,6 +177,7 @@ pi_list =[{"dbname":"UPW_plant_temp","channels":[1],"address":"DeltaV_311-TIT-14
               {"dbname":"AVRecircValveIsOpen","channels":[1,2],"address":"DeltaV_V-%s/DO1/PV_D.CV","appendage":["754","755"],"method":3},\
               {"dbname":"AVneck","channels":[1,2,3,4,5,6],"address":"DeltaV_SENSE_CALCS/CALC1/OUT%s.CV","appendage":["1","2","3","4","5","6"],"method":3},\
               {"dbname":"P15IsRunning","channels":[1],"address":"DeltaV_311-P15/P15_RUNNING/PV_D.CV","method":1},\
+              {"dbname":"P16IsRunning","channels":[1],"address":"DeltaV_311-P16/P16_ENABLE/PV_D.CV","method":1},\
               {"dbname":"UPS_output_load","channels":[1],"address":"SNMP_snoplusups01_upsOutputPercentLoad","method":1},\
               {"dbname":"UPS_time_on_battery","channels":[1],"address":"SNMP_snoplusups01_upsSecondsOnBattery","method":1},\
               {"dbname":"UPS_estimated_time_left","channels":[1],"address":"SNMP_snoplusups01_upsEstimatedMinutesRemaining","method":1},\
@@ -192,7 +193,7 @@ getrecent_list = ["deck_humidity","deck_temp","control_room_temp","cover_gas","e
         "CavityRecircValveIsOpen","AVRecircValveIsOpen","P15IsRunning",\
 	"UPS_output_load","UPS_time_on_battery","UPS_estimated_time_left",\
 	"UPS_battery_status","UPS_output_power","UPS_output_voltage",\
-	"UPS_input_voltage"]
+	"UPS_input_voltage","P16IsRunning"]
 
 #Connection info for couchdb
 couch = couchdb.Server('http://couch.snopl.us')
@@ -517,8 +518,11 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
     for entry in aldict_entries:
         for channel in alarms_dict[entry]:
  	    if (channel["reason"] == "action") or (channel["reason"] == "alarm"):
-	       post_alarm(channel["alarmid"])
-               nowalarming.append(channel["alarmid"])
+               try:
+	           post_alarm(channel["alarmid"])
+                   nowalarming.append(channel["alarmid"])
+               except Exception:
+                   logging.exception('channel: %s\nKeyError' % (channel))
     #If the detector item has no alarms, clear alarms on that component
     counter = 0
     while counter < 3:
@@ -526,8 +530,11 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
     	    for entry in aldict_entries:
                 if entry in alarms_last.keys():
                     for this_alarm in alarms_last[entry]:
-                        if this_alarm["alarmid"] not in nowalarming:
-                            clear_alarm(alarms_last[entry]["alarmid"])
+                        try:
+                            if this_alarm["alarmid"] not in nowalarming:
+                                clear_alarm(alarms_last[entry]["alarmid"])
+                        except Exception:
+                            logging.exception('this_alarm: %s\nKeyError' % (this_alarm))
             return
         except:
             logging.info("Alarms Last likely empty from a connection error." + \
