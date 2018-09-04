@@ -532,12 +532,13 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
     	    for entry in aldict_entries:
                 if entry in alarms_last.keys():
                     for this_alarm in alarms_last[entry]:
-                        try:
-                            if ((this_alarm["alarmid"] not in nowalarming) and \
-                                    channel["alarmid"] is not None):
-                                clear_alarm(alarms_last[entry]["alarmid"])
-                        except Exception:
-                            logging.exception('this_alarm: %s\nKeyError' % (this_alarm))
+                        for channel in alarms_dict[entry]:
+                            try:
+                                if ((this_alarm["alarmid"] not in nowalarming) and \
+                                        channel["alarmid"] is not None):
+                                    clear_alarm(alarms_last[entry]["alarmid"])
+                            except Exception:
+                                logging.exception('this_alarm: %s\nKeyError' % (this_alarm))
             return
         except:
             logging.info("Alarms Last likely empty from a connection error." + \
