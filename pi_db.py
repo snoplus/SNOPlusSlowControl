@@ -509,7 +509,19 @@ def checkThresholdAlarms(pi_data, channeldb, alarms):
             alarms_dict[dbname].append(this_alarm)
     return alarms, alarms_dict
 
-#Posts any rope alarms to the Alarm Server, clears items no longer alarming
+#Clears all alarms for all entries in the channel database 
+def clearAllAlarms(channeldb):
+    for channel in channeldb["deltav"]:
+        channel_id = None
+        try:
+            channel_id = channel["alarmid"]
+        except KeyError:
+            #Entry does not have an alarmid. Ignore
+            pass
+        if channel_id is not None:
+            clear_alarm(channel_id)       
+
+#Posts any alarms to the Alarm Server, clears items no longer alarming
 def PostAlarmServerAlarms(alarms_dict,alarms_last):
     #only check alarms_dict entries associated with databases
     nowalarming = []    
@@ -703,11 +715,16 @@ previous_no_longer_alarms = []
 #Start Alarm Server Heartbeat daemon
 post_heartbeat('MinardSC')
 
+#Initial init of channeldb
+channeldb_last = {}
+
+#When script restarts, clear all alarms
+channeldb = getChannelParameters(channeldb_last)
+clearAllAlarms(channeldb)
+
 #Start by knowing the alarms status in the most recent database entry
 alarms_last = getPastAlarms()
 
-#Initial init of channeldb
-channeldb_last = {}
 
 
 #script loop
