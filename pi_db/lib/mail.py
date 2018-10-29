@@ -1,9 +1,14 @@
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
 from email.MIMEText import MIMEText
+import credentials as cr
+import config.config as c
 
 #Sends an email
 def sendMail(subject, text):
+    gmailUser, gmailPassword = cr.getcreds(c.GMAILCREDS)
+    recipientfile = open(c.MAILRECIPIENTLISTDIR,"r")
+    recipients = recipientfile.readlines(); 
     try:
         msg = MIMEMultipart()
 	msg['From'] = gmailUser

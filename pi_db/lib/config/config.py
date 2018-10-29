@@ -1,0 +1,10 @@
+LOG_FILENAME = '/home/uwslowcontrol/pi_db/log/pilog.log' #logfile source
+ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
+ALARMHOST = "dbug"
+ALARMDBNAME = "detector"
+timeseries_url = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
+GMAILCREDS = "/home/uwslowcontrol/config/gmailcred.conf"
+MAILRECIPIENTLISTDIR = "/home/uwslowcontrol/pi_db/emailList.txt"
+COUCHADDRESS = 'http://couch.snopl.us'
+COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
+ONEMINDBURL = "slowcontrol-data-1min"
