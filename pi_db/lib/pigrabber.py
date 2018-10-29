@@ -9,6 +9,8 @@ from suds.sudsobject import asdict
 #  - The timeseries_url; have it put in in a method
 #  - Method that connects the timeseries client
 
+#FIXME: logging additions
+
 timeseries_url = c.timeseries_url
 try:
     timeseries_client = Client(timeseries_url)

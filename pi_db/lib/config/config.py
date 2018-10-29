@@ -8,3 +8,5 @@ MAILRECIPIENTLISTDIR = "/home/uwslowcontrol/pi_db/emailList.txt"
 COUCHADDRESS = 'http://couch.snopl.us'
 COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
 ONEMINDBURL = "slowcontrol-data-1min"
+ALARMDBURL = 'slowcontrol-alarms'
+ALARMDBVIEW = 'slowcontrol-alarms/pi_db'

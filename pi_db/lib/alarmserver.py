@@ -4,6 +4,8 @@ import threading
 
 import credentials as cr
 
+#FIXME: logging functions
+
 ASUser, ASPassword = cr.getcreds("/home/uwslowcontrol/config/alascred.conf")
 class AlarmPoster(object):
     def __init__(self, alarmhost=None, psql_database=None):
