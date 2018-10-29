@@ -411,7 +411,7 @@ def ManipulateData(start_time,end_time,rawdata):
                           #FIXME: One of the cover gas lines is disabled. floods log
                           if str(pi_list[readtype_index]["dbname"]) != "cover_gas":
                               logging.info("There was an issue getting a channel value for: " + \
-                                     str(pi_list[readtype_index]["dbname"]) + ".  Leaving as N/A")
+                                     str(pi_list[readtype_index]["dbname"]) +  ".  Leaving as N/A")
     return pi_data
 
 
@@ -537,20 +537,18 @@ def PostAlarmServerAlarms(alarms_dict,alarms_last):
                    nowalarming.append(channel["alarmid"])
                except Exception:
                    logging.exception('channel: %s\nKeyError' % (channel))
-    #If the detector item has no alarms, clear alarms on that component
+    #If a past alarm is not in the current alarms, clear alarms on that component
     counter = 0
     while counter < 3:
         try:
-    	    for entry in aldict_entries:
-                if entry in alarms_last.keys():
-                    for this_alarm in alarms_last[entry]:
-                        for channel in alarms_dict[entry]:
-                            try:
-                                if ((this_alarm["alarmid"] not in nowalarming) and \
-                                        channel["alarmid"] is not None):
-                                    clear_alarm(alarms_last[entry]["alarmid"])
-                            except Exception:
-                                logging.exception('this_alarm: %s\nKeyError' % (this_alarm))
+    	    for entry in aldict_entries:  #Loop through PI channel sets
+                if entry in alarms_last.keys():  
+                    for past_alarm in alarms_last[entry]: #loop over PI channels' past alarms
+                        try:
+                            if (past_alarm["alarmid"] not in nowalarming):
+                                clear_alarm(past_alarm["alarmid"])
+                        except Exception:
+                            logging.exception('this_alarm: %s\nKeyError' % (this_alarm))
             return
         except:
             logging.info("Alarms Last likely empty from a connection error." + \
