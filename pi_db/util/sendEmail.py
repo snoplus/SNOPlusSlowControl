@@ -27,7 +27,7 @@ def getcreds(location):
 gmailUser, gmailPassword = getcreds("/home/uwslowcontrol/config/gmailcred.conf")
 
 
-recipientsList = open("/home/uwslowcontrol/pi_db/emailList.txt","r")
+recipientsList = open("../emailList.txt","r")
 recipients = recipientsList.readlines()
 ios = 1
 period = 5

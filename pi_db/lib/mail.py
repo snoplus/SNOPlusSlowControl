@@ -5,9 +5,9 @@ import credentials as cr
 import config.config as c
 
 #Sends an email
-def sendMail(subject, text):
+def sendMail(subject, text, recipients_file):
     gmailUser, gmailPassword = cr.getcreds(c.GMAILCREDS)
-    recipientfile = open(c.MAILRECIPIENTLISTDIR,"r")
+    recipientfile = open(recipients_file,"r")
     recipients = recipientfile.readlines(); 
     try:
         msg = MIMEMultipart()

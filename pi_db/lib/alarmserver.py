@@ -1,10 +1,9 @@
 import psycopg2
 from psycopg2.pool import ThreadedConnectionPool
 import threading
+import logging as l
 
 import credentials as cr
-
-#FIXME: logging functions
 
 ASUser, ASPassword = cr.getcreds("/home/uwslowcontrol/config/alascred.conf")
 class AlarmPoster(object):
@@ -14,6 +13,7 @@ class AlarmPoster(object):
         self.ASUser = None
         self.ASPassword = None
         self.pool = None
+        self.logger = l.get_logger(__name__)
 
     def getAlarmDBCredentials(self,alarmcreddir=None):
         '''Given a filepath, return the username and password associated
@@ -26,6 +26,7 @@ class AlarmPoster(object):
     def startConnPool(self):
         '''Using the set host, database, and username/password, Start
         a connection pool for alarm posting'''
+        self.logger.info("Starting connection pool for alarms database")
         self.pool = ThreadedConnectionPool(1,10, host=self.host, 
                 database='detector', user=ASUser, password=ASPassword)
 
@@ -44,7 +45,7 @@ class AlarmPoster(object):
             conn = self.pool.getconn()
         except psycopg2.Error as e:
             #if the database is down we just print the error
-            logging.exeption(str(e))
+            self.logger.exeption(str(e))
             print(str(e))     
         else:
             #we have a connection
@@ -55,7 +56,7 @@ class AlarmPoster(object):
                         result = curs.fetchone()[0]
             except psycopg2.Error as e:
                 #who knows what went wrong?  Just print the error
-                logging.exception(str(e))
+                self.logger.exception(str(e))
                 print(str(e))
                 #close the connection since it's possible the database
                 #is down, so we don't want to use this connection again
@@ -79,7 +80,7 @@ class AlarmPoster(object):
             conn = self.pool.getconn()
         except psycopg2.Error as e:
             #if the database is down we just print the error
-            logging.exception(str(e))
+            self.logger.exception(str(e))
         else:
             #we have a connection
             try:
@@ -89,7 +90,7 @@ class AlarmPoster(object):
                         result = curs.fetchone()[0]
             except psycopg2.Error as e:
                 #who knows what went wrong?  Just print the error
-                logging.exception(str(e))
+                self.logger.exception(str(e))
                 #close the connection since it's possible the database
                 #is down, so we don't want to use this connection again
                 conn.close()
@@ -97,17 +98,18 @@ class AlarmPoster(object):
             self.pool.putconn(conn)
         return result
     
-    def post_heartbeat(name):
+    def post_heartbeat(name, beat_interval=10):
         """
-        Recursive function that posts a heartbeat to the database every 10 seconds.
+        Recursive function that posts a heartbeat to the database every given seconds.
         Start this once when you run your main script.
         See stackoverflow.com/questions/3393612
         """
+        self.logger.info("Starting alarm server connection heartbeat")
         try:
             conn = self.pool.getconn()
         except psycopg2.Error as e:
             #if the database is down we just print the error
-            logging.exception(str(e))
+            self.logger.exception(str(e))
         else:
             #we have a connection
             try:
@@ -116,13 +118,13 @@ class AlarmPoster(object):
                         curs.execute("SELECT * FROM post_heartbeat('%s')" % name)
             except psycopg2.Error as e:
                 #who knows what went wrong; just print the error
-                logging.exeption(str(e))
+                self.logger.exeption(str(e))
                 #close the connection since it's possible the database
                 #is down, so we don't want to reuse this connection
                 conn.close()
             self.pool.putconn(conn)
         
-        t = threading.Timer(10, post_heartbeat, [name])
+        t = threading.Timer(beat_interval, self.post_heartbeat, [name])
         t.daemon = True
         t.start()
     

@@ -1,14 +1,15 @@
 
-
+import socket
 import couchdb
 import credentials as cr
-
+import logging as l
 
 #FIXME: need logging
 class CouchDBConn(object):
     def __init__(self):
         self.couch = None
-    
+        self.logger = l.get_logger(__name__) 
+
     def getServerInstance(self,server_url,credential_file):
         '''Given a couchDB server url and a file with credentials parsed by
         the credentials library, initializes the server instance used by 
@@ -34,17 +35,17 @@ class CouchDBConn(object):
                break
             except socket.error, exc:
                 print "Failed to connect to " + dbName
-                logging.exception("Failed to connect to " + dbName)
+                self.logger.exception("Failed to connect to " + dbName)
                 numtries += 1
-                logging.info("At try " + str(numtries) + ". Trying again..")
+                self.logger.info("At try " + str(numtries) + ". Trying again..")
                 time.sleep(1)
                 status = "bad"
                 continue
             except httplib.INTERNAL_SERVER_ERROR:
                 print "Failed to connect to " + dbName
-                logging.exception("Server error: Failed to connect to " + dbName)
+                self.logger.exception("Server error: Failed to connect to " + dbName)
                 numtries += 1
-                logging.info("At try " + str(numtries) + ". Trying again..")
+                self.logger.info("At try " + str(numtries) + ". Trying again..")
                 time.sleep(1)
                 status = "bad"
                 continue
@@ -57,7 +58,7 @@ def PIDBCouchConn(CouchDBConn):
 #Connects to channeldb to get alarm parameters
 #TODO: Use this with getChannelParameters, where dbdict_last=channeldb_last,
 #and also use it as getPastAlarms but with dbdict_last=None
-def getChannelParameters(self,dbname,viewname,dbdict_last=None):
+def getLatestEntry(self,dbname,viewname,dbdict_last=None):
     '''Given the name of the database on the server and the couch view, and
     the previous channel database dictionary, returns the most current
     channel database dictionary.  If connection fails, returns the same
@@ -71,18 +72,40 @@ def getChannelParameters(self,dbname,viewname,dbdict_last=None):
                 queryresults =  dbPar.view(viewname,descending=True,limit=1)                    
                 channeldb = queryresults.rows[0].value
             except socket.error, exc:
-                logging.exception("Failed to view database %s, view %s. "%(dbname,viewname) + \
+                self.logger.exception("Failed to view database %s, view %s. "%(dbname,viewname) + \
                     "sleeping, trying again... ERR: " + str(exc))
                 time.sleep(1)
                 counter += 1
                 dbParStatus, dbPar = connectToDB(dbname)
                 continue
     else:
-        logging.exception("IN getChannelParameters: could not connect" + \
+        self.logger.exception("IN getChannelParameters: could not connect" + \
             " to slowcontrol-channeldb. returning last channeldb dict.")
         if dbdict_last is None:
             dbdict = {}
         else:
             dbdict = dbdict_last
     return dbdict
+
+def saveEntry(data,dbname):
+    dbDataStatus, dbData = connectToDB(dbname)
+    if dbDataStatus is "ok":
+        for element in data:
+            if element["timestamp"]!="N/A":
+                counter = 0
+                while counter < 3:
+    		    try:
+                        dbData.save(element)
+                        return
+		    except socket.error, exc:
+		        self.logger.exception("FAILED TO SAVE 1 MIN ENTRY" + \
+		        "FOR THIS MINUTE.  ERROR: " + str(exc))
+                        self.logger.exception("SLEEP, TRY AGAIN...")
+                        time.sleep(1)
+                        counter += 1
+                        dbDataStatus, dbData = connectToDB(dbname)
+                        continue
+                logging.exception("TRIED TO SAVE 1 MIN DATA THREE TIMES AND FAILED." + \
+                        "There was data; just couldn't connect to couchdb.")
+                 
 
