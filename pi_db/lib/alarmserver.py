@@ -1,15 +1,15 @@
 import psycopg2
 from psycopg2.pool import ThreadedConnectionPool
 import threading
-import logging as l
-
+import pilogger as l
+import config.config as c
 import credentials as cr
 
-ASUser, ASPassword = cr.getcreds("/home/uwslowcontrol/config/alascred.conf")
+ASUser, ASPassword = cr.getcreds(c.ALARMCREDDIR)
 class AlarmPoster(object):
     def __init__(self, alarmhost=None, psql_database=None):
         self.host = alarmhost
-        self.database = database
+        self.psql_db = psql_database
         self.ASUser = None
         self.ASPassword = None
         self.pool = None
@@ -28,7 +28,7 @@ class AlarmPoster(object):
         a connection pool for alarm posting'''
         self.logger.info("Starting connection pool for alarms database")
         self.pool = ThreadedConnectionPool(1,10, host=self.host, 
-                database='detector', user=ASUser, password=ASPassword)
+                database=self.psql_db, user=ASUser, password=ASPassword)
 
     def post_alarm(self,alarm_id):
         """
@@ -98,7 +98,7 @@ class AlarmPoster(object):
             self.pool.putconn(conn)
         return result
     
-    def post_heartbeat(name, beat_interval=10):
+    def post_heartbeat(self, name, beat_interval=10):
         """
         Recursive function that posts a heartbeat to the database every given seconds.
         Start this once when you run your main script.

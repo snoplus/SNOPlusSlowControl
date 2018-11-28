@@ -1,20 +1,21 @@
-LOG_FILENAME = '/home/uwslowcontrol/pi_db/log/pilog.log' #logfile source
+LOG_FILENAME = '/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/log/pilog.log' #logfile source
 ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
 ALARMHOST = "dbug"
 ALARMDBNAME = "detector"
 TIMESERIESURL = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
 PIDBFACTORYANME = 'PIArcDataRequest'
 GMAILCREDS = "/home/uwslowcontrol/config/gmailcred.conf"
-MAILRECIPIENTLISTDIR = "/home/uwslowcontrol/pi_db/pi_db/emailList.txt"
+MAILRECIPIENTLISTDIR = "/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/emailList.txt"
 COUCHADDRESS = 'http://couch.snopl.us'
 COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
 CHANNELDBURL = 'slowcontrol-channeldb'
-CHANNELDBVIEW = 'slowcontro/recent'
+CHANNELDBVIEW = 'slowcontrol/recent'
 ONEMINDBURL = "slowcontrol-data-1min"
 ALARMDBURL = 'slowcontrol-alarms'
 ALARMDBVIEW = 'slowcontrol-alarms/pi_db'
 
 ALARMHEARTBEAT = 'MinardSC'
+ALARMBEATINTERVAL = 10
 #Delay in minutes for the time you want to poll from PI Database
 #Have to hard-code a delay in the times polled from PI DB
 #If you don't, will just poll empty values

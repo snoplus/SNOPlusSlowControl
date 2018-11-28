@@ -6,7 +6,7 @@
 #FIXME: need logging added.  Will also want to add in an alarmposter instance?
 # Or have it done in main, and pass returns to the AlarmPoster from returns on
 #methods?
-import logging as l
+import pilogger as l
 import mail as m
 import time
 

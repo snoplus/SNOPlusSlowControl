@@ -4,36 +4,21 @@
 #Restructured into classes/libraries by: Teal Pershing, 28 Oct 2018
 
 import datetime, time, calendar, math, re
-import sys,logging, pprint
-import traceback
+import sys, pprint
 import smtplib
 
+import lib.pilogger as l
 import lib.alarmserver as als
 import lib.config.config as c
 import lib.couchutils as cu
 import lib.credentials as cr
-from lib.log import *
 import channelDB.pilist as pl
 
-#Define what we want our system exception hook to do at an
-#uncaught exception
-#FIXME: Clean this up?  Do we need it really?
-def UE_handler(exec_type, value, tb):
-    logging.exception("Uncaught exception: {0}".format(str(value)))
-    logging.exception("Error type: " + str(exec_type))
-    logging.exception("Traceback: " + str(traceback.format_tb(tb)))
-
 #At an uncaught exception, run our handler
-sys.excepthook = UE_handler
+sys.excepthook = l.UE_handler
 
-
-
-#FIXME: this should probably go in AlarmHandler
-GETRECENTLIST = pl.getrecent_list
-
-piarcdatarequest = timeseries_client.factory.create('PIArcDataRequest')
-
-logger = get_logger(__name__)
+#Initialize home logger
+logger = l.get_logger(__name__)
 logger.info('PI_DB SCRIPT INITIALIZING...')
 
 if __name__ == '__main__':
@@ -46,7 +31,7 @@ if __name__ == '__main__':
     #Initialize Alarm server and get heartbeat going
     AlarmPoster = als.AlarmPoster(alarmhost=c.ALARMHOST,psql_database=c.ALARMDBNAME)
     AlarmPoster.startConnPool()
-    AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=10)
+    AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=c.ALARMBEATINTERVAL)
 
     #Initialize CouchDB connction.  Also get current channeldb
     CouchConn = cu.PIDBCouchConn()

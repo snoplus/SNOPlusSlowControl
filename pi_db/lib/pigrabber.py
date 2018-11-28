@@ -8,7 +8,7 @@ from suds.sudsobject import asdict
 #  - the pi_list
 #  - The timeseries_url; have it put in in a method
 #  - Method that connects the timeseries client
-import logging as l
+import pilogger as l
 #FIXME: logging additions
 
 class PIDataHandler(object):
