@@ -7,8 +7,11 @@ import datetime, time, calendar, math, re
 import sys, pprint
 import smtplib
 
+import lib.timeconverts as tc
 import lib.pilogger as l
 import lib.alarmserver as als
+import lib.alarmhandler as alh
+import lib.pigrabber as pig
 import lib.config.config as c
 import lib.couchutils as cu
 import lib.credentials as cr
@@ -32,40 +35,52 @@ if __name__ == '__main__':
     AlarmPoster = als.AlarmPoster(alarmhost=c.ALARMHOST,psql_database=c.ALARMDBNAME)
     AlarmPoster.startConnPool()
     AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=c.ALARMBEATINTERVAL)
-
     #Initialize CouchDB connction.  Also get current channeldb
     CouchConn = cu.PIDBCouchConn()
     CouchConn.getServerInstance(c.COUCHADDRESS,c.COUCHCREDS)
     channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+    print("GOT LATEST ENTRY OF CHANNELDB")
+    if c.DEBUG is True:
+        print("FIRST CHANNELDB ENTRY:")
+        print(channeldb)
     alarms_dict = CouchConn.getLatestEntry(c.ALARMDBURL,c.ALARMDBVIEW)
-
-    #Initialize Alarm Handler
-    AlarmHandler = alh.AlarmHandler(pl.pi_list,CouchConn,AlarmPoster)
-    AlarmHandler.clearAllAlarms()
-
+    if c.DEBUG is True:
+        print("FIRST ALARMS DICTIONARY LOADED FROM COUCHDB:")
+        print(alarms_dict)
+    
+    #Initialize Alarm Handler; uses an AlarmPoster class to post alarms
+    #Based on what readings in the PI database are alarming
+    PiAlarmHandler = alh.AlarmHandler(pl.pi_list,CouchConn,AlarmPoster)
+    PiAlarmHandler.clearAllAlarms(channeldb)
+    
     #Initialze the data handler
-    PIDataHandler = pdh.PIDataHandler()
+    PIDataHandler = pig.PIDataHandler()
     PIDataHandler.CreateClientConnection(c.TIMESERIESURL,c.PIDBFACTORYNAME)
     PIDataHandler.OpenPIDataRequest()
-    
+    PIDataHandler.SetPiBaseAddress(c.PIADDRESSBASE) 
     while True:
         #Set the poll time for loop
-        poll_time = (unix_minute(time.time())-c.POLLDELAY)*60
+        poll_time = (tc.unix_minute(time.time())-c.POLLDELAY)*60
         endpoll_time = poll_time+c.POLLRANGE
 
         #Have the data handler grab and manipulate data
-        rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list)
-        formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list)
-
+        rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list,pl.getrecent_list)
+        formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,pl.getrecent_list,c.VERSION)
+        if c.DEBUG is True:
+            print("MOST RECENT LOADED PI DATA:")
+            print(formattedPIData)
         #Save the data to our couchDB
-        CouchConn.saveValues(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance
-        
+        CouchConn.saveEntry(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance
+         
         #Check data against alarm thresholds; post alarms if needed
         alarms_last = alarms_dict
         for timeslot in formattedPIData:
-            alarms_dict = AlarmHandler.checkThresholdAlarms(formattedPIData,channeldb,alarms_dict)
-            AlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
-            AlarmHandler.printAlarms(alarms_dict, alarms_last, c.MAILRECIPIENTLISTDIR)
+            alarms_dict = PiAlarmHandler.checkThresholdAlarms(timeslot,channeldb,alarms_dict,c.VERSION)
+            if c.DEBUG is True:
+                print("CURRENT ALARMS:")
+                print(alarms_dict)
+            PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
+            PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, c.MAILRECIPIENTLISTFILE)
         
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:
@@ -74,5 +89,8 @@ if __name__ == '__main__':
         
         #if it took >60 seconds to run loop, no waiting; just go to the next data set!
         offset = (time.time()- c.POLLDELAY*60) - (poll_time + c.POLL_WAITTIME)
+        if c.DEBUG is True:
+            print(" CURRENT OFFSET FROM PIDB IS "+str(offset)+". GOING TO" +\
+                  " SLEEP MODE if OFFSET<0")
         if offset<0:
             time.sleep(c.POLL_WAITTIME)

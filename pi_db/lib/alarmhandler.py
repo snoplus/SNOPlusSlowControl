@@ -6,6 +6,7 @@
 #FIXME: need logging added.  Will also want to add in an alarmposter instance?
 # Or have it done in main, and pass returns to the AlarmPoster from returns on
 #methods?
+import timeconverts as tc
 import pilogger as l
 import mail as m
 import time
@@ -20,17 +21,15 @@ class AlarmHandler(object):
         self.PICouchConn = PIDBCouchConn
         self.AlarmPoster = AlarmPoster
         self.logger = l.get_logger(__name__)
-        #TODO: Have the PIDBCouchConn get the most recent channeldb and
-        #Alarms?  Or should this be done in main.py, and fed in?
 
     #Compares pi_data to channeldb alarm parameters
-    def checkThresholdAlarms(pi_data, channeldb, alarms):
+    def checkThresholdAlarms(self,pi_data, channeldb, alarms,version):
 
         alarms_prev = alarms
         alarm_states = {}
         alarms_dict = {}
         alarms_dict["timestamp"] = int(time.time())
-        alarms_dict["sudbury_time"] = unix_to_human(alarms_dict["timestamp"])
+        alarms_dict["sudbury_time"] = tc.unix_to_human(alarms_dict["timestamp"])
         alarms_dict["version"] = version
         for name in self.pi_list:
             alarm_states[name["dbname"]] = [0]*len(name["channels"])
@@ -48,14 +47,14 @@ class AlarmHandler(object):
             isAlarm = 0
             if isEnabled>0:
                 #See if channel is outside alarming thresholds
-                if chn_value<channel["lolo"] or chn_value>channel["hihi"]:
+                if chn_value =="N/A":
+                    alarm_states[dbname][chn_number] = 0
+                elif chn_value<channel["lolo"] or chn_value>channel["hihi"]:
                     alarm_states[dbname][chn_number] = 2
                     isAlarm = 1
                 elif chn_value<channel["lo"] or chn_value>channel["hi"]:
                     alarm_states[dbname][chn_number] = 1
                     isAlarm = 1
-                if chn_value =="N/A":
-                    alarm_states[dbname][chn_number] = 0
             this_channel_alarm ={}
             if isAlarm>0:
                 if alarm_states[dbname][chn_number]==1:
@@ -71,7 +70,7 @@ class AlarmHandler(object):
         return alarms_dict
     
     #Clears all alarms for all entries in the channel database 
-    def clearAllAlarms(channeldb):
+    def clearAllAlarms(self,channeldb):
         for channel in channeldb["deltav"]:
             channel_id = None
             try:
@@ -83,7 +82,7 @@ class AlarmHandler(object):
                 self.AlarmPoster.clear_alarm(channel_id)       
     
     #Posts any alarms to the Alarm Server, clears items no longer alarming
-    def postAlarmServerAlarms(alarms_dict,alarms_last):
+    def postAlarmServerAlarms(self,alarms_dict,alarms_last):
         #only check alarms_dict entries associated with databases
         nowalarming = []    
         aldict_entries = []
@@ -125,7 +124,7 @@ class AlarmHandler(object):
         raise
     
     #Sends alarms email
-    def sendAlarmsEmail(alarms_dict,alarms_last):
+    def sendAlarmsEmail(self,alarms_dict,alarms_last,recipients_filename):
         title = "DeltaV Alarms at " + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(alarms_dict["timestamp"])) + "\n\n"
         old_list = []
         new_list = []
@@ -172,5 +171,5 @@ class AlarmHandler(object):
              for y in constant_alarms:
                   super_msg = super_msg + new_alarm_dict[y]
         if super_msg != title:
-             m.sendMail("Alarms at " + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(alarms_dict["timestamp"])), super_msg)
+             m.sendMail("Alarms at " + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(alarms_dict["timestamp"])), super_msg,recipients_filename)
     

@@ -10,6 +10,7 @@ class AlarmPoster(object):
     def __init__(self, alarmhost=None, psql_database=None):
         self.host = alarmhost
         self.psql_db = psql_database
+        self.heart_is_beating = False
         self.ASUser = None
         self.ASPassword = None
         self.pool = None
@@ -65,7 +66,7 @@ class AlarmPoster(object):
             self.pool.putconn(conn)
         return result
     
-    def clear_alarm(alarm_id):
+    def clear_alarm(self,alarm_id):
         """
         Clears an alarm from the alarm server for an alarm with a given id.
     
@@ -104,7 +105,8 @@ class AlarmPoster(object):
         Start this once when you run your main script.
         See stackoverflow.com/questions/3393612
         """
-        self.logger.info("Starting alarm server connection heartbeat")
+        if not self.heart_is_beating:
+            self.logger.info("Starting alarm server connection heartbeat")
         try:
             conn = self.pool.getconn()
         except psycopg2.Error as e:
@@ -127,4 +129,5 @@ class AlarmPoster(object):
         t = threading.Timer(beat_interval, self.post_heartbeat, [name])
         t.daemon = True
         t.start()
+        self.heart_is_beating = True
     
