@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2.pool import ThreadedConnectionPool
 import threading
-import pilogger as l
+import thelogger as l
 import config.config as c
 import credentials as cr
 

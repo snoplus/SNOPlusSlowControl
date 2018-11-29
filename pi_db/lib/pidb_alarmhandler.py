@@ -7,11 +7,11 @@
 # Or have it done in main, and pass returns to the AlarmPoster from returns on
 #methods?
 import timeconverts as tc
-import pilogger as l
+import thelogger as l
 import mail as m
 import time
 
-class AlarmHandler(object):
+class PIAlarmHandler(object):
     '''This class is responsible for checking PIDB data against the
     alarm thresholds in the channel database, and updating the alarms
     dictionary.  This class also contains methods for using the given

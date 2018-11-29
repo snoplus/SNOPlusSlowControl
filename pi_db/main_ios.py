@@ -10,9 +10,9 @@ import smtplib
 import lib.timeconverts as tc
 import lib.thelogger as l
 import lib.alarmserver as als
-import lib.pidb_alarmhandler as alh
-import lib.pigrabber as pig
-import lib.config.config as c
+import lib.alarmhandler as alh
+import lib.ios_grabber as iog
+import lib.config.iosconfig as c
 import lib.couchutils as cu
 import lib.credentials as cr
 import channelDB.pilist as pl
@@ -22,21 +22,17 @@ sys.excepthook = l.UE_handler
 
 #Initialize home logger
 logger = l.get_logger(__name__)
-logger.info('PI_DB SCRIPT INITIALIZING...')
+logger.info('IOS POLLING SCRIPT INITIALIZING...')
 
 if __name__ == '__main__':
 
-    #Have to hard-code a delay in the times polled from PI DB
-    #If you don't, will just poll empty values
-    delay = 5  #in minutes 
-    wait_time = 60 # in seconds
 
     #Initialize Alarm server and get heartbeat going
     AlarmPoster = als.AlarmPoster(alarmhost=c.ALARMHOST,psql_database=c.ALARMDBNAME)
     AlarmPoster.startConnPool()
     AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=c.ALARMBEATINTERVAL)
     #Initialize CouchDB connction.  Also get current channeldb
-    CouchConn = cu.PIDBCouchConn()
+    CouchConn = cu.IOSCouchConn(c.IOSNUM)
     CouchConn.getServerInstance(c.COUCHADDRESS,c.COUCHCREDS)
     channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
     print("GOT LATEST ENTRY OF CHANNELDB")
@@ -50,8 +46,8 @@ if __name__ == '__main__':
     
     #Initialize Alarm Handler; uses an AlarmPoster class to post alarms
     #Based on what readings in the PI database are alarming
-    PiAlarmHandler = alh.PIAlarmHandler(pl.pi_list,CouchConn,AlarmPoster)
-    PiAlarmHandler.clearAllAlarms(channeldb)
+    IosAlarmHandler = alh.IOSAlarmHandler(CouchConn,AlarmPoster)
+    IosAlarmHandler.clearAllAlarms(channeldb)
     
     #Initialze the data handler
     PIDataHandler = pig.PIDataHandler()
@@ -74,13 +70,12 @@ if __name__ == '__main__':
          
         #Check data against alarm thresholds; post alarms if needed
         alarms_last = alarms_dict
-        for timeslot in formattedPIData:
-            alarms_dict = PiAlarmHandler.checkThresholdAlarms(timeslot,channeldb,alarms_dict,c.VERSION)
-            if c.DEBUG is True:
-                print("CURRENT ALARMS:")
-                print(alarms_dict)
-            PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
-            PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, c.MAILRECIPIENTLISTFILE)
+        alarms_dict = IosAlarmHandler.checkThresholdAlarms(timeslot,channeldb,alarms_dict,c.VERSION)
+        if c.DEBUG is True:
+            print("CURRENT ALARMS:")
+            print(alarms_dict)
+        IosAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last,cardsHW)
+        IosAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, c.MAILRECIPIENTLISTFILE)
         
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:

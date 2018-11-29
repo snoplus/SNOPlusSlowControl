@@ -2,7 +2,7 @@ import httplib
 import socket
 import couchdb
 import credentials as cr
-import pilogger as l
+import thelogger as l
 
 class CouchDBConn(object):
     def __init__(self):
@@ -108,4 +108,62 @@ class PIDBCouchConn(CouchDBConn):
                     logging.exception("TRIED TO SAVE 1 MIN DATA THREE TIMES AND FAILED." + \
                             "There was data; just couldn't connect to couchdb.")
                      
+   
+class IOSCouchConn(CouchDBConn):
+    def __init__(self,ios_number):
+        super(IOSCouchConn, self).__init__()
+        self.ios_num = ios_number
+    #Connects to channeldb to get alarm parameters
+    #TODO: Use this with getChannelParameters, where dbdict_last=channeldb_last,
+    #and also use it as getPastAlarms but with dbdict_last=None
+
+    def getLatestEntry(self,dbname,viewname,dbdict_last=None):
+        '''Given the name of the database on the server and the couch view, and
+        the previous channel database dictionary, returns the most current
+        channel database dictionary.  If connection fails, returns the same
+        channeldb as was given, or an empty dict if dbdict_last is None.'''
+        dbdict = {}                                                                                    
+        counter = 0
+        dbParStatus, dbPar = self._connectToDB(dbname)                                       
+        if dbParStatus is "ok":
+            while counter < 3:                                                                         
+                try:
+                    queryresults =  dbPar.view(viewname,descending=True,limit=1)                    
+                    dbdict = queryresults.rows[0].value.value["ioss"][self.ios_num-1]
+                    break
+                except socket.error, exc:
+                    self.logger.exception("Failed to view database %s, view %s. "%(dbname,viewname) + \
+                        "sleeping, trying again... ERR: " + str(exc))
+                    time.sleep(1)
+                    counter += 1
+                    dbParStatus, dbPar = self._connectToDB(dbname)
+                    continue
+        else:
+            self.logger.exception("IN getChannelParameters: could not connect" + \
+                " to slowcontrol-channeldb. returning last channeldb dict.")
+            if dbdict_last is None:
+                dbdict = {}
+            else:
+                dbdict = dbdict_last
+        return dbdict
+    
+    def saveEntry(self,data,dbname):
+        dbDataStatus, dbData = self._connectToDB(dbname)
+        if dbDataStatus is "ok":
+            counter = 0
+            while counter < 3:
+                try:
+                    dbData.save(element)
+                    return
+    		        except socket.error, exc:
+    		            self.logger.exception("FAILED TO SAVE %s ENTRY"%(dbname) + \
+    		                    "ERROR: " + str(exc))
+                    self.logger.exception("SLEEP, TRY AGAIN...")
+                    time.sleep(1)
+                    counter += 1
+                    dbDataStatus, dbData = self._connectToDB(dbname)
+                    continue
+            logging.exception("TRIED TO SAVE DATA THREE TIMES AND FAILED." + \
+                    "There was data; just couldn't connect to couchdb.")
+             
     
