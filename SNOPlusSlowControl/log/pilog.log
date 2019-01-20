@@ -1,0 +1,473 @@
+2018-11-28 17:08:23,822 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:08:23,823 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:08:23,834 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:08:25,359     root ERROR Uncaught exception: 
+None
+2018-11-28 17:08:25,359     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:08:25,361     root ERROR Traceback: ['  File "main.py", line 39, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 59, in iterscan\n    match = self.scanner.scanner(string, matchend).match\n']
+None
+2018-11-28 17:17:54,066 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:17:54,066 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:17:54,071 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:18:04,078 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:18:14,154 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:18:17,265     root ERROR Uncaught exception: 
+None
+2018-11-28 17:18:17,266     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:18:17,267     root ERROR Traceback: ['  File "main.py", line 39, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 177, in JSONObject\n    key, end = scanstring(s, end, encoding, strict)\n']
+None
+2018-11-28 17:23:01,771 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:23:01,771 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:23:01,777 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:23:38,609     root ERROR Uncaught exception: 
+None
+2018-11-28 17:23:38,609     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:23:38,611     root ERROR Traceback: ['  File "main.py", line 39, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 155, in JSONString\n    return scanstring(match.string, match.end(), encoding, strict)\n']
+None
+2018-11-28 17:28:35,505 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:28:35,506 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:28:35,512 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:28:43,379     root ERROR Uncaught exception: 
+None
+2018-11-28 17:28:43,379     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:28:43,380     root ERROR Traceback: ['  File "main.py", line 39, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 188, in JSONObject\n    nextchar = s[end:end + 1]\n']
+None
+2018-11-28 17:29:47,661 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:29:47,661 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:29:47,667 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:30:21,491     root ERROR Uncaught exception: 
+None
+2018-11-28 17:30:21,491     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:30:21,493     root ERROR Traceback: ['  File "main.py", line 38, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 182, in JSONObject\n    try:\n']
+None
+2018-11-28 17:30:47,982 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:30:47,983 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:30:47,989 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:30:53,589     root ERROR Uncaught exception: 
+None
+2018-11-28 17:30:53,589     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:30:53,591     root ERROR Traceback: ['  File "main.py", line 39, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 181, in JSONObject\n    end = _w(s, end + 1).end()\n']
+None
+2018-11-28 17:31:22,781 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:31:22,781 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:31:22,788 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:31:24,580     root ERROR Uncaught exception: 
+None
+2018-11-28 17:31:24,581     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:31:24,582     root ERROR Traceback: ['  File "main.py", line 38, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 47, in iterscan\n    m = match()\n']
+None
+2018-11-28 17:32:52,167 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:32:52,168 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:32:52,178 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:32:53,733     root ERROR Uncaught exception: 
+None
+2018-11-28 17:32:53,733     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:32:53,737     root ERROR Traceback: ['  File "main.py", line 38, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 73, in getLatestEntry\n    channeldb = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 281, in _try_request_with_retries\n    return _try_request()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 319, in _try_request\n    return conn.getresponse()\n', '  File "/usr/lib64/python2.6/httplib.py", line 1049, in getresponse\n    response.begin()\n', '  File "/usr/lib64/python2.6/httplib.py", line 433, in begin\n    version, status, reason = self._read_status()\n', '  File "/usr/lib64/python2.6/httplib.py", line 389, in _read_status\n    line = self.fp.readline(_MAXLINE + 1)\n', '  File "/usr/lib64/python2.6/socket.py", line 479, in readline\n    data = self._sock.recv(self._rbufsize)\n', '  File "/usr/lib64/python2.6/ssl.py", line 215, in recv\n    return self.read(buflen)\n', '  File "/usr/lib64/python2.6/ssl.py", line 136, in read\n    return self._sslobj.read(len)\n']
+None
+2018-11-28 17:34:05,534 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:34:05,534 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:34:05,540 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:34:18,453     root ERROR Uncaught exception: 
+None
+2018-11-28 17:34:18,453     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:34:18,455     root ERROR Traceback: ['  File "main.py", line 38, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 72, in getLatestEntry\n    dbdict = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 42, in iterscan\n    match = self.scanner.scanner(string, idx).match\n']
+None
+2018-11-28 17:35:05,110 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:35:05,110 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:35:05,115 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:35:11,540     root ERROR Uncaught exception: 
+None
+2018-11-28 17:35:11,540     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:35:11,541     root ERROR Traceback: ['  File "main.py", line 38, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 73, in getLatestEntry\n    dbdict = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 187, in JSONObject\n    end = _w(s, end).end()\n']
+None
+2018-11-28 17:37:47,655 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:37:47,655 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:37:47,661 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:37:49,351     root ERROR Uncaught exception: 
+None
+2018-11-28 17:37:49,351     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 17:37:49,352     root ERROR Traceback: ['  File "main.py", line 38, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/couchutils.py", line 73, in getLatestEntry\n    dbdict = queryresults.rows[0].value\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/http.py", line 566, in _request_json\n    data = json.decode(data.read().decode(\'utf-8\'))\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 56, in decode\n    return _decode(string)\n', '  File "/usr/lib/python2.6/site-packages/couchdb/json.py", line 132, in _decode\n    return loads(string_)\n', '  File "/usr/lib64/python2.6/json/__init__.py", line 307, in loads\n    return _default_decoder.decode(s)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 319, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 336, in raw_decode\n    obj, end = self._scanner.iterscan(s, **kw).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 183, in JSONObject\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 217, in JSONArray\n    value, end = iterscan(s, idx=end, context=context).next()\n', '  File "/usr/lib64/python2.6/json/scanner.py", line 55, in iterscan\n    rval, next_pos = action(m, context)\n', '  File "/usr/lib64/python2.6/json/decoder.py", line 181, in JSONObject\n    end = _w(s, end + 1).end()\n']
+None
+2018-11-28 17:38:26,865 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:38:26,865 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:38:26,872 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:38:27,052     root ERROR Uncaught exception: name 'alh' is not defined
+None
+2018-11-28 17:38:27,052     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 17:38:27,053     root ERROR Traceback: ['  File "main.py", line 48, in <module>\n    AlarmHandler = alh.AlarmHandler(pl.pi_list,CouchConn,AlarmPoster)\n']
+None
+2018-11-28 17:40:22,696 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:40:22,696 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:40:22,703 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:40:22,893     root ERROR Uncaught exception: name 'alh' is not defined
+None
+2018-11-28 17:40:22,894     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 17:40:22,894     root ERROR Traceback: ['  File "main.py", line 48, in <module>\n    PiAlarmHandler = alh.AlarmHandler(pl.pi_list,CouchConn,AlarmPoster)\n']
+None
+2018-11-28 17:41:47,632 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:41:47,632 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:41:47,644 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:41:47,824     root ERROR Uncaught exception: name 'alh' is not defined
+None
+2018-11-28 17:41:47,824     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 17:41:47,825     root ERROR Traceback: ['  File "main.py", line 48, in <module>\n    PiAlarmHandler = alh.AlarmHandler(pl.pi_list,CouchConn,AlarmPoster)\n']
+None
+2018-11-28 17:42:13,748 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:42:13,749 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:42:13,754 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:42:13,929     root ERROR Uncaught exception: clearAllAlarms() takes exactly 2 arguments (1 given)
+None
+2018-11-28 17:42:13,929     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 17:42:13,929     root ERROR Traceback: ['  File "main.py", line 50, in <module>\n    PiAlarmHandler.clearAllAlarms()\n']
+None
+2018-11-28 17:43:25,240 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:43:25,241 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:43:25,246 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:43:25,430     root ERROR Uncaught exception: clear_alarm() takes exactly 1 argument (2 given)
+None
+2018-11-28 17:43:25,431     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 17:43:25,431     root ERROR Traceback: ['  File "main.py", line 50, in <module>\n    PiAlarmHandler.clearAllAlarms(channeldb)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 81, in clearAllAlarms\n    self.AlarmPoster.clear_alarm(channel_id)\n']
+None
+2018-11-28 17:47:13,607 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:47:13,607 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:47:13,614 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:47:13,791     root ERROR Uncaught exception: clear_alarm() takes exactly 1 argument (2 given)
+None
+2018-11-28 17:47:13,792     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 17:47:13,792     root ERROR Traceback: ['  File "main.py", line 52, in <module>\n    PiAlarmHandler.clearAllAlarms(channeldb)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 81, in clearAllAlarms\n    self.AlarmPoster.clear_alarm(channel_id)\n']
+None
+2018-11-28 17:50:49,630 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:50:49,630 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:50:49,635 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:50:49,854     root ERROR Uncaught exception: name 'pdh' is not defined
+None
+2018-11-28 17:50:49,855     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 17:50:49,855     root ERROR Traceback: ['  File "main.py", line 55, in <module>\n    PIDataHandler = pdh.PIDataHandler()\n']
+None
+2018-11-28 17:56:52,312 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:56:52,312 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:56:52,319 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:56:52,567     root ERROR Uncaught exception: 'module' object has no attribute 'PIDBFACTORYNAME'
+None
+2018-11-28 17:56:52,567     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2018-11-28 17:56:52,568     root ERROR Traceback: ['  File "main.py", line 57, in <module>\n    PIDataHandler.CreateClientConnection(c.TIMESERIESURL,c.PIDBFACTORYNAME)\n']
+None
+2018-11-28 17:57:36,416 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:57:36,416 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:57:36,422 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:57:36,769     root ERROR Uncaught exception: global name 'timeseries_client' is not defined
+None
+2018-11-28 17:57:36,769     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 17:57:36,769     root ERROR Traceback: ['  File "main.py", line 58, in <module>\n    PIDataHandler.OpenPIDataRequest()\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 31, in OpenPIDataRequest\n    self.piarcdatarequest = timeseries_client.factory.create(\'PIArcDataRequest\')\n']
+None
+2018-11-28 17:58:33,078 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 17:58:33,078 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 17:58:33,087 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 17:58:33,385     root ERROR Uncaught exception: name 'unix_minute' is not defined
+None
+2018-11-28 17:58:33,385     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 17:58:33,385     root ERROR Traceback: ['  File "main.py", line 62, in <module>\n    poll_time = (unix_minute(time.time())-c.POLLDELAY)*60\n']
+None
+2018-11-28 18:00:05,035 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:00:05,036 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:00:05,041 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:00:05,290     root ERROR Uncaught exception: 'module' object has no attribute 'POLLDELAY'
+None
+2018-11-28 18:00:05,290     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2018-11-28 18:00:05,290     root ERROR Traceback: ['  File "main.py", line 63, in <module>\n    poll_time = (tc.unix_minute(time.time())-c.POLLDELAY)*60\n']
+None
+2018-11-28 18:01:19,346 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:01:19,346 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:01:19,352 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:01:19,646     root ERROR Uncaught exception: 'module' object has no attribute 'POLLRANGE'
+None
+2018-11-28 18:01:19,646     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2018-11-28 18:01:19,647     root ERROR Traceback: ['  File "main.py", line 64, in <module>\n    endpoll_time = poll_time+c.POLLRANGE\n']
+None
+2018-11-28 18:02:27,548 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:02:27,549 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:02:27,554 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:02:27,835     root ERROR Uncaught exception: getValues() takes exactly 3 arguments (4 given)
+None
+2018-11-28 18:02:27,835     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 18:02:27,835     root ERROR Traceback: ['  File "main.py", line 67, in <module>\n    rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list)\n']
+None
+2018-11-28 18:03:44,138 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:03:44,139 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:03:44,144 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:03:44,427     root ERROR Uncaught exception: global name 'getrecent_list' is not defined
+None
+2018-11-28 18:03:44,427     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:03:44,428     root ERROR Traceback: ['  File "main.py", line 67, in <module>\n    rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 93, in getValues\n    if dbname in getrecent_list:\n']
+None
+2018-11-28 18:05:50,631 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:05:50,631 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:05:50,638 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:05:50,955     root ERROR Uncaught exception: global name 'pi_address' is not defined
+None
+2018-11-28 18:05:50,955     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:05:50,956     root ERROR Traceback: ['  File "main.py", line 67, in <module>\n    rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list,pl.getrecent_list)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 98, in getValues\n    machine["data"].append(self._get_pi(start_time,end_time,pi_list_item,pi_address+address,channel_number))\n']
+None
+2018-11-28 18:12:44,094 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:12:44,094 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:12:44,101 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:12:52,408     root ERROR Uncaught exception: ManipulateData() takes exactly 4 arguments (5 given)
+None
+2018-11-28 18:12:52,408     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 18:12:52,409     root ERROR Traceback: ['  File "main.py", line 68, in <module>\n    formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list)\n']
+None
+2018-11-28 18:13:36,349 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:13:36,350 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:13:36,356 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:13:44,912     root ERROR Uncaught exception: global name 'unix_minute' is not defined
+None
+2018-11-28 18:13:44,913     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:13:44,913     root ERROR Traceback: ['  File "main.py", line 68, in <module>\n    formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 108, in ManipulateData\n    start_minute = unix_minute(start_time)\n']
+None
+2018-11-28 18:14:34,851 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:14:34,851 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:14:34,860 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:14:43,165     root ERROR Uncaught exception: global name 'version' is not defined
+None
+2018-11-28 18:14:43,166     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:14:43,166     root ERROR Traceback: ['  File "main.py", line 68, in <module>\n    formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 112, in ManipulateData\n    data_format = {"timestamp":"N/A","sudbury_time":"N/A","version":version,"pi_db":"true"}\n']
+None
+2018-11-28 18:16:42,668 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:16:42,668 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:16:42,674 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:16:50,782     root ERROR Uncaught exception: global name 'getrecent_list' is not defined
+None
+2018-11-28 18:16:50,782     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:16:50,783     root ERROR Traceback: ['  File "main.py", line 68, in <module>\n    formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,c.VERSION)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 124, in ManipulateData\n    if pi_list[readtype_index]["dbname"] not in getrecent_list:\n']
+None
+2018-11-28 18:17:54,578 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:17:54,578 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:17:54,587 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:18:02,854     root ERROR Uncaught exception: global name 'dmy_to_unix' is not defined
+None
+2018-11-28 18:18:02,854     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:18:02,854     root ERROR Traceback: ['  File "main.py", line 68, in <module>\n    formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,pl.getrecent_list,c.VERSION)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/pigrabber.py", line 125, in ManipulateData\n    timestamp_minute = tc.unix_minute(dmy_to_unix(timestep._Time))\n']
+None
+2018-11-28 18:18:51,181 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:18:51,181 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:18:51,189 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:18:59,170     root ERROR Uncaught exception: 'PIDBCouchConn' object has no attribute 'saveValues'
+None
+2018-11-28 18:18:59,170     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2018-11-28 18:18:59,170     root ERROR Traceback: ['  File "main.py", line 73, in <module>\n    CouchConn.saveValues(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance\n']
+None
+2018-11-28 18:27:28,785 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:27:28,785 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:27:28,792 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:27:37,058 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 18:27:37,058 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 18:27:37,109     root ERROR Uncaught exception: global name 'unix_to_human' is not defined
+None
+2018-11-28 18:27:37,110     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:27:37,110     root ERROR Traceback: ['  File "main.py", line 78, in <module>\n    alarms_dict = PiAlarmHandler.checkThresholdAlarms(formattedPIData,channeldb,alarms_dict)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 31, in checkThresholdAlarms\n    alarms_dict["sudbury_time"] = unix_to_human(alarms_dict["timestamp"])\n']
+None
+2018-11-28 18:28:58,270 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:28:58,270 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:28:58,276 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:29:06,863     root ERROR Uncaught exception: global name 'version' is not defined
+None
+2018-11-28 18:29:06,863     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2018-11-28 18:29:06,864     root ERROR Traceback: ['  File "main.py", line 78, in <module>\n    alarms_dict = PiAlarmHandler.checkThresholdAlarms(formattedPIData,channeldb,alarms_dict)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 33, in checkThresholdAlarms\n    alarms_dict["version"] = version\n']
+None
+2018-11-28 18:30:40,780 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:30:40,780 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:30:40,786 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:30:49,109 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 18:30:49,109 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 18:30:49,161     root ERROR Uncaught exception: list indices must be integers, not unicode
+None
+2018-11-28 18:30:49,161     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 18:30:49,162     root ERROR Traceback: ['  File "main.py", line 78, in <module>\n    alarms_dict = PiAlarmHandler.checkThresholdAlarms(formattedPIData,channeldb,alarms_dict,c.VERSION)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 41, in checkThresholdAlarms\n    chn_value = pi_data[dbname]["values"][chn_number]\n']
+None
+2018-11-28 18:35:45,448 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:35:45,448 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:35:45,455 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:35:53,938     root ERROR Uncaught exception: list indices must be integers, not unicode
+None
+2018-11-28 18:35:53,939     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 18:35:53,939     root ERROR Traceback: ['  File "main.py", line 78, in <module>\n    alarms_dict = PiAlarmHandler.checkThresholdAlarms(formattedPIData,channeldb,alarms_dict,c.VERSION)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 41, in checkThresholdAlarms\n    print(pi_data[dbname])\n']
+None
+2018-11-28 18:50:42,570 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:50:42,570 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:50:42,575 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:50:50,891 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 18:50:50,891 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 18:50:50,951     root ERROR Uncaught exception: 'reason'
+None
+2018-11-28 18:50:50,952     root ERROR Error type: <type 'exceptions.KeyError'>
+None
+2018-11-28 18:50:50,952     root ERROR Traceback: ['  File "main.py", line 79, in <module>\n    PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 94, in postAlarmServerAlarms\n    if ((channel["reason"] == "action" or \\\n']
+None
+2018-11-28 18:54:07,146 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:54:07,147 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:54:07,152 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:54:15,643     root ERROR Uncaught exception: 'reason'
+None
+2018-11-28 18:54:15,643     root ERROR Error type: <type 'exceptions.KeyError'>
+None
+2018-11-28 18:54:15,644     root ERROR Traceback: ['  File "main.py", line 82, in <module>\n    PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 93, in postAlarmServerAlarms\n    if ((channel["reason"] == "action" or \\\n']
+None
+2018-11-28 18:55:46,183 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 18:55:46,183 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 18:55:46,189 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 18:55:54,626     root ERROR Uncaught exception: 'reason'
+None
+2018-11-28 18:55:54,626     root ERROR Error type: <type 'exceptions.KeyError'>
+None
+2018-11-28 18:55:54,627     root ERROR Traceback: ['  File "main.py", line 82, in <module>\n    PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)\n', '  File "/raid/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/lib/alarmhandler.py", line 93, in postAlarmServerAlarms\n    if ((channel["reason"] == "action" or \\\n']
+None
+2018-11-28 19:11:28,353 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 19:11:28,353 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 19:11:28,367 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 19:11:38,068     root ERROR Uncaught exception: 'AlarmHandler' object has no attribute 'printAlarms'
+None
+2018-11-28 19:11:38,068     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2018-11-28 19:11:38,068     root ERROR Traceback: ['  File "main.py", line 83, in <module>\n    PiAlarmHandler.printAlarms(alarms_dict, alarms_last, c.MAILRECIPIENTLISTDIR)\n']
+None
+2018-11-28 19:13:18,051 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 19:13:18,051 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 19:13:18,056 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 19:13:26,233     root ERROR Uncaught exception: sendAlarmsEmail() takes exactly 3 arguments (4 given)
+None
+2018-11-28 19:13:26,234     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2018-11-28 19:13:26,234     root ERROR Traceback: ['  File "main.py", line 83, in <module>\n    PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, c.MAILRECIPIENTLISTDIR)\n']
+None
+2018-11-28 19:17:23,172 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 19:17:23,172 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 19:17:23,179 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 19:17:31,469 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:17:31,469 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:20:00,585     root ERROR Uncaught exception: 
+None
+2018-11-28 19:20:00,585     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 19:20:00,585     root ERROR Traceback: ['  File "main.py", line 96, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
+2018-11-28 19:35:01,191 __main__  INFO PI_DB SCRIPT INITIALIZING...
+2018-11-28 19:35:01,191 lib.alarmserver  INFO Starting connection pool for alarms database
+2018-11-28 19:35:01,198 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2018-11-28 19:37:26,345 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:37:26,345 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:40:51,199 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:40:51,199 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:47:33,867 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:47:33,867 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:50:59,144 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:50:59,145 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:57:56,880 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 19:57:56,881 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:00:21,081 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:00:21,081 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:07:46,712 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:07:46,712 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:10:36,525 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:10:36,526 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:17:36,840 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:17:36,840 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:21:01,456 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:21:01,456 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:27:59,973 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:27:59,974 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:30:24,450 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:30:24,450 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:37:22,199 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:37:22,199 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:40:46,924 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:40:46,925 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:47:56,825 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:47:56,826 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:50:32,994 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:50:32,995 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:57:31,696 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 20:57:31,697 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:00:56,455 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:00:56,456 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:07:54,185 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:07:54,186 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:10:22,284 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:10:22,285 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:17:23,558 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:17:23,558 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:20:48,220 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:20:48,220 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:27:46,050 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:27:46,051 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:37:09,215 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:37:09,215 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:40:33,780 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:40:33,781 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:47:36,874 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:47:36,874 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:50:24,354 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:50:24,354 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:57:22,203 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 21:57:22,204 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:00:46,619 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:00:46,619 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:07:44,067 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:07:44,067 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:17:10,999 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:17:10,999 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:20:36,175 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:20:36,175 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:27:36,358 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:27:36,359 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:31:01,126 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:31:01,126 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:37:59,188 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:37:59,189 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:40:24,313 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:40:24,314 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:47:22,926 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:47:22,926 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:51:11,386 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:51:11,386 lib.pigrabber  INFO There was an issue getting a channel value for: holddown_rope.  Leaving as N/A
+2018-11-28 22:56:08,921     root ERROR Uncaught exception: 
+None
+2018-11-28 22:56:08,921     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2018-11-28 22:56:08,922     root ERROR Traceback: ['  File "main.py", line 96, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
