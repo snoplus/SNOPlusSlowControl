@@ -1,18 +1,18 @@
 DEBUG = True
-LOG_FILENAME = '/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/log/pilog.log' #logfile source
 ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
-ALARMHOST = "dbug"
-ALARMDBNAME = "detector"
+ALARMHOST,ALARMDBNAME = "dbug","detector"
+
 TIMESERIESURL = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
 PIDBFACTORYNAME = 'PIArcDataRequest'
 PIADDRESSBASE = "pi:\\\\pi.snolab.ca\\"
  
 GMAILCREDS = "/home/uwslowcontrol/config/gmailcred.conf"
 MAILRECIPIENTLISTFILE = "/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/emailList.txt"
+
 COUCHADDRESS = 'http://couch.snopl.us'
 COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
-CHANNELDBURL = 'slowcontrol-channeldb'
 CHANNELDBVIEW = 'slowcontrol/recent'
+CHANNELDBURL = 'slowcontrol-channeldb'
 ONEMINDBURL = "slowcontrol-data-1min"
 ALARMDBURL = 'slowcontrol-alarms'
 ALARMDBVIEW = 'slowcontrol-alarms/pi_db'

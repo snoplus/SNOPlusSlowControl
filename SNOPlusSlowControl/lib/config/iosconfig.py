@@ -1,6 +1,5 @@
 IOSNUM = 3
 DEBUG = True
-LOG_FILENAME = '/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/log/IOS'+str(IOSNUM)+'log.log' #logfile source
 ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
 ALARMHOST = "dbug.sp.snolab.ca"
 ALARMDBNAME = "detector"

@@ -12,7 +12,7 @@ import lib.thelogger as l
 import lib.alarmserver as als
 import lib.pidb_alarmhandler as alh
 import lib.pigrabber as pig
-import lib.config.config as c
+import lib.config.pidbconfig as c
 import lib.couchutils as cu
 import lib.credentials as cr
 import channelDB.pilist as pl

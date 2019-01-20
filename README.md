@@ -1,25 +1,23 @@
-SNO+ Slow Control scripts for collecting and storing PI DB data
+SNO+ Slow Control scripts for collecting and storing PI DB and IOS data
 -------------------------------------------------------------------
 
-The following is a copy of the important scripts used to monitor and store data from the PI_DB in CouchDB.  
-
+This repository contains all of the slow control scripts and libraries used by the IO servers
+and Minard server to collect and store SNO+ detector data on a couch database.
 
 
 /misclib/: directory with miscillaneous libraries that were installed for use
-with the pi_db scripts.  Most other dependencies are common python libraries.
+with the pi_db and ios scripts.  Most other dependencies are common python libraries.
 
 /bash_cronjobs/: bash scripts that can be paired with a cronjob to restart
 crashed scripts.
 
 /tomb/: old stuff that is deprecated but I don't have the heart to remove.  
 
-/cavitytemp/: script and libraries for reading the cavity temperature from
-a logfile saved on the minard server.  Reads the log and stores the cavitytemp
-information to the slow control couchdb database in a cavitytemps view.
-
-The main operating script is pi_db/main.py, which uses the database libraries
-contained in lib/.  Names of relevant database URLs, settings for interval
+The main operating script is for Minard pi_db/main_pidb.py, which uses the database libraries
+contained in lib/.  The same goes for the IO servers and pi_db/main_ios.py.  Names of relevant database URLs, settings for interval
 time between polling, and other configurables loaded can be adjusted in
-lib/config/config.py.  
+lib/config/config_pidb.py and config_ios.py.  
 
-By default, the script pulls data from the PI DB every minute.  The script uses this data to send alarm notifications to the SNO+ Alarm Server database and Slow Control e-mail list.  The script then stores the alarms and pulled data in CouchDB for usage by the Slow Control interface.
+By default, the Minard script pulls data from the PI DB every minute, while the IOS script pulls data every 5 seconds.  
+
+Both scripts use their collected data and an AlarmHandler class to post alarm notifications to the SNO+ Alarm Server database and Slow Control e-mail list.  The script then stores the alarms and pulled data in CouchDB for usage by the Slow Control interface.
