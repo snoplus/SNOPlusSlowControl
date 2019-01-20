@@ -72,23 +72,28 @@ if __name__ == '__main__':
     while True:
         #Have the IOS data handler grab and manipulate data
         ios_data = IOSDataHandler.getChannelVoltages(channeldb)
-        
+        if c.DEBUG is True:
+            print("MOST RECENT IOS DATA:")
+            print(ios_data)
         #Save the data to our couchDB
         CouchConn.saveEntry(formattedPIData,c.FIVESECDBURL) #Will be from a couchutil instance
         
         #Check data against alarm thresholds; post alarms if needed
         alarms_last = alarms_dict
         alarms_dict = AlarmHandler.checkThresholdAlarms(ios_data,channeldb,alarms_dict,c.VERSION)
-        if c.DEBUG is True:
-            print("CURRENT ALARMS:")
-            print(alarms_dict)
         if c.IOSNUM==2:
             #IOS2 also does rack alarm handling!
             onracks, IBootPwr = SNORackController.GetPoweredRacks()
             numlowvolts_perrack = AlarmHandler.GetLowVoltList(ios_data,channeldb, threshold=c.LOWVOLTTHRESH)
             alarms_dict = AlarmHandler.DisableOffRackAlarms(numlowvolts_perrack,alarms_dict, cardHardwareConfig, onracks, IBootPwr)
             SNORackController.UpdateShutdownCounters(alarms_dict, cardHardwareConfig)
+            if c.DEBUG is True:
+                print("CURRENT STATUS OF RACK SHUTDOWN COUNTERS:")
+                print(SNORackController.counters)
             SNORackcontroller.initiateShutdownMessages(warning_time=20, action_time=420,lc.EMAIL_RECIPIENTS_FILE) 
+        if c.DEBUG is True:
+            print("CURRENT ALARMS:")
+            print(alarms_dict)
         AlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last,cardHardwareConfig)
         AlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
         
