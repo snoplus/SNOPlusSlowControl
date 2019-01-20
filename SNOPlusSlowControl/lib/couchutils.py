@@ -155,9 +155,9 @@ class IOSCouchConn(CouchDBConn):
                 try:
                     dbData.save(element)
                     return
-    		        except socket.error, exc:
-    		            self.logger.exception("FAILED TO SAVE %s ENTRY"%(dbname) + \
-    		                    "ERROR: " + str(exc))
+    		except socket.error, exc:
+    		    self.logger.exception("FAILED TO SAVE %s ENTRY"%(dbname) + \
+    		            "ERROR: " + str(exc))
                     self.logger.exception("SLEEP, TRY AGAIN...")
                     time.sleep(1)
                     counter += 1

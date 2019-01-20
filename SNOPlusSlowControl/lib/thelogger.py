@@ -9,11 +9,11 @@ def UE_handler(exec_type, value, tb):
 
 
 def get_logger(name):
-    logging.basicConfig(filename=lc.LOG_FILENAME,level=c.LOG_LEVEL, 
-            format=c.LOG_FORMAT,filemode='a')
+    logging.basicConfig(filename=lc.LOG_FILENAME,level=lc.LOG_LEVEL, 
+            format=lc.LOG_FORMAT,filemode='a')
     console = logging.StreamHandler()
-    console.setLevel(c.LOG_LEVEL)
-    console.setFormatter(logging.Formatter(c.LOG_FORMAT))
+    console.setLevel(lc.LOG_LEVEL)
+    console.setFormatter(logging.Formatter(lc.LOG_FORMAT))
     logging.getLogger(name).addHandler(console)
     return logging.getLogger(name)
 
