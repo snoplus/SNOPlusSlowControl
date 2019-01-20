@@ -6,15 +6,19 @@
 import datetime, time, calendar, math, re
 import sys, pprint
 import smtplib
+import socket
 
 import lib.timeconverts as tc
 import lib.thelogger as l
 import lib.alarmserver as als
-import lib.alarmhandler as alh
-import lib.rackhandler as rh
+import lib.ios_alarmhandler as alh
+import lib.rackcontroller as rh
 import lib.ios_grabber as iosg
+
 import lib.config.iosconfig as c
 import lib.config.logconfig as lc
+import lib.config.alarmdbconfig as ac
+
 import lib.couchutils as cu
 import lib.credentials as cr
 
@@ -27,7 +31,7 @@ logger.info('IOS POLLING SCRIPT INITIALIZING...')
 
 #Quick check that configuration matches number hardware is labeled as
 ios_num_inhardware = socket.gethostname()[3]
-if c.IOSNUM != ios_num_inhardware:
+if int(c.IOSNUM) != int(ios_num_inhardware):
     logger.exception("WARNING: YOUR CONFIG FILE'S IOS NUMBER DOES NOT MATCH THAT IN THE HOSTNAME")
     sys.exit(0)
 
@@ -35,7 +39,7 @@ if __name__ == '__main__':
 
 
     #Initialize Alarm poster and get heartbeat going
-    AlarmPoster = als.AlarmPoster(alarmhost=c.ALARMHOST,psql_database=c.ALARMDBNAME)
+    AlarmPoster = als.AlarmPoster(alarmhost=ac.ALARMHOST,psql_database=ac.ALARMDBNAME)
     AlarmPoster.startConnPool()
     AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=c.ALARMBEATINTERVAL)
     
@@ -43,11 +47,12 @@ if __name__ == '__main__':
     CouchConn = cu.IOSCouchConn(c.IOSNUM)
     CouchConn.getServerInstance(c.COUCHADDRESS,c.COUCHCREDS)
     channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+    channeldb = channeldb["ioss"][c.IOSNUM-1]
     print("GOT LATEST ENTRY OF CHANNELDB")
     if c.DEBUG is True:
         print("FIRST CHANNELDB ENTRY:")
         print(channeldb)
-    alarms_dict = CouchConn.getLatestEntry(c.ALARMDBURL,c.ALARMDBVIEW)
+    alarms_dict = CouchConn.getLatestEntry(c.COUCHALARMDBURL,c.COUCHALARMDBVIEW)
     if c.DEBUG is True:
         print("FIRST ALARMS DICTIONARY LOADED FROM COUCHDB:")
         print(alarms_dict)
@@ -61,14 +66,21 @@ if __name__ == '__main__':
         AlarmHandler.clearAllAlarms(channeldb)
         SNORackController = rh.RackController(c.RACKCONTROLHOST,c.RACKCONTROLPORT)
     else:
-        AlarmHandler = alh.IOSAlarmHandler(CouchConn,AlarmPoster)
+        AlarmHandler = alh.IOSAlarmHandler(CouchConn,AlarmPoster,c.IOSNUM)
         AlarmHandler.clearAllAlarms(channeldb)
     
     #Initialze the IOS data handler
-    IOSDataHandler = iosg.IOSDataHandler()
+    IOSDataHandler = iosg.IOSDataHandler(c.IOSNUM)
     cardHardwareConfig = IOSDataHandler.setIOSCardSpecs(c.IOSCARDCONF)
     IOSDataHandler.connectToIOSServer()
 
+    #Grab a first set of alarms to compare to upcoming data
+    alarms = {}  #Dictionary filled with alarm types for each channel on
+                 #each card (warning, action, off, etc.)
+    #Have the IOS data handler grab and manipulate data
+    ios_data = IOSDataHandler.getChannelVoltages(channeldb)
+    alarms, alarms_last = AlarmHandler.checkThresholdAlarms(ios_data,channeldb,alarms,c.VERSION)
+    
     while True:
         #Have the IOS data handler grab and manipulate data
         ios_data = IOSDataHandler.getChannelVoltages(channeldb)
@@ -76,31 +88,32 @@ if __name__ == '__main__':
             print("MOST RECENT IOS DATA:")
             print(ios_data)
         #Save the data to our couchDB
-        CouchConn.saveEntry(formattedPIData,c.FIVESECDBURL) #Will be from a couchutil instance
+        CouchConn.saveEntry(ios_data,c.FIVESECDBURL) #Will be from a couchutil instance
         
         #Check data against alarm thresholds; post alarms if needed
-        alarms_last = alarms_dict
-        alarms_dict = AlarmHandler.checkThresholdAlarms(ios_data,channeldb,alarms_dict,c.VERSION)
+        alarms, alarms_dict = AlarmHandler.checkThresholdAlarms(ios_data,channeldb,alarms,c.VERSION)
         if c.IOSNUM==2:
             #IOS2 also does rack alarm handling!
             onracks, IBootPwr = SNORackController.GetPoweredRacks()
-            numlowvolts_perrack = AlarmHandler.GetLowVoltList(ios_data,channeldb, threshold=c.LOWVOLTTHRESH)
-            alarms_dict = AlarmHandler.DisableOffRackAlarms(numlowvolts_perrack,alarms_dict, cardHardwareConfig, onracks, IBootPwr)
-            SNORackController.UpdateShutdownCounters(alarms_dict, cardHardwareConfig)
+            numlowvolts_perrack = AlarmHandler.getLowVoltList(ios_data,channeldb, threshold=c.LOWVOLTTHRESH)
+            alarms_dict = AlarmHandler.disableOffRackAlarms(numlowvolts_perrack,alarms_dict, cardHardwareConfig, onracks, IBootPwr)
+            SNORackController.updateShutdownCounters(alarms_dict, cardHardwareConfig)
             if c.DEBUG is True:
                 print("CURRENT STATUS OF RACK SHUTDOWN COUNTERS:")
                 print(SNORackController.counters)
-            SNORackcontroller.initiateShutdownMessages(warning_time=20, action_time=420,lc.EMAIL_RECIPIENTS_FILE) 
+            SNORackcontroller.initiateShutdownMessages(lc.EMAIL_RECIPIENTS_FILE,warning_time=20, action_time=420) 
         if c.DEBUG is True:
             print("CURRENT ALARMS:")
             print(alarms_dict)
         AlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last,cardHardwareConfig)
-        AlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
+        AlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last,channeldb, lc.EMAIL_RECIPIENTS_FILE)
         
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:
             channeldb_last = channeldb
         channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+        channeldb = channeldb["ioss"][c.IOSNUM-1]
         
-        #Take a break
+	#Take a break
+        alarms_last = alarms_dict
         time.sleep(c.POLL_WAITTIME)

@@ -24,53 +24,53 @@ class RackController(object):
         DSsocket=redis.Connection(host=self.hostdns, port=self.hostport, socket_connect_timeout=15.0, retry_on_timeout=True)
         try:
           	DSsocket._connect()
-    	DSsocket.on_connect()
+    		DSsocket.on_connect()
         except:
-            print("Failed to connect to Detector Server", file=sys.stderr)
+		logging.info("RackController: Failed to connect to Detector Server!")
     	status = "bad"
         return status, DSsocket
 
-    def ShutDownRack(self,racknum):
+    def shutDownRack(self,racknum):
         #Sends the command to the detector server to shut down the given rack number
         status, sock=self._connectToDetServer()
         if status == "ok":
-    	#Now try sending the shutdown command, with the rack number passed in.  We only try again if
-    	#we get a response error, which is associated with timeouts.
-    	while True:
-    		try:
-    			sock.send_command("PowerOffRacks "+str(racknum))
-    			reply=sock.read_response()
-    		except redis.ResponseError:
-    			self.logging.info("ShutDownRack in RackController: Recieved a response error.  May be a timeout issue. Sleeping 1 sec, Trying again...")
-    			time.sleep(5)
-    			continue
-    		break
-    	if reply == "OK":
-    		self.logging.info("RackController: RACK NO. "+str(racknum)+" HAS BEEN POWERED DOWN.")
-    	else:
-    		self.logging.info("RackController: Reply from rack was not OK.  Shutdown may have failed.")
-    	sock.disconnect()
+    	    #Now try sending the shutdown command, with the rack number passed in.  We only try again if
+    	    #we get a response error, which is associated with timeouts.
+    	    while True:
+    	        try:
+    	    	    sock.send_command("PowerOffRacks "+str(racknum))
+    	    	    reply=sock.read_response()
+    	    	except redis.ResponseError:
+    	            self.logging.info("ShutDownRack in RackController: Recieved a response error.  May be a timeout issue. Sleeping 1 sec, Trying again...")
+    	            time.sleep(5)
+    	    	    continue
+    	    	break
+    	    if reply == "OK":
+    	    	self.logging.info("RackController: RACK NO. "+str(racknum)+" HAS BEEN POWERED DOWN.")
+    	    else:
+    	    	self.logging.info("RackController: Reply from rack was not OK.  Shutdown may have failed.")
+    	    sock.disconnect()
         return
 
-    def ShutDownTimingRack(self):
+    def shutDownTimingRack(self):
         status, sock=self._connectToDetServer()
         if status == "ok":
-    	#Now try sending the shutdown command for the timing rack.  We only try again if
-    	#we get a response error, which is associated with timeouts.
-    	while True:
-    		try:
-    			sock.send_command("PowerOffTimingRack")
-    			reply=sock.read_response()
-    		except redis.ResponseError:
-    			self.logging.info("ShutDownTimingRack in RackController: Recieved a response error.  May be a timeout issue. Sleeping 1 sec, Trying again...")
-    			time.sleep(8)
-    			continue
-    		break
-    	if reply == "OK":
-    		self.logging.info("RackController: THE TIMING RACK HAS BEEN POWERED DOWN.")
-    	else:
-    		self.logging.info("RackController: Reply from rack was not OK.  Shutdown may have failed.")
-    	sock.disconnect()
+    	    #Now try sending the shutdown command for the timing rack.  We only try again if
+    	    #we get a response error, which is associated with timeouts.
+    	    while True:
+    	        try:
+    	            sock.send_command("PowerOffTimingRack")
+    	            reply=sock.read_response()
+    	        except redis.ResponseError:
+    	            self.logging.info("ShutDownTimingRack in RackController: Recieved a response error.  May be a timeout issue. Sleeping 5 sec, Trying again...")
+    	            time.sleep(5)
+    	            continue
+    	        break
+    	    if reply == "OK":
+    	           self.logging.info("RackController: THE TIMING RACK HAS BEEN POWERED DOWN.")
+    	    else:
+    	           self.logging.info("RackController: Reply from rack was not OK.  Shutdown may have failed.")
+    	    sock.disconnect()
         return
 
 	def GetPoweredRacks(self):
@@ -151,7 +151,7 @@ class RackController(object):
 		#FIXME THIS IS CLEARLY BAD; READ FROM IOS AND BUILD THIS LIST
 		#CLEANLY LATER
 	
-	def UpdateShutdownCounters(self, alarms_dict, cardsHW):
+	def updateShutdownCounters(self, alarms_dict, cardsHW):
 	  	if alarms_dict["DetectorServer_Conn"] == "OK" :
 		  	card_list = list(cardsHW)
 			action_dict = {}
@@ -179,7 +179,7 @@ class RackController(object):
 						elif c[1] not in action_dict[racknum]:
 						  	c[2] = 0
 			
-	def initiateShutdownMessages(self,warning_time=20, action_time=420,reccipients):
+	def initiateShutdownMessages(self,reccipients, warning_time=20, action_time=420):
 		'''Based on current count time for a rack having an alarming voltage,
                 send warning notifications for an upcoming shutdown, and send a message
                 indicating a real shutdown would have occured'''
@@ -195,7 +195,7 @@ class RackController(object):
 			  	self._printOffTiming(str(alarms_dict["sudbury_time"]),c[1],recipients)
 				c[2] = 0
 		return	
-	def _printout(self.alarmtime,racknum,voltage,recipients_list):
+	def _printout(self,alarmtime,racknum,voltage,recipients_list):
 		msg = 'At: ' + alarmtime + ': Rack panicdown would have fired (No actual shutdown initiated)'
 		title =  'Rack ' + str(racknum) + 's panic down action would have activated'
 		m.sendMail(msg, title,recipients_list)

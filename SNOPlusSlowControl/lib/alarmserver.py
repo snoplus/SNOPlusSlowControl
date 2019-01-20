@@ -2,10 +2,11 @@ import psycopg2
 from psycopg2.pool import ThreadedConnectionPool
 import threading
 import thelogger as l
-import config.config as c
+import config.alarmdbconfig as ac
 import credentials as cr
 
-ASUser, ASPassword = cr.getcreds(c.ALARMCREDDIR)
+ASUser, ASPassword = cr.getcreds(ac.ALARMCREDDIR)
+
 class AlarmPoster(object):
     def __init__(self, alarmhost=None, psql_database=None):
         self.host = alarmhost

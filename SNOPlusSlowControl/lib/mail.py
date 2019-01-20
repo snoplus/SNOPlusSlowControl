@@ -4,9 +4,6 @@ from email.MIMEText import MIMEText
 import credentials as cr
 import config.logconfig as lc
 
-recipientfile = open("/home/uwslowcontrol/pi_db/emailList.txt","r")
-recipients = recipientfile.readlines(); 
-
 #Sends an email
 def sendMail(subject, text, recipients_list):
     recipients_file = recipients_list 

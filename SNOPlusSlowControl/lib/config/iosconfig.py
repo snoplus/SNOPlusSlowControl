@@ -1,9 +1,5 @@
-IOSNUM = 3
+IOSNUM = 4
 DEBUG = True
-ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
-ALARMHOST = "dbug.sp.snolab.ca"
-ALARMDBNAME = "detector"
-
 RACKCONTROLHOST = 'minard.sp.snolab.ca'
 RACKCONTROLPORT = 8520
 LOWVOLTTHRESH = 1.5
@@ -13,16 +9,18 @@ DETECTORSERVERPORT=8520
 SOCKET_TIMEOUT=1.0
 RETRYONTIMEOUT=True
 
-COUCHADDRESS = "http://localhost:5984/"
-COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
+COUCHADDRESS = "http://localhost:5984/" #IOS saves data to their local couchDB & replicated
+#COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
+COUCHCREDS = "/home/slowcontroller/config/SCcouchcred.conf"
 IOSCARDCONF = "/home/slowcontroller/hmhj/lib/hmhj_layer1-0.2/priv/cards.conf"
 CHANNELDBURL = 'slowcontrol-channeldb'
 CHANNELDBVIEW = 'slowcontrol/recent'
 FIVESECDBURL = "slowcontrol-data-5sec"
 ONEMINDBURL = "slowcontrol-data-1min"
 
-ALARMDBURL = 'slowcontrol-alarms'
-ALARMDBVIEW = 'slowcontrol-alarms/recent'+str(c.IOSNUM)
+#Slowcontrol couchDB alarm database info
+COUCHALARMDBURL = 'slowcontrol-alarms'
+COUCHALARMDBVIEW = 'slowcontrol-alarms/recent'+str(IOSNUM)
 
 ALARMHEARTBEAT = 'SC_IOS'+str(IOSNUM)
 ALARMBEATINTERVAL = 10

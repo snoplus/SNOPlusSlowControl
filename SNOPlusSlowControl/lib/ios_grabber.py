@@ -1,9 +1,6 @@
 import urllib2
 import httplib2
-from suds.client import Client
-from suds.sudsobject import asdict
-import json
-import time
+import json,time,string
 
 import timeconverts as tc
 import thelogger as l
@@ -14,9 +11,10 @@ class IOSDataHandler(object):
     '''This class contains methods for getting data from the IOS's local
     storage server and converting them into dictionary
      objects readily loaded into couchDB.'''
-    def __init__(self):
+    def __init__(self,ios_num):
         print("INITIALIZING IOS DATA HANDLER")
         self.logger = l.get_logger(__name__)
+	self.ios_num = ios_num
         self.CardInfoDir = None
         self.HWDict = None
         self.IOServerConn = None
@@ -66,18 +64,19 @@ class IOSDataHandler(object):
                 resp,content = self.IOServerConn.request("http://127.0.0.1:8000/data/"+card,"GET")
             except:
                 status = "bad"
-                self.logger.exception("Error pulling data from IOS" + str(ios) + " card:" + card, file=sys.stderr)
+                self.logger.exception("Error pulling data from IOS" + str(self.ios_num) + " card:" + card, file=sys.stderr)
             if status == "ok" and card in content:
                 data = json.loads(content)
                 result = data[card]
         else:
-            self.logging.exception("Error: Attempted polling " + str(card) + " ioserver " + str(ios) + " but this is not listed on the ioserver " + str(self.CardInfoDir) + " file", file=sys.stderr)
+            self.logging.exception("Error: Attempted polling " + str(card) + " ioserver " + \
+		    str(self.ios_num) + " but this is not listed on the ioserver " + str(self.CardInfoDir) + " file", file=sys.stderr)
         return result
 
-    def getChannelVoltages(ios_map):
+    def getChannelVoltages(self,ios_map):
         timestamp = int(time.time())
-        sudbury_time = unix_to_human(timestamp)
-        ios_data = {'ios':ios, 'timestamp':timestamp, 'sudbury_time':sudbury_time}
+        sudbury_time = tc.unix_to_human(timestamp)
+        ios_data = {'ios':self.ios_num, 'timestamp':timestamp, 'sudbury_time':sudbury_time}
         for card_map in ios_map["cards"]:
             card_name = card_map["card"]
             cardData = self._pollCard(card_name)
@@ -92,12 +91,12 @@ class IOSDataHandler(object):
             for key, value in cardData.iteritems():
                 if key=="timestamp":
                     if (value - timestamp)>5:
-                        msg = "Error: ioserver " + str(ios) + " " + card_name
+                        msg = "Error: ioserver " + str(self.ios_num) + " " + card_name
                         msg = msg + " time (" +  time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(value)) + ")"
                         msg = msg +"is more than 5 seconds ahead of the ioservers time (" + time.strftime("%a, %d %b %Y %H:%M:%S",time.localtime(timestamp)) + ")"
                         self.logging.info(msg) 
                     if (timestamp - value)>5:
-                        msg = "Error: ioserver " + str(ios) + " " + card_name
+                        msg = "Error: ioserver " + str(self.ios_num) + " " + card_name
                         msg = msg + " time (" + time.strftime("%a, %d %b %Y %H:%M:%S",time.localtime(value)) + ")"
                         msg = msg + "is more than 5 seconds behind the ioservers time (" + time.strftime("%a, %d %b %Y %H:%M:%S",time.localtime(timestamp)) + ")"
 			self.logging.info(msg)

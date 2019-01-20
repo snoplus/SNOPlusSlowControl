@@ -12,8 +12,9 @@ COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
 CHANNELDBVIEW = 'slowcontrol/recent'
 CHANNELDBURL = 'slowcontrol-channeldb'
 ONEMINDBURL = "slowcontrol-data-1min"
-ALARMDBURL = 'slowcontrol-alarms'
-ALARMDBVIEW = 'slowcontrol-alarms/pi_db'
+
+COUCHALARMDBURL = 'slowcontrol-alarms'
+COUCHALARMDBVIEW = 'slowcontrol-alarms/pi_db'
 
 ALARMHEARTBEAT = 'MinardSC'
 ALARMBEATINTERVAL = 10

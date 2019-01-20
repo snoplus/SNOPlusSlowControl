@@ -23,13 +23,13 @@ class IOSAlarmHandler(object):
 
     #Compares pi_data to channeldb alarm parameters
     def checkThresholdAlarms(self,ios_data, channeldb, alarms,version):
-        alarms_prev = alarms
+        prev_alarms = alarms
         alarm_states = {}
         alarms_dict = {}
         alarms_dict["timestamp"] = int(time.time())
         alarms_dict["sudbury_time"] = tc.unix_to_human(alarms_dict["timestamp"])
         alarms_dict["version"] = version
-        alarms_dict["ios"] = 
+        alarms_dict["ios"] = self.ios_num
         for card_map in channeldb["cards"]:
             card_name = card_map["card"]
             if card_map["card_model"]=="ios408":
@@ -88,8 +88,9 @@ class IOSAlarmHandler(object):
     #Posts any alarms to the Alarm Server, clears items no longer alarming
     def postAlarmServerAlarms(self,alarms_dict,alarms_last,cardsHW):
         #only check alarms_dict entries associated with databases
-    nowalarming = []
-    card_list = list(cardsHW)
+        nowalarming = []
+        card_list = list(cardsHW)
+	print("CURRENT ALARMS LAST: " + str(alarms_last))
         for card in card_list:
             for item in reversed(alarms_dict[card]):
                 #First, post alarms for all items in alarm dictionary
@@ -105,7 +106,7 @@ class IOSAlarmHandler(object):
 
     
     #Sends alarms email
-    def sendAlarmsEmail(self,alarms_dict,alarms_last,recipients_filename):
+    def sendAlarmsEmail(self,alarms_dict,alarms_last,channeldb, recipients_filename):
         title = "IOS Alarms at " + str(alarms_dict["sudbury_time"]) + "\n\n"
         old_list = []
         new_list = []
@@ -154,9 +155,10 @@ class IOSRackAlarmHandler(IOSAlarmHandler):
     '''This class has the same base alarm handling capabilities as IOSAlarmHandler,
        plus additional methods for managing alarms associated with a rack.'''
     
-    def super(IOSRackAlarmHandler,self).__init__()
+    def __init__(self,CouchConn,AlarmPoster,ios_num): 
+	super(IOSRackAlarmHandler,self).__init__(CouchConn,AlarmPoster,ios_num)
 
-    def GetLowVoltList(self, ios_data, channeldb, threshold = 1.5):
+    def getLowVoltList(self, ios_data, channeldb, threshold = 1.5):
         racklowvoltnums = [0,0,0,0,0,0,0,0,0,0,0,0,0] # SNO+ has eleven PMT racks + 1 timing rack
         for card_map in channeldb["cards"]:
             card_name = card_map["card"]
@@ -182,7 +184,7 @@ class IOSRackAlarmHandler(IOSAlarmHandler):
                         racklowvoltnums[racknum-1]+=1
         return racklowvoltnums
 
-    def DisableOffRackAlarms(self, lowvolt_list, alarms_dict, HWDict, onracks, IBootPwr):
+    def disableOffRackAlarms(self, lowvolt_list, alarms_dict, HWDict, onracks, IBootPwr):
         alarms_dict["DetectorServer_Conn"] = "OK"
         alarms_dict["IBoot3Power"] = "ON"
         card_list = list(HWDict)

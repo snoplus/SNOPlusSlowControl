@@ -12,8 +12,11 @@ import lib.thelogger as l
 import lib.alarmserver as als
 import lib.pidb_alarmhandler as alh
 import lib.pigrabber as pig
+
 import lib.config.pidbconfig as c
 import lib.config.logconfig as lc
+import lib.config.alarmdbconfig as ac
+
 import lib.couchutils as cu
 import lib.credentials as cr
 import DB.pilist as pl
@@ -33,7 +36,7 @@ if __name__ == '__main__':
     wait_time = 60 # in seconds
 
     #Initialize Alarm server and get heartbeat going
-    AlarmPoster = als.AlarmPoster(alarmhost=c.ALARMHOST,psql_database=c.ALARMDBNAME)
+    AlarmPoster = als.AlarmPoster(alarmhost=ac.ALARMHOST,psql_database=ac.ALARMDBNAME)
     AlarmPoster.startConnPool()
     AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=c.ALARMBEATINTERVAL)
     #Initialize CouchDB connction.  Also get current channeldb
@@ -44,7 +47,7 @@ if __name__ == '__main__':
     if c.DEBUG is True:
         print("FIRST CHANNELDB ENTRY:")
         print(channeldb)
-    alarms_dict = CouchConn.getLatestEntry(c.ALARMDBURL,c.ALARMDBVIEW)
+    alarms_dict = CouchConn.getLatestEntry(c.COUCHALARMDBURL,c.COUCHALARMDBVIEW)
     if c.DEBUG is True:
         print("FIRST ALARMS DICTIONARY LOADED FROM COUCHDB:")
         print(alarms_dict)
