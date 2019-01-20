@@ -8,8 +8,10 @@ and Minard server to collect and store SNO+ detector data on a couch database.
 /misclib/: directory with miscillaneous libraries that were installed for use
 with the pi_db and ios scripts.  Most other dependencies are common python libraries.
 
-/bash_cronjobs/: bash scripts that can be paired with a cronjob to restart
-crashed scripts.
+/cronjobs/: bash scripts that can be paired with a cronjob to check
+if things are running, and restart them if needed.  You will have
+to change what directories/files are being checked before using these
+to match wherever your software is kept on your machine.
 
 /tomb/: old stuff that is deprecated but I don't have the heart to remove.  
 
@@ -17,6 +19,10 @@ The main operating script is for Minard pi_db/main_pidb.py, which uses the datab
 contained in lib/.  The same goes for the IO servers and pi_db/main_ios.py.  Names of relevant database URLs, settings for interval
 time between polling, and other configurables loaded can be adjusted in
 lib/config/config_pidb.py and config_ios.py.  
+
+/util/: Additional scripts that have been developed for monitoring
+other components of the SNO+ detector.  In principle, they could
+be integrated to the other main scripts.
 
 By default, the Minard script pulls data from the PI DB every minute, while the IOS script pulls data every 5 seconds.  
 
