@@ -179,47 +179,47 @@ class RackController(object):
 						elif c[1] not in action_dict[racknum]:
 						  	c[2] = 0
 			
-	def initiateShutdownMessages(self,warning_time=20, action_time=420):
+	def initiateShutdownMessages(self,warning_time=20, action_time=420,reccipients):
 		'''Based on current count time for a rack having an alarming voltage,
                 send warning notifications for an upcoming shutdown, and send a message
                 indicating a real shutdown would have occured'''
 		for c in self.counters:
 			if c[0] < 12 and c[2] == warning_time :
-				self._printout(str(alarms_dict["sudbury_time"]),c[0],c[1])
+				self._printout(str(alarms_dict["sudbury_time"]),c[0],c[1],recipients)
 			elif c[0] < 12 and c[2] > action_time :
-			  	self._printOffout(str(alarms_dict["sudbury_time"]),c[0],c[1])
+			  	self._printOffout(str(alarms_dict["sudbury_time"]),c[0],c[1],recipients)
 			  	c[2] = 0
 			elif c[0] == 12 and c[2] == warning_time :
-		  		self._printTiming(str(alarms_dict["sudbury_time"]),c[1])
+		  		self._printTiming(str(alarms_dict["sudbury_time"]),c[1],recipients)
 			elif c[0] == 12 and c[2] > action_time :
-			  	self._printOffTiming(str(alarms_dict["sudbury_time"]),c[1])
+			  	self._printOffTiming(str(alarms_dict["sudbury_time"]),c[1],recipients)
 				c[2] = 0
 		return	
-	def _printout(self.alarmtime,racknum,voltage):
+	def _printout(self.alarmtime,racknum,voltage,recipients_list):
 		msg = 'At: ' + alarmtime + ': Rack panicdown would have fired (No actual shutdown initiated)'
 		title =  'Rack ' + str(racknum) + 's panic down action would have activated'
-		m.sendMail(msg, title)
+		m.sendMail(msg, title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	
-	def _printTiming(self,alarmtime,voltage):
+	def _printTiming(self,alarmtime,voltage,recipients_list):
 		msg = 'At: ' + alarmtime +': Timing Rack panicdown would have fired (No actual shutdown initiated)'
 		title = 'Timing rack panic down would have activated'
-		m.sendMail(msg, title)
+		m.sendMail(msg, title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	
-	def _printOffout(self,alarmtime,racknum,voltage):
+	def _printOffout(self,alarmtime,racknum,voltage,recipients_list):
 		msg = 'At:' + alarmtime + ': Rack shutdown would have fired (No actual shutdown initiated)'
 		title =  'Rack ' + str(racknum) + 's full shutdown action would have activated'
-		m.sendMail(msg, title)
+		m.sendMail(msg, title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	
-	def _printOffTiming(self,alarmtime,voltage):
+	def _printOffTiming(self,alarmtime,voltage,recipients_list):
 		msg =   'At:' + alarmtime + ': Timing Rack shutdown would have fired (No actual shutdown initiated)'
 		title = 'Timing rack shutdown down would have activated' 
-		m.sendMail(msg,title)
+		m.sendMail(msg,title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	

@@ -6,8 +6,6 @@ TIMESERIESURL = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
 PIDBFACTORYNAME = 'PIArcDataRequest'
 PIADDRESSBASE = "pi:\\\\pi.snolab.ca\\"
  
-GMAILCREDS = "/home/uwslowcontrol/config/gmailcred.conf"
-MAILRECIPIENTLISTFILE = "/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/emailList.txt"
 
 COUCHADDRESS = 'http://couch.snopl.us'
 COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"

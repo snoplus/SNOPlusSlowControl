@@ -13,9 +13,10 @@ import lib.alarmserver as als
 import lib.pidb_alarmhandler as alh
 import lib.pigrabber as pig
 import lib.config.pidbconfig as c
+import lib.config.logconfig as lc
 import lib.couchutils as cu
 import lib.credentials as cr
-import channelDB.pilist as pl
+import DB.pilist as pl
 
 #At an uncaught exception, run our handler
 sys.excepthook = l.UE_handler
@@ -80,7 +81,7 @@ if __name__ == '__main__':
                 print("CURRENT ALARMS:")
                 print(alarms_dict)
             PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
-            PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, c.MAILRECIPIENTLISTFILE)
+            PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
         
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:

@@ -2,11 +2,15 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
 from email.MIMEText import MIMEText
 import credentials as cr
-import config.config as c
+import config.logconfig as lc
+
+recipientfile = open("/home/uwslowcontrol/pi_db/emailList.txt","r")
+recipients = recipientfile.readlines(); 
 
 #Sends an email
-def sendMail(subject, text, recipients_file):
-    gmailUser, gmailPassword = cr.getcreds(c.GMAILCREDS)
+def sendMail(subject, text, recipients_list):
+    recipients_file = recipients_list 
+    gmailUser, gmailPassword = cr.getcreds(cl.GMAILCREDS)
     recipientfile = open(recipients_file,"r")
     recipients = recipientfile.readlines(); 
     try:

@@ -14,9 +14,9 @@ import lib.alarmhandler as alh
 import lib.rackhandler as rh
 import lib.ios_grabber as iosg
 import lib.config.iosconfig as c
+import lib.config.logconfig as lc
 import lib.couchutils as cu
 import lib.credentials as cr
-import channelDB.pilist as pl
 
 #At an uncaught exception, run our handler
 sys.excepthook = l.UE_handler
@@ -28,7 +28,8 @@ logger.info('IOS POLLING SCRIPT INITIALIZING...')
 #Quick check that configuration matches number hardware is labeled as
 ios_num_inhardware = socket.gethostname()[3]
 if c.IOSNUM != ios_num_inhardware:
-    logger.info("WARNING: YOUR CONFIG FILE'S IOS NUMBER DOES NOT MATCH THE LABEL AS GIVEN ON SERVER")
+    logger.exception("WARNING: YOUR CONFIG FILE'S IOS NUMBER DOES NOT MATCH THAT IN THE HOSTNAME")
+    sys.exit(0)
 
 if __name__ == '__main__':
 
@@ -87,9 +88,9 @@ if __name__ == '__main__':
             numlowvolts_perrack = AlarmHandler.GetLowVoltList(ios_data,channeldb, threshold=c.LOWVOLTTHRESH)
             alarms_dict = AlarmHandler.DisableOffRackAlarms(numlowvolts_perrack,alarms_dict, cardHardwareConfig, onracks, IBootPwr)
             SNORackController.UpdateShutdownCounters(alarms_dict, cardHardwareConfig)
-            SNORackcontroller.initiateShutdownMessages(warning_time=20, action_time=420) 
+            SNORackcontroller.initiateShutdownMessages(warning_time=20, action_time=420,lc.EMAIL_RECIPIENTS_FILE) 
         AlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last,cardHardwareConfig)
-        AlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, c.MAILRECIPIENTLISTFILE)
+        AlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
         
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:

@@ -12,9 +12,6 @@ DETECTORSERVERHOST="daq1.sp.snolab.ca"
 DETECTORSERVERPORT=8520
 SOCKET_TIMEOUT=1.0
 RETRYONTIMEOUT=True
- 
-GMAILCREDS = "/home/uwslowcontrol/config/gmailcred.conf"
-MAILRECIPIENTLISTFILE = "/home/uwslowcontrol/pi_db_2.0/pi_db/pi_db/emailList.txt"
 
 COUCHADDRESS = "http://localhost:5984/"
 COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
