@@ -32,13 +32,13 @@ SCcouchuser, SCcouchpassword = getcreds("/home/slowcontroller/config/SCcouchcred
 
 localcouch = couchdb.Server()
 localcouch.resource.credentials = (SCcouchuser, SCcouchpassword)
-snopluscouch = couchdb.Server('http://couch.ug.snopl.us')
+snopluscouch = couchdb.Server('http://couch.snopl.us')
 snopluscouch.resource.credentials = (couchuser, couchpassword)
 
 ios =  int(socket.gethostname()[3])
 period = 5
 
-recipientfile=open("/home/slowcontroller/emailList.txt","r")
+recipientfile=open("/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/DB/emailList.txt","r")
 recipients = recipientfile.readlines();
 
 def connectToLocalDB(dbName):
@@ -150,49 +150,50 @@ def checkIfOkay(localdb5secStatus,localdb5sec,snoplusdb5secStatus,snoplusdb5sec)
         
     return okayToDelete, message
 
-# ioserver connection
-conn_ioserver1 = httplib2.Http(".cache")
-localdb5secStatus, localdb5sec=connectToLocalDB("slowcontrol-data-5sec")
-snoplusdb5secStatus, snoplusdb5sec = connectToSnoplusDB("slowcontrol-data-5sec")
-
-# One test deletion
-okayToDelete, message = checkIfOkay(localdb5secStatus,localdb5sec,snoplusdb5secStatus,snoplusdb5sec)
-#print okayToDelete
-#print message
-
-minqueryresults = localdb5sec.view("slowcontrol-data-5sec/recent"+str(ios),limit=10)
-
-if okayToDelete:
-    try:
-        localdb5sec.delete(minqueryresults.rows[0].value)
-        message+= "Deleting...\n"
-    except:
-        message+= "Deletion failed.\n"
-        okayToDelete=False
-    #Time for deletion to propagate, which it shouldn't.
-deletions=0
-if okayToDelete:
-    message+= "Sleeping..."
-    time.sleep(30)
-    try:
-        snoplusdb5sec[minqueryresults.rows[0].id]
-        deletions+=1
-    except:
-        message+= "!!!!!!Deletion propagated to couch.snopl.us!!!!!!\n"
-        sendMail("IOS "+ str(ios) +" Deletion error!", message)
-        okayToDelete=False
-    message+= "Done"
-
-#Delete the rest
-while okayToDelete:
-    queryresults = localdb5sec.view("slowcontrol-data-5sec/recent"+str(ios),limit=100)
-    if (len(queryresults.rows) > 0):
-        for i in queryresults.rows:
-            localdb5sec.delete(i.value)
-            deletions+=1
+if __name__=="__main__":
+    # ioserver connection
+    conn_ioserver1 = httplib2.Http(".cache")
+    localdb5secStatus, localdb5sec=connectToLocalDB("slowcontrol-data-5sec")
+    snoplusdb5secStatus, snoplusdb5sec = connectToSnoplusDB("slowcontrol-data-5sec")
+    
+    # One test deletion
     okayToDelete, message = checkIfOkay(localdb5secStatus,localdb5sec,snoplusdb5secStatus,snoplusdb5sec)
-
-print okayToDelete
-print message
-print str(deletions) + " deletions"
-sendMail("IOS "+ str(ios) +" Deletion status", message + str(deletions)+ "deletions")
+    #print okayToDelete
+    #print message
+    
+    minqueryresults = localdb5sec.view("slowcontrol-data-5sec/recent"+str(ios),limit=10)
+    
+    if okayToDelete:
+        try:
+            localdb5sec.delete(minqueryresults.rows[0].value)
+            message+= "Deleting...\n"
+        except:
+            message+= "Deletion failed.\n"
+            okayToDelete=False
+        #Time for deletion to propagate, which it shouldn't.
+    deletions=0
+    if okayToDelete:
+        message+= "Sleeping..."
+        time.sleep(30)
+        try:
+            snoplusdb5sec[minqueryresults.rows[0].id]
+            deletions+=1
+        except:
+            message+= "!!!!!!Deletion propagated to couch.snopl.us!!!!!!\n"
+            sendMail("IOS "+ str(ios) +" Deletion error!", message)
+            okayToDelete=False
+        message+= "Done"
+    
+    #Delete the rest
+    while okayToDelete:
+        queryresults = localdb5sec.view("slowcontrol-data-5sec/recent"+str(ios),limit=100)
+        if (len(queryresults.rows) > 0):
+            for i in queryresults.rows:
+                localdb5sec.delete(i.value)
+                deletions+=1
+        okayToDelete, message = checkIfOkay(localdb5secStatus,localdb5sec,snoplusdb5secStatus,snoplusdb5sec)
+    
+    print okayToDelete
+    print message
+    print str(deletions) + " deletions"
+    sendMail("IOS "+ str(ios) +" Deletion status", message + str(deletions)+ "deletions")

@@ -35,7 +35,7 @@ SCcouchuser, SCcouchpassword = getcreds("/home/slowcontroller/config/SCcouchcred
 ios =  str(int(socket.gethostname()[3]))
 
 
-recipientfile=open("/home/slowcontroller/emailList.txt","r")
+recipientfile=open("/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/DB/emailList.txt","r")
 recipients = recipientfile.readlines();
 
 
@@ -110,3 +110,5 @@ if __name__=='__main__':
         print(subject)
         body = "Couch.snopl.us 5sec data is now "+str(minutes)+" minutes behind IOS "+ios
         sendMail(subject,body)
+    else:
+        print("Couch.snopl.us is up to date with replications within 5min.")
