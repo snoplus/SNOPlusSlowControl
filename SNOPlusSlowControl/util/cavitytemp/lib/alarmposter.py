@@ -19,24 +19,24 @@ class AlarmPoster(object):
         self.sensorkey = None
 
     def updateCurrentValues(self, currentvals):
-        #Takes in a dictionary with the most recent values from the sensor
+        '''Takes in a dictionary with the most recent values from the sensor'''
         self.currentValues = currentvals
 
     def set_alarmid(self,idnum):
-        #Set the alarm id to be posted
+        '''Set the alarm id to be posted'''
         self.alarmid = idnum
 
     def set_datatype(self,datatype):
-        #Set the type of data (saved into database entry)
+        '''Set the type of data (saved into database entry)'''
         self.vtype = datatype
 
     def set_sensorkey(self,name):
-        #Set the sensor name as is should show up in the data entry
-        #Will have a "_" with the sensor's id number attached. Need
-        #This to match keys in the self.currentValues dictionary
+        '''Set the sensor name as is should show up in the data entry
+        Will have a "_" with the sensor's id number attached. Need
+        This to match keys in the self.currentValues dictionary'''
         self.sensorkey=name
 
-    def __getChannelInfo(self):
+    def _getChannelInfo(self):
         chaninfo = None
         if self.vtype in self.channeldb:
             chaninfo = self.channeldb[self.vtype]
@@ -45,8 +45,8 @@ class AlarmPoster(object):
 
     #check readings against alarm thresholds in the channel database
     #if a reading is out of bounds, alarm on it
-    def __buildCurrentAlarmDict(self):
-        chaninfo = self.__getChannelInfo()
+    def _buildCurrentAlarmDict(self):
+        chaninfo = self._getChannelInfo()
         #if we have the channel info for our data, start checking thresholds
         alarm_dict = {self.vtype: "true", "current_alarms": {}}
         timest = int(time.time())
@@ -71,12 +71,14 @@ class AlarmPoster(object):
         return alarm_dict
 
     def setCurrentChanneldb(self,newchandb):
+        '''Set the current channel database dictionary that defines 
+        alarm thresholds'''
         self.channeldb = newchandb
 
     def checkForAlarms(self):
-        #If there is a cavity temp sensor alarm, post it and save to the
-        #Couch alarms dictionary
-        self.currentAlarms = self.__buildCurrentAlarmDict()
+        '''If there is a cavity temp sensor alarm in the current temperature data, 
+        post it and save to the couch alarms dictionary on couchDB'''
+        self.currentAlarms = self._buildCurrentAlarmDict()
         if self.currentAlarms["current_alarms"]:
             cu.saveCTAlarms(self.currentAlarms)
             es.sendCTAlarmEmail(self.currentAlarms["date"])

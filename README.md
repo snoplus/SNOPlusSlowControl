@@ -10,15 +10,15 @@ with the pi_db and ios scripts.  Most other dependencies are common python libra
 
 /cronjobs/: bash scripts that can be paired with a cronjob to check
 if things are running, and restart them if needed.  You will have
-to change what directories/files are being checked before using these
-to match wherever your software is kept on your machine.
+to change the home directory where SNOPlusSlowControl lives in each
+of these scripts before using them on your machine.
 
 /tomb/: old stuff that is deprecated but I don't have the heart to remove.  
 
-The main operating script is for Minard pi_db/main_pidb.py, which uses the database libraries
-contained in lib/.  The same goes for the IO servers and pi_db/main_ios.py.  Names of relevant database URLs, settings for interval
-time between polling, and other configurables loaded can be adjusted in
-lib/config/config_pidb.py and config_ios.py.  
+The main operating scripts is for Minard pi_db/main_pidb.py, which uses the database libraries
+contained in SNOPlusSlowControl/lib/.  The same goes for the IO servers and pi_db/main_ios.py.  Names of relevant database URLs, settings for interval
+time between polling, and other configurables loaded are adjusted in
+lib/config/config_pidb.py and lib/config/config_ios.py.  
 
 /util/: Additional scripts that have been developed for monitoring
 other components of the SNO+ detector.  In principle, they could

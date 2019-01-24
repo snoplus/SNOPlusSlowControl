@@ -17,9 +17,12 @@ DEBUG = False
 ERR_SLEEPTIME = 60
 NONEWDATA_SLEEPTIME = 120
 SUCCESS_SLEEPTIME = 360
+TEMP_ALARMID = 30040
+TEMPERATURE_LOGFILE = '/raid/CavityTemperature/temperature.log'
+
 
 # --------- Logger configuration ----------- #
-CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
+CLOG_FILENAME = '/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/log/cavitytemp.log' #logfile source
 
 logging.basicConfig(filename=CLOG_FILENAME,level=logging.INFO, \
     format='%(asctime)s %(message)s')
@@ -37,13 +40,12 @@ sys.excepthook = UE_handler
 # --------- END Logger configuration -------- #
 
 if __name__ == "__main__":
-    temperature_file = '/raid/CavityTemperature/temperature.log'
     numsensors = 30
     channeldb = None
     DATA_LABEL = "temp_sensors"
     channeldb = cu.getChannelParameters(channeldb)
     AlarmControl = ap.AlarmPoster(channeldb)
-    AlarmControl.set_alarmid(30040)
+    AlarmControl.set_alarmid(TEMP_ALARMID)
     AlarmControl.set_datatype(DATA_LABEL)
     AlarmControl.set_sensorkey("Sensor")
     old_logread = None
@@ -58,7 +60,7 @@ if __name__ == "__main__":
         #rawread = rawread.splitlines()
 
 	#Or, read from a log file already being ouptut
-        logread = dio.getFileTail(temperature_file,30)
+        logread = dio.getFileTail(TEMPERATURE_LOGFILE,30)
         if old_logread is not None:
             if logread==old_logread:
                 logging.info("No new data in file.  Try again in "+str(NONEWDATA_SLEEPTIME)+" sec.")

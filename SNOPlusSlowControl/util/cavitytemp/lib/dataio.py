@@ -32,10 +32,10 @@ def getFileTail(filename, numlines):
     
 
 #Save readings to text file for Noel
-def WriteReadToLog(TempReader):
+def WriteReadToLog(TempReader,logfileloc):
     SensorReads = TempReader.getSensorLines()
     if SensorReads is not None:
-        f = open("TempReadings.log","a")
+        f = open(logfileloc,"a")
         f.write("\n")
         for sensorline in SensorReads:
             combinedline = " ".join(sensorline)

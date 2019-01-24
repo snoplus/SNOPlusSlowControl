@@ -5,7 +5,7 @@ import re
 import sys,logging,socket
 
 CREDENTIALHOME = "/home/uwslowcontrol/config/couchcred.conf"
-CLOG_FILENAME = '/home/uwslowcontrol/pi_db/log/cavitytemp.log' #logfile source
+CLOG_FILENAME = '/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/log/cavitytemp.log' #logfile source
 DBNAME = "slowcontrol-data-cavitytemps"
 ALARMDB = "slowcontrol-alarms"
 

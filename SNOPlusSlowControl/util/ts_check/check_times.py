@@ -27,19 +27,16 @@ NOCOUCHCONN_ID = 30038      #Alarm ID for no connection to couch.ug
 CTEMPS_OLD_THRESH = 3600     #Age at which CavityTemp TS alarms are sent
 CTEMPS_OLD_ALARMID = 30039  #Alarm ID for the temperature values being old
 period = 5                  #Time between each data collection loop
-LOG_FILENAME = '/home/slowcontroller/ts_check/log/ts_check.log' #logfile source
+
+HOMEDIR='/home/slowcontroller' #Directory where SNOPlusSlowControl lives
+LOGDIR='/SNOPlusSlowControl/SNOPlusSlowControl/ts_check/log/timestamp_check.log' #logfile source
+LOG_FILENAME = HOMEDIR+LOGDIR
 
 #Logging implementation
 logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO, \
     format='%(asctime)s %(message)s')
 
 logging.info("TS_CHECK STARTED AGAIN")
-
-#DOESN'T WORK IN PYTHON 2.6?
-#def UE_handler(type, value, tb):
-#    logging.exception("Uncaught exception: {0}".format(str(value))
-#
-#sys.excepthook = UE_handler
 
 def unix_to_human(unix_time):
     human_time = utils.formatdate(unix_time, localtime=True)

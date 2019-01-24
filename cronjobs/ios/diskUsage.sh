@@ -4,14 +4,20 @@
 # checks that the usage is not above a 
 # maximum value (like 70%), and if it is,
 # it sends an email.
+#TODO: Write this in a python script and add the ability to send an alarm to the
+# shifting GUI?
 
-echo "At `date` the disk usage is" | cat > /home/slowcontroller/diskUsage.txt
-df | cat >> /home/slowcontroller/diskUsage.txt 
+
+HOMEDIR=/home/slowcontroller
+DISKUSELOG=/SNOPlusSlowControl/SNOPlusSlowControl/log/IOSdiskUsage.txt
+
+echo "At `date` the disk usage is" | cat > ${HOMEDIR}${DISKUSELOGLOC}
+df | cat >> ${HOMEDIR}${DISKUSELOGLOC} 
 ALARM=`python /home/slowcontroller/checkUsage.py /home/slowcontroller/diskUsage.txt`
 
 if [ $ALARM == "True" ]
 then
-  python /home/slowcontroller/sendEmail.py "IOS `hostname` at storage warning limit" "`cat /home/slowcontroller/diskUsage.txt`"   
+  echo "IOS `hostname` at storage warning limit" | cat > ${HOMEDIR}${DISKUSELOGLOC}    
   echo "Sending warning... IOS at storage warning limit"
 fi
 

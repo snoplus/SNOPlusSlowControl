@@ -14,6 +14,10 @@ To utilize on another machine/with another couchdb server, change the following 
     - Create your own config files that will have usernames and passwords needed for couchdb/alarm server connections
     - Change the hard-coded location of your config file according to your system (do this at the top of lib/getcred.py)
 
-checkts.sh is configured to check if check_times.py is still running.  If not, it will restart check_times.py using python.  You can configure your crontab to run this script regularly to make sure the script has not crashed.
+/cronjobs/ios/checkts.sh: an example bash script that can be used to check 
+if check_times.py is still running.  If not, it will restart check_times.py using 
+python.  You can configure your crontab to run this script regularly to make sure
+ the script has not crashed.
 
-/log/ts_check.log contains info about ts's running (did it lose connection to couchdb?  Was the value type pulled from couchdb bad?  Did the script have to restart?)
+SNOPlusSlowControl/SNOPlusSlowControl/log/ts_check.log is the default location for logging
+information to be saved.  Log contains info about ts's running (did it lose connection to couchdb?  Was the value type pulled from couchdb bad?  Did the script have to restart?)

@@ -1,10 +1,1 @@
-2019-01-19 23:31:49,701 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
-2019-01-19 23:31:49,716 lib.alarmserver  INFO Starting connection pool for alarms database
-2019-01-19 23:31:49,741 lib.alarmserver  INFO Starting alarm server connection heartbeat
-2019-01-19 23:31:49,758 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
-2019-01-19 23:32:00,414     root ERROR Uncaught exception: 
-None
-2019-01-19 23:32:00,415     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
-None
-2019-01-19 23:32:00,417     root ERROR Traceback: ['  File "main_ios.py", line 119, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
-None
+ 

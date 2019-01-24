@@ -10,7 +10,6 @@ SOCKET_TIMEOUT=1.0
 RETRYONTIMEOUT=True
 
 COUCHADDRESS = "http://localhost:5984/" #IOS saves data to their local couchDB & replicated
-#COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
 COUCHCREDS = "/home/slowcontroller/config/SCcouchcred.conf"
 IOSCARDCONF = "/home/slowcontroller/hmhj/lib/hmhj_layer1-0.2/priv/cards.conf"
 CHANNELDBURL = 'slowcontrol-channeldb'

@@ -100,13 +100,13 @@ def getSnoplTimestamp():
     return snoplTimestamp
 
 
-
-snoplTimestamp = getSnoplTimestamp()
-iosTimestamp = getIosTimestamp()
-difference = iosTimestamp-snoplTimestamp
-minutes = difference/60
-if minutes>5:
-    subject = "Couch.snopl.us is not up to date with replications!"
-    print(subject)
-    body = "Couch.snopl.us 5sec data is now "+str(minutes)+" minutes behind IOS "+ios
-    sendMail(subject,body)
+if __name__=='__main__':
+    snoplTimestamp = getSnoplTimestamp()
+    iosTimestamp = getIosTimestamp()
+    difference = iosTimestamp-snoplTimestamp
+    minutes = difference/60
+    if minutes>5:
+        subject = "Couch.snopl.us is not up to date with replications!"
+        print(subject)
+        body = "Couch.snopl.us 5sec data is now "+str(minutes)+" minutes behind IOS "+ios
+        sendMail(subject,body)

@@ -13,7 +13,7 @@ from email.MIMEText import MIMEText
 
 #connection info and email list directory for slow control email notification
 gmailUser, gmailPassword = gc.getcreds("/home/uwslowcontrol/config/gmailcred.conf")
-recipientsList = open("/home/uwslowcontrol/pi_db/emailList.txt","r")
+recipientsList = open("/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/DB/emailList.txt","r")
 recipients = recipientsList.readlines()
 
 def sendCTAlarmEmail(alarmDate):
