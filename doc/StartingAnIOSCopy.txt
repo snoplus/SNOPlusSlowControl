@@ -1,0 +1,17 @@
+Feb 18 2013 - Tim Major
+Jan 23 2019 - Teal Pershing
+
+Oh shoot!  Let's say one of your IOSes failed.  The simplest solution is
+to copy one of them that is working to a new hard disk.
+
+Once you copy the I/O Server disk and pop it in, you'll need to do a 
+couple things. First, do the following:
+* Set the IOS name
+  vim /etc/conf.d/hostname
+* Set the ios number in SNOPlusSlowControl/lib/config/iosconfig.log 
+* Set the ios number near the top of SNOPlusSlowControl/util/IOSdeleteOldDocs.py
+* Change the card configuration file to match what card hardware is
+  current plugged into the IOS
+  nano hmhj/lib/hmhj_layer1-0.2/priv/cards.conf
+* Set the net configuration file correctly (see iosNetFiles.txt for the settings)
+  nano /etc/conf.d/net
