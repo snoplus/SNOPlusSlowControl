@@ -4,7 +4,7 @@
 #Restructured into classes/libraries by: Teal Pershing, 28 Oct 2018
 
 import datetime, time, calendar, math, re
-import sys, pprint
+import sys, pprint, socket
 import smtplib
 
 import lib.timeconverts as tc
@@ -28,13 +28,12 @@ sys.excepthook = l.UE_handler
 logger = l.get_logger(__name__)
 logger.info('PI_DB SCRIPT INITIALIZING...')
 
+hostname = socket.gethostname()
+if hostname != 'minard.sp.snolab.ca':
+    logger.exception("main_pidb.py: Attempting to run pidb script off minard.  Exiting")
+    sys.exit(0)
+
 if __name__ == '__main__':
-
-    #Have to hard-code a delay in the times polled from PI DB
-    #If you don't, will just poll empty values
-    delay = 5  #in minutes 
-    wait_time = 60 # in seconds
-
     #Initialize Alarm server and get heartbeat going
     AlarmPoster = als.AlarmPoster(alarmhost=ac.ALARMHOST,psql_database=ac.ALARMDBNAME)
     AlarmPoster.startConnPool()
@@ -43,13 +42,13 @@ if __name__ == '__main__':
     CouchConn = cu.PIDBCouchConn()
     CouchConn.getServerInstance(c.COUCHADDRESS,c.COUCHCREDS)
     channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
-    print("GOT LATEST ENTRY OF CHANNELDB")
+    logger.info("main.py: Most recent channel database acquired on startup.")
     if c.DEBUG is True:
-        print("FIRST CHANNELDB ENTRY:")
+        print("Debug mode: FIRST CHANNELDB ENTRY:")
         print(channeldb)
     alarms_dict = CouchConn.getLatestEntry(c.COUCHALARMDBURL,c.COUCHALARMDBVIEW)
     if c.DEBUG is True:
-        print("FIRST ALARMS DICTIONARY LOADED FROM COUCHDB:")
+        print("Debug mode: FIRST ALARMS DICTIONARY LOADED FROM COUCHDB:")
         print(alarms_dict)
     
     #Initialize Alarm Handler; uses an AlarmPoster class to post alarms
@@ -71,7 +70,7 @@ if __name__ == '__main__':
         rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list,pl.getrecent_list)
         formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,pl.getrecent_list,c.VERSION)
         if c.DEBUG is True:
-            print("MOST RECENT LOADED PI DATA:")
+            print("Debug mode: MOST RECENT LOADED PI DATA:")
             print(formattedPIData)
         #Save the data to our couchDB
         CouchConn.saveEntry(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance
@@ -81,7 +80,7 @@ if __name__ == '__main__':
         for timeslot in formattedPIData:
             alarms_dict = PiAlarmHandler.checkThresholdAlarms(timeslot,channeldb,alarms_dict,c.VERSION)
             if c.DEBUG is True:
-                print("CURRENT ALARMS:")
+                print("Debug mode: CURRENT ALARMS:")
                 print(alarms_dict)
             PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
             PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
@@ -94,7 +93,7 @@ if __name__ == '__main__':
         #if it took >60 seconds to run loop, no waiting; just go to the next data set!
         offset = (time.time()- c.POLLDELAY*60) - (poll_time + c.POLL_WAITTIME)
         if c.DEBUG is True:
-            print(" CURRENT OFFSET FROM PIDB IS "+str(offset)+". GOING TO" +\
+            print("Debug mode:  CURRENT OFFSET FROM PIDB IS "+str(offset)+". GOING TO" +\
                   " SLEEP MODE if OFFSET<0")
         if offset<0:
             time.sleep(c.POLL_WAITTIME)
