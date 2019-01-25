@@ -90,7 +90,6 @@ class IOSAlarmHandler(object):
         #only check alarms_dict entries associated with databases
         nowalarming = []
         card_list = list(cardsHW)
-	print("CURRENT ALARMS LAST: " + str(alarms_last))
         for card in card_list:
             for item in reversed(alarms_dict[card]):
                 #First, post alarms for all items in alarm dictionary
@@ -220,23 +219,23 @@ class IOSRackAlarmHandler(IOSAlarmHandler):
 					  	item["reason"]="off"
 	return alarms_dict
 
-	def _TrueOffList(self,AdamReply, lowvolt_list):
-		'''Function takes in a 16-bit Adam reply of which racks are powered,
-                    compares to a list of low voltage reading numbers on each rack
-                      If there's a match, the rack number is added to the returned offrack_list.'''
-	  	Adamsoffracks = []
-		offrack_list = []
-		#0's in the AdamReply correspond to off racks. If zero, put the rack's ID in Adamsoffracks
-		#[::-1] is some trickery to reverse the adam reply for easier reading.
-		if AdamReply == 'none':
-			offrack_list='none'
-		else:
-			i=0
-			for bit in str(AdamReply)[::-1]:
-			  	if bit == '0' and i<12:
-					Adamsoffracks.append(i+1)
-				i=i+1
-			for item in lowvolt_list:
-				if item in Adamsoffracks:
-					offrack_list.append(item)
-		return offrack_list
+    def _TrueOffList(self,AdamReply, lowvolt_list):
+        '''Function takes in a 16-bit Adam reply of which racks are powered,
+           compares to a list of low voltage reading numbers on each rack
+           If there's a match, the rack number is added to the returned offrack_list.'''
+        Adamsoffracks = []
+        offrack_list = []
+        #0's in the AdamReply correspond to off racks. If zero, put the rack's ID in Adamsoffracks
+        #[::-1] is some trickery to reverse the adam reply for easier reading.
+        if AdamReply == 'none':
+            offrack_list='none'
+        else:
+            i=0
+            for bit in str(AdamReply)[::-1]:
+              	if bit == '0' and i<12:
+                    Adamsoffracks.append(i+1)
+            	i=i+1
+            for item in lowvolt_list:
+            	if item in Adamsoffracks:
+            	    offrack_list.append(item)
+        return offrack_list

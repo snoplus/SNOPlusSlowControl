@@ -1,9 +1,9 @@
 #Min	Hour	Day	Month	Wday	script
-26	11	*	*	*	/home/slowcontroller/diskUsage.sh 
-26	12	*	*	Tue	/home/slowcontroller/compact.sh
-26	23	*	*	Mon	python /home/slowcontroller/deleteOldDocs.py
-*	*	*	*	*	python /home/slowcontroller/checkCouchReplication.py		
-*	*	*	*	*	/home/slowcontroller/checkPoll.sh
-*	*	*	*	*	/home/slowcontroller/check1min.sh
-*/15	*	*	*	*	/home/slowcontroller/check15min.sh 
+26	11	*	*	*	/home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/diskUsage.sh 
+26	12	*	*	Tue	/home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/compact.sh
+26	23	*	*	Mon	python /home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/deleteOldDocs.py
+*	*	*	*	*	python /home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/checkCouchReplication.py		
+*	*	*	*	*	/home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/checkPoll.sh
+*	*	*	*	*	/home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/check1min.sh
+*/15	*	*	*	*	/home/slowcontroller/SNOPlusSlowControl/cronjobs/ios/check15min.sh 
 26      1       *       *       *       /etc/init.d/ntpd start

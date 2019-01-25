@@ -44,11 +44,14 @@ if __name__ == '__main__':
     AlarmPoster.post_heartbeat(c.ALARMHEARTBEAT,beat_interval=c.ALARMBEATINTERVAL)
     
     #Initialize CouchDB connction.  Also get current channeldb
+#Connection info for couchdb
+    ChannelDBConn = cu.CouchDBConn()
+    ChannelDBConn.getServerInstance(c.CHDBADDRESS,c.CHDBCREDS)
     CouchConn = cu.IOSCouchConn(c.IOSNUM)
-    CouchConn.getServerInstance(c.COUCHADDRESS,c.COUCHCREDS)
-    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+    CouchConn.getServerInstance(c.SCCOUCHADDRESS,c.SCCOUCHCREDS)
+    channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
     channeldb = channeldb["ioss"][c.IOSNUM-1]
-    print("GOT LATEST ENTRY OF CHANNELDB")
+    logger.info("Main IOS script: GOT LATEST ENTRY OF CHANNELDB")
     if c.DEBUG is True:
         print("FIRST CHANNELDB ENTRY:")
         print(channeldb)
@@ -62,7 +65,7 @@ if __name__ == '__main__':
     AlarmHandler = None
     RackController = None
     if c.IOSNUM==2:
-        AlarmHandler = alh.IOSRackAlarmHandler(CouchConn,AlarmPoster)
+        AlarmHandler =	alh.IOSRackAlarmHandler(CouchConn,AlarmPoster,c.IOSNUM)
         AlarmHandler.clearAllAlarms(channeldb)
         SNORackController = rh.RackController(c.RACKCONTROLHOST,c.RACKCONTROLPORT)
     else:
@@ -101,7 +104,7 @@ if __name__ == '__main__':
             if c.DEBUG is True:
                 print("CURRENT STATUS OF RACK SHUTDOWN COUNTERS:")
                 print(SNORackController.counters)
-            SNORackcontroller.initiateShutdownMessages(lc.EMAIL_RECIPIENTS_FILE,warning_time=20, action_time=420) 
+            SNORackController.initiateShutdownMessages(lc.EMAIL_RECIPIENTS_FILE,warning_time=20, action_time=420) 
         if c.DEBUG is True:
             print("CURRENT ALARMS:")
             print(alarms_dict)
@@ -111,7 +114,7 @@ if __name__ == '__main__':
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:
             channeldb_last = channeldb
-        channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+        channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
         channeldb = channeldb["ioss"][c.IOSNUM-1]
         
 	#Take a break

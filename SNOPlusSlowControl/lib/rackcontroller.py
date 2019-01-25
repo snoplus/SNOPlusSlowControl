@@ -1,5 +1,9 @@
 #Class for controlling the racks on deck
 import mail as m
+import thelogger as l
+import redis
+import hiredis
+import sys,time
 
 class RackController(object):
     '''This class contains methods for getting data from, and sending
@@ -27,7 +31,7 @@ class RackController(object):
     		DSsocket.on_connect()
         except:
 		logging.info("RackController: Failed to connect to Detector Server!")
-    	status = "bad"
+    		status = "bad"
         return status, DSsocket
 
     def shutDownRack(self,racknum):
@@ -73,7 +77,7 @@ class RackController(object):
     	    sock.disconnect()
         return
 
-	def GetPoweredRacks(self):
+    def GetPoweredRacks(self):
 		'''Find out what SNO racks are on.  Returns a 16 bit binary string,
 		 1's indicate powered racks. Racks 1-6 are in the first 8 bits, 
 		racks 7-11 and the timing rack are in bits 8-13 on last 8 bits.'''
@@ -131,7 +135,7 @@ class RackController(object):
 		return fullbinreply, IBootPwr 
 
 	###Begin functions for counting down to rack shutdowns###
-	def _initCounters(self):
+    def _initCounters(self):
 		counters = [[1, "24V", 0],[1, "-24V", 0],[1, "8V", 0],[1, "5V",
 		  0],[1, "-5V", 0],[2, "24V", 0],[2, "-24V", 0],[2, "8V", 0],[2,
 		    "5V", 0],[2, "-5V", 0],[3, "24V", 0],[3, "-24V", 0],[3,
@@ -151,7 +155,7 @@ class RackController(object):
 		#FIXME THIS IS CLEARLY BAD; READ FROM IOS AND BUILD THIS LIST
 		#CLEANLY LATER
 	
-	def updateShutdownCounters(self, alarms_dict, cardsHW):
+    def updateShutdownCounters(self, alarms_dict, cardsHW):
 	  	if alarms_dict["DetectorServer_Conn"] == "OK" :
 		  	card_list = list(cardsHW)
 			action_dict = {}
@@ -179,7 +183,7 @@ class RackController(object):
 						elif c[1] not in action_dict[racknum]:
 						  	c[2] = 0
 			
-	def initiateShutdownMessages(self,reccipients, warning_time=20, action_time=420):
+    def initiateShutdownMessages(self,reccipients, warning_time=20, action_time=420):
 		'''Based on current count time for a rack having an alarming voltage,
                 send warning notifications for an upcoming shutdown, and send a message
                 indicating a real shutdown would have occured'''
@@ -195,28 +199,28 @@ class RackController(object):
 			  	self._printOffTiming(str(alarms_dict["sudbury_time"]),c[1],recipients)
 				c[2] = 0
 		return	
-	def _printout(self,alarmtime,racknum,voltage,recipients_list):
+    def _printout(self,alarmtime,racknum,voltage,recipients_list):
 		msg = 'At: ' + alarmtime + ': Rack panicdown would have fired (No actual shutdown initiated)'
 		title =  'Rack ' + str(racknum) + 's panic down action would have activated'
 		m.sendMail(msg, title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	
-	def _printTiming(self,alarmtime,voltage,recipients_list):
+    def _printTiming(self,alarmtime,voltage,recipients_list):
 		msg = 'At: ' + alarmtime +': Timing Rack panicdown would have fired (No actual shutdown initiated)'
 		title = 'Timing rack panic down would have activated'
 		m.sendMail(msg, title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	
-	def _printOffout(self,alarmtime,racknum,voltage,recipients_list):
+    def _printOffout(self,alarmtime,racknum,voltage,recipients_list):
 		msg = 'At:' + alarmtime + ': Rack shutdown would have fired (No actual shutdown initiated)'
 		title =  'Rack ' + str(racknum) + 's full shutdown action would have activated'
 		m.sendMail(msg, title,recipients_list)
 		self.logging.info("RackController: " + msg + title)
 		return
 	
-	def _printOffTiming(self,alarmtime,voltage,recipients_list):
+    def _printOffTiming(self,alarmtime,voltage,recipients_list):
 		msg =   'At:' + alarmtime + ': Timing Rack shutdown would have fired (No actual shutdown initiated)'
 		title = 'Timing rack shutdown down would have activated' 
 		m.sendMail(msg,title,recipients_list)

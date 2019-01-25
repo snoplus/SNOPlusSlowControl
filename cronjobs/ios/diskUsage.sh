@@ -9,15 +9,15 @@
 
 
 HOMEDIR=/home/slowcontroller
-DISKUSELOG=/SNOPlusSlowControl/SNOPlusSlowControl/log/IOSdiskUsage.txt
+DISKUSELOGLOC=/SNOPlusSlowControl/SNOPlusSlowControl/log/IOSDiskUsage.txt
 
 echo "At `date` the disk usage is" | cat > ${HOMEDIR}${DISKUSELOGLOC}
 df | cat >> ${HOMEDIR}${DISKUSELOGLOC} 
-ALARM=`python /home/slowcontroller/checkUsage.py /home/slowcontroller/diskUsage.txt`
+ALARM=`python ${HOMEDIR}/SNOPlusSlowControl/cronjobs/ios/checkUsage.py ${HOMEDIR}${DISKUSELOGLOC}`
 
 if [ $ALARM == "True" ]
 then
-  echo "IOS `hostname` at storage warning limit" | cat > ${HOMEDIR}${DISKUSELOGLOC}    
+  echo "IOS `hostname` at storage warning limit" 
   echo "Sending warning... IOS at storage warning limit"
 fi
 

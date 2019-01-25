@@ -1,7 +1,7 @@
 #!/bin/sh
 HOMEDIR=/home/slowcontroller
 FIFTEENMINLOC=/SNOPlusSlowControl/SNOPlusSlowControl/util/ios_1_15_min/15min.py
-ONE15LOG=/SNOPlusSlowControl/SNOPlusSlowControl/log/onefifteenmin.log
+ONEFIFTEENLOG=/SNOPlusSlowControl/SNOPlusSlowControl/log/onefifteenmin.log
 
 RUNNING=`ps -ef | grep 15min | grep /usr/bin/python`
 if [ "$RUNNING" == "" ]
