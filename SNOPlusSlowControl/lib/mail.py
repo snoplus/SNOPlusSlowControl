@@ -7,7 +7,7 @@ import config.logconfig as lc
 #Sends an email
 def sendMail(subject, text, recipients_list):
     recipients_file = recipients_list 
-    gmailUser, gmailPassword = cr.getcreds(cl.GMAILCREDS)
+    gmailUser, gmailPassword = cr.getcreds(lc.GMAILCREDS)
     recipientfile = open(recipients_file,"r")
     recipients = recipientfile.readlines(); 
     try:

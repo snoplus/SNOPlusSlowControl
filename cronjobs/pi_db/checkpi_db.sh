@@ -8,7 +8,7 @@ HOMEDIR=/home/uwslowcontrol
 PIDBSCRIPTLOC=/SNOPlusSlowControl/SNOPlusSlowControl/main_pidb.py
 PIDBLOGLOC=/SNOPlusSlowControl/SNOPlusSlowControl/log/mainlog.log
 
-RUNNING=`ps -ef | grep pi_db.py | grep python`
+RUNNING=`ps -ef | grep main_pidb.py | grep python`
 if [ "$RUNNING" == "" ]
 then
   echo "pi_db script is not running on `hostname`!"

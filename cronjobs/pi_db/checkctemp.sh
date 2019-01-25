@@ -8,13 +8,13 @@ HOMEDIR=/home/uwslowcontrol
 CTEMPLOC=/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/
 CTEMPLOGLOC=/SNOPlusSlowControl/SNOPlusSlowControl/log/cavitytemp.log
 
-RUNNING=`ps -ef | grep cavitytemps.py | grep python`
+RUNNING=`ps -ef | grep ${HOMEDIR}${CTEMPLOC}cavitytemps.py | grep python`
 if [ "$RUNNING" == "" ]
 then
   echo "cavitytemps script is not running on `hostname`!"
-  python ${HOMEDIR}${CTEMPLOC} &
+  python ${HOMEDIR}${CTEMPLOC}cavitytemps.py &
   SUBJECT="cavitytemps script restarted on `hostname`"
-  MESSAGE="cavitytemps script restarted at `date` as `ps -ef | grep cavitytemps`"
+  MESSAGE="cavitytemps script restarted at `date` as `ps -ef | grep ${HOMEDIR}${CTEMPLOC}cavitytemps`"
   echo $MESSAGE | cat >> ${HOMEDIR}${CTEMPLOGLOC}
   echo "cavitytemps script is started on `hostname`."
 else

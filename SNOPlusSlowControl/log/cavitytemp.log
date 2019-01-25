@@ -1,0 +1,213 @@
+cavitytemps script restarted at Fri Jan 25 09:24:39 EST 2019 as 502 13386 1 0 09:17 ? 00:00:02 python /home/uwslowcontrol/pi_db/cavitytemp/cavitytemps.py 502 13977 13975 0 09:24 pts/0 00:00:00 grep cavitytemps
+cavitytemps script restarted at Fri Jan 25 09:25:17 EST 2019 as 502 13386 1 0 09:17 ? 00:00:02 python /home/uwslowcontrol/pi_db/cavitytemp/cavitytemps.py 502 14029 14023 3 09:25 pts/0 00:00:00 python /home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp//cavitytemps.py 502 14034 14032 0 09:25 pts/0 00:00:00 grep cavitytemps
+cavitytemps script restarted at Fri Jan 25 09:25:21 EST 2019 as 502 13386 1 0 09:17 ? 00:00:02 python /home/uwslowcontrol/pi_db/cavitytemp/cavitytemps.py 502 14029 1 29 09:25 pts/0 00:00:01 python /home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp//cavitytemps.py 502 14045 14039 2 09:25 pts/0 00:00:00 python /home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp//cavitytemps.py 502 14050 14048 0 09:25 pts/0 00:00:00 grep cavitytemps
+2019-01-25 09:26:07,098 Uncaught exception: 
+None
+2019-01-25 09:26:07,099 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 09:26:07,099 Traceback: ['  File "cavitytemps.py", line 94, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 09:38:01,787 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:38:01,787 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:38:01,788 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:38:03,561 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:38:03,561 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:38:03,562 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:39:03,336 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:39:03,336 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:39:03,337 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:40:03,122 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:40:03,122 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:40:03,122 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:41:02,885 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:41:02,885 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:41:02,885 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:42:02,680 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:42:02,680 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:42:02,680 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:42:13,904 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:42:13,905 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:42:13,905 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:42:48,030 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:42:48,030 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:42:48,030 Traceback: ['  File "cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:43:03,499 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:43:03,499 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:43:03,499 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:44:03,271 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:44:03,272 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:44:03,272 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:45:03,053 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:45:03,053 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:45:03,053 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 89, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:45:44,496 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:45:44,496 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:45:44,496 Traceback: ['  File "cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:46:02,833 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:46:02,833 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:46:02,833 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:46:33,227 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:46:33,227 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:46:33,227 Traceback: ['  File "cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:47:03,616 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:47:03,616 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:47:03,617 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:48:03,388 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:48:03,388 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:48:03,389 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:49:03,190 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:49:03,190 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:49:03,191 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:50:02,965 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:50:02,965 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:50:02,965 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:51:02,732 Uncaught exception: 'Sensor_20'
+None
+2019-01-25 09:51:02,733 Error type: <type 'exceptions.KeyError'>
+None
+2019-01-25 09:51:02,733 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 81, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 69, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname]["value"]=reading\n']
+None
+2019-01-25 09:52:03,517 Uncaught exception: local variable 'sensorname' referenced before assignment
+None
+2019-01-25 09:52:03,518 Error type: <type 'exceptions.UnboundLocalError'>
+None
+2019-01-25 09:52:03,518 Traceback: ['  File "/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 82, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 58, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname] = {}\n']
+None
+2019-01-25 09:52:08,672 Uncaught exception: local variable 'sensorname' referenced before assignment
+None
+2019-01-25 09:52:08,672 Error type: <type 'exceptions.UnboundLocalError'>
+None
+2019-01-25 09:52:08,673 Traceback: ['  File "cavitytemps.py", line 90, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 82, in checkForAlarms\n    self.currentAlarms = self._buildCurrentAlarmDict()\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 58, in _buildCurrentAlarmDict\n    alarm_dict["current_alarms"][sensorname] = {}\n']
+None
+2019-01-25 09:58:20,337 Uncaught exception: 
+None
+2019-01-25 09:58:20,338 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 09:58:20,338 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 09:58:54,369 Uncaught exception: 
+None
+2019-01-25 09:58:54,370 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 09:58:54,370 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:02:27,794 Uncaught exception: 
+None
+2019-01-25 10:02:27,795 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:02:27,795 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:02:44,706 Uncaught exception: 
+None
+2019-01-25 10:02:44,707 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:02:44,707 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:04:48,050 Uncaught exception: 
+None
+2019-01-25 10:04:48,051 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:04:48,051 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:06:03,283 Uncaught exception: 
+None
+2019-01-25 10:06:03,283 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:06:03,283 Traceback: ['  File "cavitytemps.py", line 96, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:12:07,914 Uncaught exception: 'NoneType' object is unsubscriptable
+None
+2019-01-25 10:12:07,914 Error type: <type 'exceptions.TypeError'>
+None
+2019-01-25 10:12:07,915 Traceback: ['  File "cavitytemps.py", line 91, in <module>\n    AlarmControl.checkForAlarms() #Posts alarms if any\n', '  File "/raid/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/util/cavitytemp/lib/alarmposter.py", line 89, in checkForAlarms\n    if set(self.currentAlarms["alarming_sensors"]) != set(self.prevAlarms["alarming_sensors"]):\n']
+None
+2019-01-25 10:14:27,300 Uncaught exception: 
+None
+2019-01-25 10:14:27,301 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:14:27,301 Traceback: ['  File "cavitytemps.py", line 96, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:15:35,284 Uncaught exception: 
+None
+2019-01-25 10:15:35,285 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:15:35,285 Traceback: ['  File "cavitytemps.py", line 96, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:16:23,269 Uncaught exception: 
+None
+2019-01-25 10:16:23,269 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:16:23,269 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:17:21,300 Uncaught exception: 
+None
+2019-01-25 10:17:21,301 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:17:21,301 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:18:28,708 Uncaught exception: 
+None
+2019-01-25 10:18:28,709 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:18:28,709 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None
+2019-01-25 10:26:08,503 Uncaught exception: 
+None
+2019-01-25 10:26:08,504 Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:26:08,504 Traceback: ['  File "cavitytemps.py", line 95, in <module>\n    time.sleep(SUCCESS_SLEEPTIME)\n']
+None

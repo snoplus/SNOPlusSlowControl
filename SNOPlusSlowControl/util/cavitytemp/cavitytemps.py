@@ -85,6 +85,7 @@ if __name__ == "__main__":
             continue
         else:
             #values parsed. check for values outside threshold and alarm
+            print(reader.readingdict)
             AlarmControl.updateCurrentValues(reader.readingdict)
             AlarmControl.checkForAlarms() #Posts alarms if any
             #dio.WriteReadToLog(reader)

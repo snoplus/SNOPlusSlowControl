@@ -54,8 +54,10 @@ class AlarmPoster(object):
         #Converts unix timestamp to human readable local time (Sudbury time)
         human_time = utils.formatdate(timest, localtime=True)
         alarm_dict["date"] = human_time
+        alarm_dict["alarming_sensors"] = []
         for entry in chaninfo:
             sensorname = str(self.sensorkey)+"_"+str(entry["id"])
+            alarm_dict["current_alarms"][sensorname] = {}
             threshdict = {}
             alarmtypes = ["lo","lolo","hi","hihi"]
             for altype in alarmtypes:
@@ -66,6 +68,7 @@ class AlarmPoster(object):
             #alarm threshold and is enabled
             if not (threshdict["lo"] <= reading <= threshdict["hi"]):
                 if threshdict["isEnabled"] != 0:
+                    alarm_dict["alarming_sensors"].append(sensorname)
                     alarm_dict["current_alarms"][sensorname]["value"]=reading
                     alarm_dict["current_alarms"][sensorname]["id"] = str(entry["id"])
         return alarm_dict
@@ -79,18 +82,23 @@ class AlarmPoster(object):
         '''If there is a cavity temp sensor alarm in the current temperature data, 
         post it and save to the couch alarms dictionary on couchDB'''
         self.currentAlarms = self._buildCurrentAlarmDict()
-        if self.currentAlarms["current_alarms"]:
-            cu.saveCTAlarms(self.currentAlarms)
-            es.sendCTAlarmEmail(self.currentAlarms["date"])
-            al.post_alarm(self.alarmid)
-        #if no alarming values but different than last dict, clear alarms
-        elif self.prevAlarms is None:
+        #if no previous alarms, start by clear alarms
+        if self.prevAlarms is None:
             #no alarms,just clear; we don't know what the last alarms were
             al.clear_alarm(self.alarmid)
-	elif set(self.currentAlarms.keys()) != set(self.prevAlarms.keys()):
-            al.clear_alarm(self.alarmid)
-            cu.saveCTAlarms(self.currentAlarms)
-            es.clearCTAlarmEmail(self.currentAlarms["date"])
+            if len(self.currentAlarms["alarming_sensors"]) > 0:
+                cu.saveCTAlarms(self.currentAlarms)
+                es.sendCTAlarmEmail(self.currentAlarms["date"])
+                al.post_alarm(self.alarmid)
+	elif set(self.currentAlarms["alarming_sensors"]) != set(self.prevAlarms["alarming_sensors"]):
+            if len(self.currentAlarms["alarming_sensors"]) == 0:
+                al.clear_alarm(self.alarmid)
+                cu.saveCTAlarms(self.currentAlarms)
+                es.clearCTAlarmEmail(self.currentAlarms["date"])
+            else:
+                cu.saveCTAlarms(self.currentAlarms)
+                es.sendCTAlarmEmail(self.currentAlarms["date"])
+                al.post_alarm(self.alarmid)
         #alarms updated: Set your previous alarms to be the current alarms
         self.prevAlarms = self.currentAlarms
 
