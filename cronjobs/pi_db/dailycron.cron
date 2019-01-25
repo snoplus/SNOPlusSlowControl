@@ -1,0 +1,4 @@
+#Min	Hour	Day	Month	Wday	script
+*	*	*	*	*	/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/cronjobs/pi_db/checkpi_db.sh
+*	*	*	*	*	/home/uwslowcontrol/SNOPlusSlowControl/SNOPlusSlowControl/cronjobs/pi_db/checkctemp.sh
+
