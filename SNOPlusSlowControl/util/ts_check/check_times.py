@@ -29,7 +29,7 @@ CTEMPS_OLD_ALARMID = 30039  #Alarm ID for the temperature values being old
 period = 5                  #Time between each data collection loop
 
 HOMEDIR='/home/slowcontroller' #Directory where SNOPlusSlowControl lives
-LOGDIR='/SNOPlusSlowControl/SNOPlusSlowControl/ts_check/log/timestamp_check.log' #logfile source
+LOGDIR='/SNOPlusSlowControl/SNOPlusSlowControl/log/timestamp_check.log' #logfile source
 LOG_FILENAME = HOMEDIR+LOGDIR
 
 #Logging implementation
@@ -53,7 +53,7 @@ couch.resource.credentials = (couchuser, couchpassword)
 #Connection info for couch.ug
 snopluscouchuser, snopluscouchpw = gc.getcreds("/home/slowcontroller/config" + \
     "/couchcred.conf")
-snopluscouch = couchdb.Server('http://couch.ug.snopl.us')
+snopluscouch = couchdb.Server('http://couch.snopl.us')
 snopluscouch.resource.credentials = (snopluscouchuser, snopluscouchpw)
 
 #CONNECTS TO COUCH.UG (REPLACE "snopluscouch" with "couch" for local conn)
