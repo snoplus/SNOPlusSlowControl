@@ -83,6 +83,8 @@ if __name__ == '__main__':
                 print("Debug mode: CURRENT ALARMS:")
                 print(alarms_dict)
             PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
+            PiAlarmHandler.saveAlarmsToDB(alarms_dict, c.COUCHALARMDBURL,
+                                          c.COUCHALARMDBVIEW)
             PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
         
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in

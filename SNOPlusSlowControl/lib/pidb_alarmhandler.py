@@ -3,13 +3,12 @@
 #Uses an instance of the alarmserver.py class, as well as the couchdb utils,
 #to post alarms and update the alarms database
 
-#FIXME: need logging added.  Will also want to add in an alarmposter instance?
-# Or have it done in main, and pass returns to the AlarmPoster from returns on
-#methods?
+import time
+
 import timeconverts as tc
 import thelogger as l
+import config.pidbconfig as c
 import mail as m
-import time
 
 class PIAlarmHandler(object):
     '''This class is responsible for checking PIDB data against the
@@ -117,7 +116,7 @@ class PIAlarmHandler(object):
                 self.logger.info("Alarms Last likely empty from a connection error." + \
                      " Trying to get Alarms last from database...")
                 counter+=1
-                alarms_last = self.PICouchConn.getLatestEntry()#FIXME: Put in alarms database information
+                alarms_last = self.PICouchConn.getLatestEntry(c.COUCHALARMDBURL, c.COUCHALARMDBVIEW)
                 continue
         self.logger.exception("Could not clear alarms because could not" + \
                "Access the last alarms from couchdb.")
@@ -172,4 +171,31 @@ class PIAlarmHandler(object):
                   super_msg = super_msg + new_alarm_dict[y]
         if super_msg != title:
              m.sendMail("Alarms at " + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(alarms_dict["timestamp"])), super_msg,recipients_filename)
-    
+   
+    def saveAlarmsToDB(self,alarms_dict,couch_url,couch_view):
+        ''''Method first grabs the most recent entry from PIDBCouchConn at the
+        given couch_url.  Then, if there is a change in the alarms state relative
+        to the database, the method saves the given alarms dictionary  to whatever
+         couch_url and couch_view is given.  Entry is saved to the PIDBCouchConn initialized
+        when the class is defined.
+        ''' 
+        currentDBAlarms = self.PICouchConn.getLatestEntry(couch_url, couch_view)
+        if currentDBAlarms:
+            match = 1
+            for entry in alarms_dict:
+                try:
+                    if len(alarms_dict[entry]) == len(currentDBAlarms[entry]):
+                        for alarm_num in range(len(currentDBAlarms[entry])):
+                            if (alarms_dict[entry][alarm_num]["channel"]!=currentDBAlarms[entry][alarm_num]["channel"] or 
+                                alarms_dict[entry][alarm_num]["reason"]!=currentDBAlarms[entry][alarm_num]["reason"]):
+                                match = 0
+                    else:
+                        match = 0
+                except:
+                    match = 0
+            if match==0:
+                   self.PICouchConn.saveAlarmsEntry(alarms_dict,couch_url)
+        else:
+            logging.info("There was no access to the current alarms in"+\
+                         " the database.  Saving current alarms by default")  
+            self.PIDBCouchConn.saveAlarmsEntry(alarms_dict,couch_url)
