@@ -1,0 +1,262 @@
+2019-01-25 10:56:28,898 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 10:56:28,901 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 10:56:28,923 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 10:56:28,940 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 10:57:12,411     root ERROR Uncaught exception: 
+None
+2019-01-25 10:57:12,413     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 10:57:12,454     root ERROR Traceback: ['  File "main_ios.py", line 49, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/couchutils.py", line 66, in getLatestEntry\n    dbdict = queryresults.rows[0].value\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 281, in _try_request_with_retries\n    return _try_request()\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 319, in _try_request\n    return conn.getresponse()\n', '  File "/usr/lib/python2.7/httplib.py", line 1030, in getresponse\n    response.begin()\n', '  File "/usr/lib/python2.7/httplib.py", line 407, in begin\n    version, status, reason = self._read_status()\n', '  File "/usr/lib/python2.7/httplib.py", line 365, in _read_status\n    line = self.fp.readline()\n', '  File "/usr/lib/python2.7/socket.py", line 430, in readline\n    data = recv(1)\n']
+None
+2019-01-25 10:59:20,184 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 10:59:20,187 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 10:59:20,200 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 10:59:20,214 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 10:59:20,746     root ERROR Uncaught exception: __init__() takes exactly 4 arguments (3 given)
+None
+2019-01-25 10:59:20,747     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2019-01-25 10:59:20,749     root ERROR Traceback: ['  File "main_ios.py", line 66, in <module>\n    AlarmHandler = alh.IOSRackAlarmHandler(CouchConn,AlarmPoster)\n']
+None
+2019-01-25 11:01:42,095 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:01:42,108 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:01:42,132 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:01:42,150 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:01:42,550     root ERROR Uncaught exception: __init__() takes exactly 4 arguments (3 given)
+None
+2019-01-25 11:01:42,551     root ERROR Error type: <type 'exceptions.TypeError'>
+None
+2019-01-25 11:01:42,553     root ERROR Traceback: ['  File "main_ios.py", line 65, in <module>\n    AlarmHandler = alh.IOSRackAlarmHandler(CouchConn,AlarmPoster)\n']
+None
+2019-01-25 11:02:45,754 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:02:45,757 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:02:45,771 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:02:45,783 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:02:46,572     root ERROR Uncaught exception: global name 'l' is not defined
+None
+2019-01-25 11:02:46,574     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2019-01-25 11:02:46,577     root ERROR Traceback: ['  File "main_ios.py", line 67, in <module>\n    SNORackController = rh.RackController(c.RACKCONTROLHOST,c.RACKCONTROLPORT)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 9, in __init__\n    self.logger = l.get_logger(__name__)\n']
+None
+2019-01-25 11:03:38,323 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:03:38,326 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:03:38,340 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:03:38,353 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:03:38,940     root ERROR Uncaught exception: 'RackController' object has no attribute '_initCounters'
+None
+2019-01-25 11:03:38,941     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2019-01-25 11:03:38,956     root ERROR Traceback: ['  File "main_ios.py", line 67, in <module>\n    SNORackController = rh.RackController(c.RACKCONTROLHOST,c.RACKCONTROLPORT)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 13, in __init__\n    self.counters = self._initCounters()\n']
+None
+2019-01-25 11:05:33,603 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:05:33,606 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:05:33,623 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:05:33,637 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:05:34,459     root ERROR Uncaught exception: 'RackController' object has no attribute 'initCounters'
+None
+2019-01-25 11:05:34,460     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2019-01-25 11:05:34,463     root ERROR Traceback: ['  File "main_ios.py", line 67, in <module>\n    SNORackController = rh.RackController(c.RACKCONTROLHOST,c.RACKCONTROLPORT)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 13, in __init__\n    self.counters = self.initCounters()\n']
+None
+2019-01-25 11:07:31,975 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:07:31,978 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:07:32,000 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:07:32,019 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:07:32,743     root ERROR Uncaught exception: 'RackController' object has no attribute '_initCounters'
+None
+2019-01-25 11:07:32,744     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2019-01-25 11:07:32,748     root ERROR Traceback: ['  File "main_ios.py", line 67, in <module>\n    SNORackController = rh.RackController(c.RACKCONTROLHOST,c.RACKCONTROLPORT)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 13, in __init__\n    self.counters = self._initCounters()\n']
+None
+2019-01-25 11:08:25,320 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:08:25,327 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:08:25,349 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:08:25,371 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:08:26,890     root ERROR Uncaught exception: global name 'redis' is not defined
+None
+2019-01-25 11:08:26,891     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2019-01-25 11:08:26,905     root ERROR Traceback: ['  File "main_ios.py", line 97, in <module>\n    onracks, IBootPwr = SNORackController.GetPoweredRacks()\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 84, in GetPoweredRacks\n    status, sock=self._connectToDetServer()\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 25, in _connectToDetServer\n    DSsocket=redis.Connection(host=self.hostdns, port=self.hostport, socket_connect_timeout=15.0, retry_on_timeout=True)\n']
+None
+2019-01-25 11:09:12,708 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:09:12,717 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:09:12,739 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:09:12,760 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:09:14,521     root ERROR Uncaught exception: global name 'time' is not defined
+None
+2019-01-25 11:09:14,523     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2019-01-25 11:09:14,530     root ERROR Traceback: ['  File "main_ios.py", line 97, in <module>\n    onracks, IBootPwr = SNORackController.GetPoweredRacks()\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 93, in GetPoweredRacks\n    time.sleep(3)\n']
+None
+2019-01-25 11:09:46,495 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:09:46,498 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:09:46,512 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:09:46,525 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:10:00,451     root ERROR Uncaught exception: 'IOSRackAlarmHandler' object has no attribute '_TrueOffList'
+None
+2019-01-25 11:10:00,452     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2019-01-25 11:10:00,456     root ERROR Traceback: ['  File "main_ios.py", line 99, in <module>\n    alarms_dict = AlarmHandler.disableOffRackAlarms(numlowvolts_perrack,alarms_dict, cardHardwareConfig, onracks, IBootPwr)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/ios_alarmhandler.py", line 202, in disableOffRackAlarms\n    offrack_list=self._TrueOffList(onracks, allrackvlow_list)\n']
+None
+2019-01-25 11:10:12,738 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:10:12,741 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:10:12,754 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:10:12,767 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:10:24,252     root ERROR Uncaught exception: 
+None
+2019-01-25 11:10:24,253     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:10:24,267     root ERROR Traceback: ['  File "main_ios.py", line 97, in <module>\n    onracks, IBootPwr = SNORackController.GetPoweredRacks()\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 94, in GetPoweredRacks\n    time.sleep(3)\n']
+None
+2019-01-25 11:15:15,545 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:15:15,558 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:15:15,580 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:15:15,600 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:15:17,998     root ERROR Uncaught exception: 'IOSRackAlarmHandler' object has no attribute '_TrueOffList'
+None
+2019-01-25 11:15:17,999     root ERROR Error type: <type 'exceptions.AttributeError'>
+None
+2019-01-25 11:15:18,003     root ERROR Traceback: ['  File "main_ios.py", line 99, in <module>\n    alarms_dict = AlarmHandler.disableOffRackAlarms(numlowvolts_perrack,alarms_dict, cardHardwareConfig, onracks, IBootPwr)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/ios_alarmhandler.py", line 202, in disableOffRackAlarms\n    offrack_list=self._TrueOffList(onracks, allrackvlow_list)\n']
+None
+2019-01-25 11:18:31,811 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:18:31,815 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:18:31,829 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:18:31,843 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:18:34,253     root ERROR Uncaught exception: name 'SNORackcontroller' is not defined
+None
+2019-01-25 11:18:34,255     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2019-01-25 11:18:34,257     root ERROR Traceback: ['  File "main_ios.py", line 104, in <module>\n    SNORackcontroller.initiateShutdownMessages(lc.EMAIL_RECIPIENTS_FILE,warning_time=20, action_time=420)\n']
+None
+2019-01-25 11:19:12,752 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:19:12,767 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:19:12,783 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:19:12,810 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:19:57,534     root ERROR Uncaught exception: 
+None
+2019-01-25 11:19:57,536     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:19:57,538     root ERROR Traceback: ['  File "main_ios.py", line 119, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
+Poll script restarted at Fri Jan 25 11:26:49 EST 2019 as root 13020 1 4 2018 ? 4-10:23:37 /usr/bin/python2.7 /home/slowcontroller/pollScriptIOS2.py
+2019-01-25 11:26:56,281 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:26:56,289 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:26:56,314 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:26:56,330 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+Poll script restarted at Fri Jan 25 11:28:02 EST 2019 as root 13020 1 4 2018 ? 4-10:23:40 /usr/bin/python2.7 /home/slowcontroller/pollScriptIOS2.py
+2019-01-25 11:28:09,884 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:28:09,897 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:28:09,911 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:28:09,930 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:32:46,678 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:32:46,681 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:32:46,695 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:32:46,709 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:33:09,234     root ERROR Uncaught exception: 
+None
+2019-01-25 11:33:09,235     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:33:09,254     root ERROR Traceback: ['  File "main_ios.py", line 91, in <module>\n    CouchConn.saveEntry(ios_data,c.FIVESECDBURL) #Will be from a couchutil instance\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/couchutils.py", line 126, in saveEntry\n    dbData.save(data)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 439, in save\n    _, _, data = func(body=doc, **options)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 545, in post_json\n    **params)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 261, in request\n    body = json.encode(body).encode(\'utf-8\')\n', '  File "/usr/lib/python2.7/site-packages/couchdb/json.py", line 69, in encode\n    return _encode(obj)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/json.py", line 135, in <lambda>\n    dumps(obj, allow_nan=False, ensure_ascii=False)\n', '  File "/usr/lib/python2.7/json/__init__.py", line 238, in dumps\n    **kw).encode(obj)\n', '  File "/usr/lib/python2.7/json/encoder.py", line 204, in encode\n    return \'\'.join(chunks)\n']
+None
+2019-01-25 11:34:05,357 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:34:05,367 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:34:05,402 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:34:05,424 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:34:07,276     root ERROR Uncaught exception: global name 'sys' is not defined
+None
+2019-01-25 11:34:07,277     root ERROR Error type: <type 'exceptions.NameError'>
+None
+2019-01-25 11:34:07,281     root ERROR Traceback: ['  File "main_ios.py", line 81, in <module>\n    ios_data = IOSDataHandler.getChannelVoltages(channeldb)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/ios_grabber.py", line 82, in getChannelVoltages\n    cardData = self._pollCard(card_name)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/ios_grabber.py", line 67, in _pollCard\n    self.logger.exception("Error pulling data from IOS" + str(self.ios_num) + " card:" + card, file=sys.stderr)\n']
+None
+2019-01-25 11:34:23,707 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:34:23,710 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:34:23,723 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:34:23,736 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:34:29,873     root ERROR Uncaught exception: 
+None
+2019-01-25 11:34:29,874     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:34:29,876     root ERROR Traceback: ['  File "main_ios.py", line 119, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
+2019-01-25 11:39:54,110 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:39:54,113 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:39:54,125 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:39:54,138 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:40:04,274     root ERROR Uncaught exception: 
+None
+2019-01-25 11:40:04,276     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:40:04,335     root ERROR Traceback: ['  File "main_ios.py", line 114, in <module>\n    channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/couchutils.py", line 66, in getLatestEntry\n    dbdict = queryresults.rows[0].value\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1205, in rows\n    self._fetch()\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1191, in _fetch\n    data = self.view._exec(self.options)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1057, in _exec\n    _, _, data = _call_viewlike(self.resource, options)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/client.py", line 1116, in _call_viewlike\n    return resource.get_json(**_encode_view_options(options))\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 541, in get_json\n    return self._request_json(\'GET\', path, headers=headers, **params)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 564, in _request_json\n    headers=headers, **params)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 560, in _request\n    credentials=self.credentials)\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 330, in request\n    resp = _try_request_with_retries(iter(self.retry_delays))\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 281, in _try_request_with_retries\n    return _try_request()\n', '  File "/usr/lib/python2.7/site-packages/couchdb/http.py", line 319, in _try_request\n    return conn.getresponse()\n', '  File "/usr/lib/python2.7/httplib.py", line 1030, in getresponse\n    response.begin()\n', '  File "/usr/lib/python2.7/httplib.py", line 407, in begin\n    version, status, reason = self._read_status()\n', '  File "/usr/lib/python2.7/httplib.py", line 365, in _read_status\n    line = self.fp.readline()\n', '  File "/usr/lib/python2.7/socket.py", line 430, in readline\n    data = recv(1)\n']
+None
+2019-01-25 11:46:55,898 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:46:55,901 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:46:55,926 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:46:55,950 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:46:55,959 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:48:29,204     root ERROR Uncaught exception: 
+None
+2019-01-25 11:48:29,205     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:48:29,217     root ERROR Traceback: ['  File "main_ios.py", line 122, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
+2019-01-25 11:50:22,890 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:50:22,893 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:50:22,907 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:50:22,920 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:50:22,923 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:50:37,766     root ERROR Uncaught exception: 
+None
+2019-01-25 11:50:37,767     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:50:37,771     root ERROR Traceback: ['  File "main_ios.py", line 100, in <module>\n    onracks, IBootPwr = SNORackController.GetPoweredRacks()\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/rackcontroller.py", line 99, in GetPoweredRacks\n    time.sleep(0.5)    #need a short sleep time so the buffer fills with the response\n']
+None
+2019-01-25 11:52:51,930 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:52:51,933 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:52:51,947 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:52:51,960 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:52:51,964 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:52:53,364     root ERROR Uncaught exception: 
+None
+2019-01-25 11:52:53,365     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:52:53,368     root ERROR Traceback: ['  File "main_ios.py", line 89, in <module>\n    ios_data = IOSDataHandler.getChannelVoltages(channeldb)\n', '  File "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/lib/ios_grabber.py", line 104, in getChannelVoltages\n    channel = int(key[7:len(key)])\n']
+None
+2019-01-25 11:54:10,785 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:54:10,788 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:54:10,803 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:54:10,816 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:54:10,820 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:54:36,260     root ERROR Uncaught exception: 
+None
+2019-01-25 11:54:36,261     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:54:36,263     root ERROR Traceback: ['  File "main_ios.py", line 122, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
+2019-01-25 11:57:23,106 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 11:57:23,109 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 11:57:23,123 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 11:57:23,138 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:57:23,142 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 11:58:59,397     root ERROR Uncaught exception: 
+None
+2019-01-25 11:58:59,399     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 11:58:59,401     root ERROR Traceback: ['  File "main_ios.py", line 122, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None
+Poll script restarted at Fri Jan 25 12:01:02 EST 2019 as
+2019-01-25 12:01:09,282 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 12:01:09,290 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 12:01:09,320 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 12:01:09,334 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 12:01:09,348 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 12:04:42,417 __main__  INFO IOS POLLING SCRIPT INITIALIZING...
+2019-01-25 12:04:42,419 lib.alarmserver  INFO Starting connection pool for alarms database
+2019-01-25 12:04:42,454 lib.alarmserver  INFO Starting alarm server connection heartbeat
+2019-01-25 12:04:42,467 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 12:04:42,470 lib.couchutils  INFO CouchDBConn: Got server instance successfully.
+2019-01-25 12:04:53,798     root ERROR Uncaught exception: 
+None
+2019-01-25 12:04:53,799     root ERROR Error type: <type 'exceptions.KeyboardInterrupt'>
+None
+2019-01-25 12:04:53,801     root ERROR Traceback: ['  File "main_ios.py", line 122, in <module>\n    time.sleep(c.POLL_WAITTIME)\n']
+None

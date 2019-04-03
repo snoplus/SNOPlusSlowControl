@@ -1,0 +1,6 @@
+emailList.txt: file loaded for e-mail library that gives all e-mails to send warnings to
+pilist.py: Contains an array that contains dictionaries specifying what
+components of DeltaV to read data from on the PI server.
+upslist.py: array of the SNMP OIDs, as well as specified names of each type
+NOTE: It's probably better to have these stored in a JSON format, but the code
+was written to load these entries as arrays.  I'll keep it that way for now.
