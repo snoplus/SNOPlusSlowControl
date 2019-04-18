@@ -7,13 +7,14 @@ import os
 import smtplib
 import mimetypes
 import getcreds as gc
+import config.tsconfig as c
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
 from email.MIMEText import MIMEText
 
 #connection info and email list directory for slow control email notification
-gmailUser, gmailPassword = gc.getcreds("/home/slowcontroller/config/gmailcred.conf")
-recipientsList = open("/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/DB/emailList.txt","r")
+gmailUser, gmailPassword = gc.getcreds(c.Gmail_Cred)
+recipientsList = open(c.EmailList,"r")
 recipients = recipientsList.readlines()
 
 def sendTSAlarmEmail(alarmDate,IOSnum):

@@ -19,3 +19,5 @@ Db_1min_Name = 'slowcontrol-data-1min'
 View_1min_Name = 'slowcontrol-data-1min/pi_db'
 Cavity_Db_Name = 'slowcontrol-data-cavitytemps'
 Cavity_View_Name = 'slowcontrol-data-cavitytemps/by_timestamp'
+Gmail_Cred = "/home/slowcontroller/config/gmailcred.conf"
+EmailList = "/home/slowcontroller/SNOPlusSlowControl/SNOPlusSlowControl/DB/emailList.txt"
