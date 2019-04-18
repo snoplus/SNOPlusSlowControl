@@ -38,6 +38,7 @@ class TimestampComparer(object):
 
 
     def getcouchUGTime(self):
+        snopluscouchuser, snopluscouchpw = gc.getcreds("/home/slowcontroller/config/couchcred.conf")
         url = 'http://couch.ug.snopl.us'
         try:
             req = urllib2.Request(url)
@@ -54,6 +55,5 @@ class TimestampComparer(object):
             logging.warning("ERROR GETTING CURRENT COUCH.UG TIME." + \
                 "TIME IS UNKNOWN.")
             self.couchUGtime = 'unknown'
-
 
 
