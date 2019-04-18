@@ -11,4 +11,11 @@ period = 5                  #Time between each data collection loop
 HOMEDIR='/home/slowcontroller' #Directory where SNOPlusSlowControl lives
 LOGDIR='/SNOPlusSlowControl/SNOPlusSlowControl/log/timestamp_check.log' #logfile source
 LOG_FILENAME = HOMEDIR+LOGDIR
-
+CouchUrl = 'http://couch.snopl.us'
+CouchCredConfigAdd = "/home/slowcontroller/config/couchcred.conf"
+Db_5s_Name = "slowcontrol-data-5sec"
+View_5s_Name = 'slowcontrol-data-5sec/recent'
+Db_1min_Name = 'slowcontrol-data-1min'
+View_1min_Name = 'slowcontrol-data-1min/pi_db'
+Cavity_Db_Name = 'slowcontrol-data-cavitytemps'
+Cavity_View_Name = 'slowcontrol-data-cavitytemps/by_timestamp'

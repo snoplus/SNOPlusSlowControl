@@ -1,7 +1,7 @@
 import httplib
 import socket
 import couchdb
-import credentials as cr
+import getcreds as cr
 import thelogger as l
 
 class CouchDBConn(object):
