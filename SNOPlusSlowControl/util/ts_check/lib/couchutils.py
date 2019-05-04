@@ -3,6 +3,7 @@ import socket
 import couchdb
 import getcreds as cr
 import thelogger as l
+import time
 
 class CouchDBConn(object):
     def __init__(self):
