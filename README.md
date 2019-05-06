@@ -27,3 +27,11 @@ be integrated to the other main scripts.
 By default, the Minard script pulls data from the PI DB every minute, while the IOS script pulls data every 5 seconds.  
 
 Both scripts use their collected data and an AlarmHandler class to post alarm notifications to the SNO+ Alarm Server database and Slow Control e-mail list.  The script then stores the alarms and pulled data in CouchDB for usage by the Slow Control interface.
+
+---------------------------
+Additional documentation
+---------------------------
+
+Slow Control User Guide: https://docs.google.com/document/d/1hlEcSa2YXPLuOA4fwPkK-HFUppobehNU5efvKk64kz0/edit?usp=sharing
+
+SNO+ monitoring and control couchapp webpage: couch.snopl.us/slowcontrol-channeldb/_design/slowcontrol/_show/alarms/
