@@ -1,4 +1,5 @@
 from __future__ import print_function
+<<<<<<< HEAD
 import couchdb
 import sys
 import string, calendar, time, urllib2, base64
@@ -11,6 +12,10 @@ import TimestampComparer as ts
 from email import utils
 import logging
 
+=======
+import TimestampComparer as ts
+
+>>>>>>> feature_tscheck
 def getCavityTempsDocAge(LatestEntry):
     comparer = ts.TimestampComparer(LatestEntry)
     return comparer.compare()

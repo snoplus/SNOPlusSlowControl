@@ -54,12 +54,20 @@ if __name__ == '__main__':
             Doc_ages = {}
 	    for IOSnum in c.IOS_NUMBERS:
                 IOSLatestEntry = snopluscouchConn.getLatestEntry(c.Db_5s_Name,c.View_5s_Name + str(IOSnum))
+<<<<<<< HEAD
 	        Doc_ages["IOS " + str(IOSnum)] =f.getIOSDocAge(IOSnum,IOSLatestEntry)
 		DeltaVLatestEntry = snopluscouchConn.getLatestEntry(c.Db_1min_Name,c.View_1min_Name)
 		Doc_ages["DeltaV"] = f.getDeltaVDocAge(DeltaVLatestEntry)
 		CavityLatestEntry = snopluscouchConn.getLatestEntry(c.Cavity_Db_Name,c.Cavity_View_Name)
 		Doc_ages["CavityTemps"] = f.getCavityTempsDocAge(CavityLatestEntry)
 
+=======
+	        Doc_ages["IOS " + str(IOSnum)] = f.getIOSDocAge(IOSnum,IOSLatestEntry)
+	    DeltaVLatestEntry = snopluscouchConn.getLatestEntry(c.Db_1min_Name,c.View_1min_Name)
+	    Doc_ages["DeltaV"] = f.getDeltaVDocAge(DeltaVLatestEntry)
+	    CavityLatestEntry = snopluscouchConn.getLatestEntry(c.Cavity_Db_Name,c.Cavity_View_Name)
+	    Doc_ages["CavityTemps"] = f.getCavityTempsDocAge(CavityLatestEntry)
+>>>>>>> feature_tscheck
             #Get the timestamp and date when timestamps were checked
 
             Doc_ages["timestamp"] = int(time.time())

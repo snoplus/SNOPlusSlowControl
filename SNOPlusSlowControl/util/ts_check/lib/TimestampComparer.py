@@ -1,12 +1,8 @@
 from __future__ import print_function
-import couchdb
 import sys
 import string, calendar, time, urllib2, base64
-import lib.config.tsconfig as c
-import lib.alarm_server as als
-import lib.getcreds as gc
-import lib.emailsend as es
-import lib.couchutils
+import config.tsconfig as c
+import getcreds as gc
 
 from email import utils
 import logging
@@ -38,8 +34,13 @@ class TimestampComparer(object):
 
 
     def getcouchUGTime(self):
+<<<<<<< HEAD
         snopluscouchuser, snopluscouchpw = gc.getcreds("/home/slowcontroller/config/couchcred.conf")
         url = 'http://couch.ug.snopl.us'
+=======
+        snopluscouchuser, snopluscouchpw = gc.getcreds(c.CouchCredConfigAdd)
+        url = c.CouchUrl
+>>>>>>> feature_tscheck
         try:
             req = urllib2.Request(url)
             base64string = base64.b64encode("%s:%s" % \
