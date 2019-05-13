@@ -1,4 +1,4 @@
-IOSNUM = 2
+IOSNUM = 3
 DEBUG = False
 RACKCONTROLHOST = 'minard.sp.snolab.ca'
 RACKCONTROLPORT = 8520

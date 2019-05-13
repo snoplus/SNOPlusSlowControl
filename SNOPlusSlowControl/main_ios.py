@@ -7,6 +7,7 @@ import datetime, time, calendar, math, re
 import sys, pprint
 import smtplib
 import socket
+import json
 
 import lib.timeconverts as tc
 import lib.thelogger as l
@@ -45,12 +46,16 @@ if __name__ == '__main__':
     
     #Initialize CouchDB connction.  Also get current channeldb
 #Connection info for couchdb
+    with open("./lib/config/localcdb.json","r") as read_file:
+      default_channeldb = json.load(read_file)
     ChannelDBConn = cu.CouchDBConn()
     ChannelDBConn.getServerInstance(c.CHDBADDRESS,c.CHDBCREDS)
     CouchConn = cu.IOSCouchConn(c.IOSNUM)
     CouchConn.getServerInstance(c.SCCOUCHADDRESS,c.SCCOUCHCREDS)
     channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
-    channeldb = channeldb["ioss"][c.IOSNUM-1]
+    channeldb = channeldb.get("ioss",default_channeldb)[c.IOSNUM-1]
+    with open("./lib/config/localcdb.json","w") as write_file:
+        json.dump(channeldb,write_file,sort_keys=True,indent=4)
     logger.info("Main IOS script: GOT LATEST ENTRY OF CHANNELDB")
     if c.DEBUG is True:
         print("FIRST CHANNELDB ENTRY:")
@@ -75,6 +80,9 @@ if __name__ == '__main__':
     #Initialze the IOS data handler
     IOSDataHandler = iosg.IOSDataHandler(c.IOSNUM)
     cardHardwareConfig = IOSDataHandler.setIOSCardSpecs(c.IOSCARDCONF)
+    if c.DEBUG is True:
+        print("CARD HARDWARE DICT IS...")
+	print(cardHardwareConfig)
     IOSDataHandler.connectToIOSServer()
 
     #Grab a first set of alarms to compare to upcoming data
