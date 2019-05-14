@@ -54,6 +54,8 @@ if __name__ == '__main__':
     try:
       with open(dbpath,"r") as read_file:
           default_channeldb = json.load(read_file)
+    except:
+      pass
     ChannelDBConn = cu.CouchDBConn()
     ChannelDBConn.getServerInstance(c.CHDBADDRESS,c.CHDBCREDS)
     CouchConn = cu.IOSCouchConn(c.IOSNUM)
