@@ -130,8 +130,8 @@ if __name__ == '__main__':
         channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
         channeldb = channeldb["ioss"][c.IOSNUM-1]
         
-        with open(dbpath,"w") as write_file:
-             json.dump(channeldb,write_file,sort_keys=True,indent=4)
+        with open(dbpath,"w") as new_write_file:
+             json.dump(channeldb,new_write_file,sort_keys=True,indent=4)
 	#Take a break
         alarms_last = alarms_dict
         time.sleep(c.POLL_WAITTIME)
