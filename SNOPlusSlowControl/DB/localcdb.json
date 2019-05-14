@@ -1,0 +1,486 @@
+{
+    "cards": [
+        {
+            "card": "cardA", 
+            "card_model": "ios320", 
+            "card_serial_number": "311125F", 
+            "channels": [
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": "1A", 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": "1B", 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 2, 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 3, 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 4, 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 5, 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 6, 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 7, 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": "8A", 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": "8B", 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": "9A", 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": "9B", 
+                    "isEnabled": 1, 
+                    "lo": 1, 
+                    "lolo": 1, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 10, 
+                    "isEnabled": 1, 
+                    "lo": 0.5, 
+                    "lolo": 0.5, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30016, 
+                    "hi": 8, 
+                    "hihi": 8, 
+                    "id": 11, 
+                    "isEnabled": 0, 
+                    "lo": 0.5, 
+                    "lolo": 0.5, 
+                    "multiplier": 1, 
+                    "signal": "current monitor", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }
+            ]
+        }, 
+        {
+            "card": "cardB", 
+            "card_model": "ios320", 
+            "card_serial_number": "371486F", 
+            "channels": [
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }
+            ]
+        }, 
+        {
+            "card": "cardC", 
+            "card_model": "ios320", 
+            "card_serial_number": "354541F", 
+            "channels": [
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": "1A", 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": "1B", 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 2, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 3, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 4, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 5, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 6, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 7, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": "8A", 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": "8B", 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": "9A", 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": "9B", 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 10, 
+                    "isEnabled": 1, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "alarmid": 30017, 
+                    "hi": 5, 
+                    "hihi": 5, 
+                    "id": 11, 
+                    "isEnabled": 0, 
+                    "lo": -1, 
+                    "lolo": -1, 
+                    "multiplier": 1, 
+                    "signal": "alarm", 
+                    "type": "Comp Coil", 
+                    "unit": "V"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }, 
+                {
+                    "type": "spare"
+                }
+            ]
+        }
+    ], 
+    "ios": 3
+}
