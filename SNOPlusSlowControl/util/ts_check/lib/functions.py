@@ -1,21 +1,6 @@
 from __future__ import print_function
-<<<<<<< HEAD
-import couchdb
-import sys
-import string, calendar, time, urllib2, base64
-import lib.config.tsconfig as c
-import lib.alarm_server as als
-import lib.getcreds as gc
-import lib.emailsend as es
 import TimestampComparer as ts
 
-from email import utils
-import logging
-
-=======
-import TimestampComparer as ts
-
->>>>>>> feature_tscheck
 def getCavityTempsDocAge(LatestEntry):
     comparer = ts.TimestampComparer(LatestEntry)
     return comparer.compare()

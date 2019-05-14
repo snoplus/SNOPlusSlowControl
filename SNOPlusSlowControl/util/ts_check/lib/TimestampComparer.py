@@ -34,13 +34,8 @@ class TimestampComparer(object):
 
 
     def getcouchUGTime(self):
-<<<<<<< HEAD
-        snopluscouchuser, snopluscouchpw = gc.getcreds("/home/slowcontroller/config/couchcred.conf")
-        url = 'http://couch.ug.snopl.us'
-=======
         snopluscouchuser, snopluscouchpw = gc.getcreds(c.CouchCredConfigAdd)
         url = c.CouchUrl
->>>>>>> feature_tscheck
         try:
             req = urllib2.Request(url)
             base64string = base64.b64encode("%s:%s" % \
