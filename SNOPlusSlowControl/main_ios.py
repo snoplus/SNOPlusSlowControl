@@ -7,6 +7,8 @@ import datetime, time, calendar, math, re
 import sys, pprint
 import smtplib
 import socket
+import json
+import os
 
 import lib.timeconverts as tc
 import lib.thelogger as l
@@ -22,6 +24,10 @@ import lib.config.alarmdbconfig as ac
 import lib.couchutils as cu
 import lib.credentials as cr
 
+#get the pat of this file
+path = os.path.dirname(__file__)
+pathstring = os.path.abspath(path)
+dbpath = os.path.abspath(os.path.join(path,"DB/localcdb.json"))
 #At an uncaught exception, run our handler
 sys.excepthook = l.UE_handler
 
@@ -45,12 +51,19 @@ if __name__ == '__main__':
     
     #Initialize CouchDB connction.  Also get current channeldb
 #Connection info for couchdb
+    try:
+      with open(dbpath,"r") as read_file:
+          default_channeldb = json.load(read_file)
+    except:
+      default_channeldb = "empty"
     ChannelDBConn = cu.CouchDBConn()
     ChannelDBConn.getServerInstance(c.CHDBADDRESS,c.CHDBCREDS)
     CouchConn = cu.IOSCouchConn(c.IOSNUM)
     CouchConn.getServerInstance(c.SCCOUCHADDRESS,c.SCCOUCHCREDS)
     channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
-    channeldb = channeldb["ioss"][c.IOSNUM-1]
+    channeldb = channeldb.get("ioss",default_channeldb)[c.IOSNUM-1]
+    with open(dbpath,"w") as write_file:
+        json.dump(channeldb,write_file,sort_keys=True,indent=4)
     logger.info("Main IOS script: GOT LATEST ENTRY OF CHANNELDB")
     if c.DEBUG is True:
         print("FIRST CHANNELDB ENTRY:")
@@ -75,6 +88,9 @@ if __name__ == '__main__':
     #Initialze the IOS data handler
     IOSDataHandler = iosg.IOSDataHandler(c.IOSNUM)
     cardHardwareConfig = IOSDataHandler.setIOSCardSpecs(c.IOSCARDCONF)
+    if c.DEBUG is True:
+        print("CARD HARDWARE DICT IS...")
+	print(cardHardwareConfig)
     IOSDataHandler.connectToIOSServer()
 
     #Grab a first set of alarms to compare to upcoming data
@@ -117,6 +133,8 @@ if __name__ == '__main__':
         channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
         channeldb = channeldb["ioss"][c.IOSNUM-1]
         
+        with open(dbpath,"w") as new_write_file:
+             json.dump(channeldb,new_write_file,sort_keys=True,indent=4)
 	#Take a break
         alarms_last = alarms_dict
         time.sleep(c.POLL_WAITTIME)
