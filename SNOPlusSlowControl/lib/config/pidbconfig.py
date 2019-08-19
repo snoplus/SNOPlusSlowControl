@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
 ALARMHOST,ALARMDBNAME = "dbug","detector"
 

@@ -13,7 +13,6 @@ class PIDataConverter(object):
          self.Matrix = []
      
      def GetRopeValue(self,rope):
-         del rope[1]
          self.rope = rope
          
 
@@ -88,13 +87,34 @@ class PIDataConverter(object):
            self.delz = self.AV_Pos[2]
            return self.AV_Pos 
 def main():
-    Rope = [61.5,52.5,58.4,56.0,46.5,53.6]
+    f = open("dz_data.txt","w+")
+    rope1 = open("rope_data/F_hour.txt","r")
+    rope2 = open("rope_data/G_hour.txt","r")
+    rope3 = open("rope_data/A_hour.txt","r")
+    rope4 = open("rope_data/C_hour.txt","r")
+    rope5 = open("rope_data/D_hour.txt","r")
+    rope6 = open("rope_data/E_hour.txt","r")
+
+    V1 = np.genfromtxt(rope1)
+    V2 = np.genfromtxt(rope2)
+    V3 = np.genfromtxt(rope3)
+    V4 = np.genfromtxt(rope4)
+    V5 = np.genfromtxt(rope5)
+    V6 = np.genfromtxt(rope6)
+    Rope = []
+    
+    for i in range(len(V1)):
+       Rope.append([V1[i]-46.149,V2[i]-55.498,V3[i]-62.733,V4[i]-52.514,V5[i]-60.132,V6[i]-55.679])
+
     Test = PIDataConverter()
-    for i in range(10):
-       AVPOS = Test.Rope_to_AVPos(Rope)
-       print("AVPOS= ",AVPOS)
+    for i in range(len(V1)):
+       AVPOS = Test.Rope_to_AVPos(Rope[i])
+      # print("dz= ",AVPOS[2])
+       f.write('%s\n' % AVPOS[2])
+    f.close
 
 if __name__ == '__main__':
+  
    main()
 
 
