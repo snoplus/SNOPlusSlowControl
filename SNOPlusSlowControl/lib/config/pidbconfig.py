@@ -1,5 +1,5 @@
 DEBUG = False
-ALARMCREDDIR = "/home/uwslowcontrol/config/alascred.conf"
+ALARMCREDDIR = "~/config/alascred.conf"
 ALARMHOST,ALARMDBNAME = "dbug","detector"
 
 TIMESERIESURL = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
@@ -8,7 +8,7 @@ PIADDRESSBASE = "pi:\\\\pi.snolab.ca\\"
  
 
 COUCHADDRESS = 'http://couch.snopl.us'
-COUCHCREDS = "/home/uwslowcontrol/config/couchcred.conf"
+COUCHCREDS = "~/config/couchcred.conf"
 CHANNELDBVIEW = 'slowcontrol/recent'
 CHANNELDBURL = 'slowcontrol-channeldb'
 ONEMINDBURL = "slowcontrol-data-1min"
