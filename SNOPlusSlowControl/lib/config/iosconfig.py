@@ -1,5 +1,8 @@
-IOSNUM = 3
-DEBUG = False
+from os.path import expanduser
+home = expanduser("~")
+
+IOSNUM = 4
+DEBUG = True
 RACKCONTROLHOST = 'minard.sp.snolab.ca'
 RACKCONTROLPORT = 8520
 LOWVOLTTHRESH = 1.5
@@ -7,9 +10,9 @@ LOWVOLTTHRESH = 1.5
 #RETRYONTIMEOUT=True
 
 CHDBADDRESS = 'http://couch.snopl.us'
-CHDBCREDS = "~/config/couchcred.conf"
+CHDBCREDS = home + "/config/couchcred.conf"
 SCCOUCHADDRESS = "http://localhost:5984/" #IOS saves data to their local couchDB & replicated
-SCCOUCHCREDS = "~/config/SCcouchcred.conf"
+SCCOUCHCREDS = home + "/config/SCcouchcred.conf"
 IOSCARDCONF = "/home/slowcontroller/hmhj/lib/hmhj_layer1-0.2/priv/cards.conf"
 CHANNELDBURL = 'slowcontrol-channeldb'
 CHANNELDBVIEW = 'slowcontrol/recent'

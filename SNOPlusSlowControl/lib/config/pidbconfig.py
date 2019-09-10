@@ -1,5 +1,8 @@
+from os.path import expanduser
+home = expanduser("~")
+
 DEBUG = False
-ALARMCREDDIR = "~/config/alascred.conf"
+ALARMCREDDIR = home + "/config/alascred.conf"
 ALARMHOST,ALARMDBNAME = "dbug","detector"
 
 TIMESERIESURL = 'http://pi.snolab.ca/PIWebServices/PITimeSeries.svc?wsdl'
@@ -8,7 +11,7 @@ PIADDRESSBASE = "pi:\\\\pi.snolab.ca\\"
  
 
 COUCHADDRESS = 'http://couch.snopl.us'
-COUCHCREDS = "~/config/couchcred.conf"
+COUCHCREDS = home + "/config/couchcred.conf"
 CHANNELDBVIEW = 'slowcontrol/recent'
 CHANNELDBURL = 'slowcontrol-channeldb'
 ONEMINDBURL = "slowcontrol-data-1min"
