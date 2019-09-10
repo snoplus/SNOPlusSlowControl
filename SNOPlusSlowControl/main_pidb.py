@@ -12,6 +12,7 @@ import lib.thelogger as l
 import lib.alarmserver as als
 import lib.pidb_alarmhandler as alh
 import lib.pigrabber as pig
+import lib.dataconverters as dc
 
 import lib.config.pidbconfig as c
 import lib.config.logconfig as lc
@@ -61,6 +62,11 @@ if __name__ == '__main__':
     PIDataHandler.CreateClientConnection(c.TIMESERIESURL,c.PIDBFACTORYNAME)
     PIDataHandler.OpenPIDataRequest()
     PIDataHandler.SetPiBaseAddress(c.PIADDRESSBASE) 
+   
+    #Initialize the data converter
+    DataConverter = dc.PIDataConverter()
+    print('Initializing DataConverter')
+
     while True:
         #Set the poll time for loop
         poll_time = (tc.unix_minute(time.time())-c.POLLDELAY)*60
@@ -69,9 +75,13 @@ if __name__ == '__main__':
         #Have the data handler grab and manipulate data
         rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list,pl.getrecent_list)
         formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,pl.getrecent_list,c.VERSION)
+        Rope = formattedPIData[0]['AVsensorRope']['values']
+        Nonlin_AVPos = DataConverter.Rope_to_AVPos(Rope)
         if c.DEBUG is True:
             print("Debug mode: MOST RECENT LOADED PI DATA:")
             print(formattedPIData)
+            print("Debug mode: Nonlinear AV Position: ")
+            print(Nonlin_AVPos)
         #Save the data to our couchDB
         CouchConn.saveEntry(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance
          
