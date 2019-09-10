@@ -7,9 +7,9 @@ LOWVOLTTHRESH = 1.5
 #RETRYONTIMEOUT=True
 
 CHDBADDRESS = 'http://couch.snopl.us'
-CHDBCREDS = "/home/slowcontroller/config/couchcred.conf"
+CHDBCREDS = "~/config/couchcred.conf"
 SCCOUCHADDRESS = "http://localhost:5984/" #IOS saves data to their local couchDB & replicated
-SCCOUCHCREDS = "/home/slowcontroller/config/SCcouchcred.conf"
+SCCOUCHCREDS = "~/config/SCcouchcred.conf"
 IOSCARDCONF = "/home/slowcontroller/hmhj/lib/hmhj_layer1-0.2/priv/cards.conf"
 CHANNELDBURL = 'slowcontrol-channeldb'
 CHANNELDBVIEW = 'slowcontrol/recent'
