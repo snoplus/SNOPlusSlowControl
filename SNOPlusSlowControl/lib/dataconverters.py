@@ -13,8 +13,13 @@ class PIDataConverter(object):
          self.Matrix = []
      
      def GetRopeValue(self,rope):
-         self.rope = rope
-         
+         rope1 = rope[5] - 46.149
+         rope2 = rope[6] - 55.498
+         rope3 = rope[0] - 62.733
+         rope4 = rope[2] - 52.514
+         rope5 = rope[3] - 60.132
+         rope6 = rope[4] - 55.679
+         self.rope = [rope1,rope2,rope3,rope4,rope5,rope6]
 
      def partial_derivative(self,func,var=0,point=[]):
          args = point[:]
