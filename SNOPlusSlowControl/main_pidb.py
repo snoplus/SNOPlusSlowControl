@@ -75,37 +75,41 @@ if __name__ == '__main__':
         #Have the data handler grab and manipulate data
         rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list,pl.getrecent_list)
         formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,pl.getrecent_list,c.VERSION)
-        Rope = formattedPIData[0]['AVsensorRope']['values']
+        PIDATA = formattedPIData[0].copy()
+        Rope = PIDATA['AVsensorRope']['values']
         Nonlin_AVPos = DataConverter.Rope_to_AVPos(Rope)
+        formattedPIData[0]['Nonlin_AVPos'] = {}
+        
+        formattedPIData[0]['Nonlin_AVPos']['values'] = Nonlin_AVPos
         if c.DEBUG is True:
             print("Debug mode: MOST RECENT LOADED PI DATA:")
             print(formattedPIData)
             print("Debug mode: Nonlinear AV Position: ")
             print(Nonlin_AVPos)
-        #Save the data to our couchDB
-        CouchConn.saveEntry(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance
-         
-        #Check data against alarm thresholds; post alarms if needed
-        alarms_last = alarms_dict
-        for timeslot in formattedPIData:
-            alarms_dict = PiAlarmHandler.checkThresholdAlarms(timeslot,channeldb,alarms_dict,c.VERSION)
-            if c.DEBUG is True:
-                print("Debug mode: CURRENT ALARMS:")
-                print(alarms_dict)
-            PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
-            PiAlarmHandler.saveAlarmsToDB(alarms_dict, c.COUCHALARMDBURL,
-                                          c.COUCHALARMDBVIEW)
-            PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
-        
-        #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
-        if channeldb is not None:
-            channeldb_last = channeldb
-        channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
-        
-        #if it took >60 seconds to run loop, no waiting; just go to the next data set!
-        offset = (time.time()- c.POLLDELAY*60) - (poll_time + c.POLL_WAITTIME)
-        if c.DEBUG is True:
-            print("Debug mode:  CURRENT OFFSET FROM PIDB IS "+str(offset)+". GOING TO" +\
-                  " SLEEP MODE if OFFSET<0")
-        if offset<0:
+        ##Save the data to our couchDB
+        #CouchConn.saveEntry(formattedPIData,c.ONEMINDBURL) #Will be from a couchutil instance
+        # 
+        ##Check data against alarm thresholds; post alarms if needed
+        #alarms_last = alarms_dict
+        #for timeslot in formattedPIData:
+        #    alarms_dict = PiAlarmHandler.checkThresholdAlarms(timeslot,channeldb,alarms_dict,c.VERSION)
+        #    if c.DEBUG is True:
+        #        print("Debug mode: CURRENT ALARMS:")
+        #        print(alarms_dict)
+        #    PiAlarmHandler.postAlarmServerAlarms(alarms_dict, alarms_last)
+        #    PiAlarmHandler.saveAlarmsToDB(alarms_dict, c.COUCHALARMDBURL,
+        #                                  c.COUCHALARMDBVIEW)
+        #    PiAlarmHandler.sendAlarmsEmail(alarms_dict, alarms_last, lc.EMAIL_RECIPIENTS_FILE)
+        #
+        ##Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
+        #if channeldb is not None:
+        #    channeldb_last = channeldb
+        #channeldb = CouchConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+        #
+        ##if it took >60 seconds to run loop, no waiting; just go to the next data set!
+        #offset = (time.time()- c.POLLDELAY*60) - (poll_time + c.POLL_WAITTIME)
+        #if c.DEBUG is True:
+        #    print("Debug mode:  CURRENT OFFSET FROM PIDB IS "+str(offset)+". GOING TO" +\
+        #          " SLEEP MODE if OFFSET<0")
+        #if offset<0:
             time.sleep(c.POLL_WAITTIME)
