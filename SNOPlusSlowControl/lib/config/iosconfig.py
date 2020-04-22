@@ -10,7 +10,8 @@ LOWVOLTTHRESH = 1.5
 #SOCKET_TIMEOUT=15
 #RETRYONTIMEOUT=True
 
-CHDBADDRESS = 'http://couch.snopl.us'
+#CHDBADDRESS = 'http://couch.snopl.us'
+CHDBADDRESS = 'http://dbus.sp.snolab.ca:6984'
 CHDBCREDS = home + "/config/couchcred.conf"
 SCCOUCHADDRESS = "http://localhost:5984/" #IOS saves data to their local couchDB & replicated
 SCCOUCHCREDS = home + "/config/SCcouchcred.conf"
