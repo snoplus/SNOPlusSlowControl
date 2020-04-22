@@ -60,8 +60,10 @@ if __name__ == '__main__':
     ChannelDBConn.getServerInstance(c.CHDBADDRESS,c.CHDBCREDS)
     CouchConn = cu.IOSCouchConn(c.IOSNUM)
     CouchConn.getServerInstance(c.SCCOUCHADDRESS,c.SCCOUCHCREDS)
-    channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
-    channeldb = channeldb.get("ioss",default_channeldb)[c.IOSNUM-1]
+    full_channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+    if "ioss" not in full_channeldb:
+        full_channeldb = default_channeldb
+    channeldb = full_channeldb["ioss"][c.IOSNUM-1]
     with open(dbpath,"w") as write_file:
         json.dump(channeldb,write_file,sort_keys=True,indent=4)
     logger.info("Main IOS script: GOT LATEST ENTRY OF CHANNELDB")
@@ -130,11 +132,14 @@ if __name__ == '__main__':
         #Get the lastest channeldb entry in case new alarm thresholds/states were loaded in
         if channeldb is not None:
             channeldb_last = channeldb
-        channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
-        channeldb = channeldb["ioss"][c.IOSNUM-1]
-        
+        full_channeldb = ChannelDBConn.getLatestEntry(c.CHANNELDBURL,c.CHANNELDBVIEW)
+        if "ioss" not in full_channeldb:
+            full_channeldb = default_channeldb
         with open(dbpath,"w") as new_write_file:
-             json.dump(channeldb,new_write_file,sort_keys=True,indent=4)
+             json.dump(full_channeldb,new_write_file,sort_keys=True,indent=4)
+        channeldb = full_channeldb["ioss"][c.IOSNUM-1]
+
 	#Take a break
         alarms_last = alarms_dict
         time.sleep(c.POLL_WAITTIME)
+
