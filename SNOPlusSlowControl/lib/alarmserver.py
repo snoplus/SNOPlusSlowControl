@@ -110,9 +110,10 @@ class AlarmPoster(object):
             self.logger.info("Starting alarm server connection heartbeat")
         try:
             conn = self.pool.getconn()
-        except psycopg2.Error as e:
+        except:
             #if the database is down we just print the error
-            self.logger.exception(str(e))
+	    self.logger.exception("ERROR: Cannot connect to heartbeat server!")
+	    return
         else:
             #we have a connection
             try:

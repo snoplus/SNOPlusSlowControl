@@ -1,8 +1,9 @@
 from os.path import expanduser
-home = expanduser("~")
+#home = expanduser('~')
+home = '/home/slowcontroller/' 
 
 IOSNUM = 4
-DEBUG = True
+DEBUG = False
 RACKCONTROLHOST = 'minard.sp.snolab.ca'
 RACKCONTROLPORT = 8520
 LOWVOLTTHRESH = 1.5
