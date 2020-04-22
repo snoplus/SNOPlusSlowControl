@@ -75,8 +75,12 @@ if __name__ == '__main__':
         #Have the data handler grab and manipulate data
         rawPIData = PIDataHandler.getValues(poll_time,endpoll_time,pl.pi_list,pl.getrecent_list)
         formattedPIData = PIDataHandler.ManipulateData(poll_time,endpoll_time,rawPIData,pl.pi_list,pl.getrecent_list,c.VERSION)
-        Rope = formattedPIData[0]['AVsensorRope']['values']
+        PIDATA = formattedPIData[0].copy()
+        Rope = PIDATA['AVsensorRope']['values']
         Nonlin_AVPos = DataConverter.Rope_to_AVPos(Rope)
+        formattedPIData[0]['Nonlin_AVPos'] = {}
+        
+        formattedPIData[0]['Nonlin_AVPos']['values'] = Nonlin_AVPos
         if c.DEBUG is True:
             print("Debug mode: MOST RECENT LOADED PI DATA:")
             print(formattedPIData)

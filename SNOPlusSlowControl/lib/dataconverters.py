@@ -92,7 +92,7 @@ class PIDataConverter(object):
            self.delz = self.AV_Pos[2]
            return self.AV_Pos 
 def main():
-    f = open("dz_data.txt","w+")
+    f = open("dy_data.txt","w+")
     rope1 = open("rope_data/F_hour.txt","r")
     rope2 = open("rope_data/G_hour.txt","r")
     rope3 = open("rope_data/A_hour.txt","r")
@@ -109,13 +109,13 @@ def main():
     Rope = []
     
     for i in range(len(V1)):
-       Rope.append([V1[i]-46.149,V2[i]-55.498,V3[i]-62.733,V4[i]-52.514,V5[i]-60.132,V6[i]-55.679])
+       Rope.append([V3[i]-46.149,0,V4[i]-55.498,V5[i]-62.733,V6[i]-52.514,V1[i]-60.132,V2[i]-55.679])
 
     Test = PIDataConverter()
     for i in range(len(V1)):
        AVPOS = Test.Rope_to_AVPos(Rope[i])
       # print("dz= ",AVPOS[2])
-       f.write('%s\n' % AVPOS[2])
+       f.write('%s\n' % AVPOS[1])
     f.close
 
 if __name__ == '__main__':
